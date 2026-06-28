@@ -20,6 +20,7 @@
 
 # misc
 .DS_Store
+.video-frames/
 *.pem
 
 # debug

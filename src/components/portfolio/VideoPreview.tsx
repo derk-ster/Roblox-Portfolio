@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { resolveMediaUrl } from "@/lib/media-url";
 import { cn } from "@/lib/utils";
 
 interface VideoPreviewProps {
@@ -64,11 +65,13 @@ export function VideoPreview({
     return () => window.clearTimeout(fallback);
   }, [src, markReady]);
 
+  const resolvedSrc = resolveMediaUrl(src);
+
   return (
     <video
       ref={videoRef}
-      key={src}
-      src={src}
+      key={resolvedSrc}
+      src={resolvedSrc}
       poster={poster}
       className={cn(className, frameReady ? "opacity-100" : "opacity-0")}
       muted

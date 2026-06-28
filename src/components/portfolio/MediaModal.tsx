@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Badge } from "@/components/ui/Badge";
+import { resolveMediaUrl } from "@/lib/media-url";
 import {
   CATEGORY_LABELS,
   type PortfolioAsset,
@@ -123,7 +124,7 @@ export function MediaModal({
                 <video
                   ref={videoRef}
                   key={asset.id}
-                  src={asset.src}
+                  src={resolveMediaUrl(asset.src)}
                   className="max-h-[60vh] w-full object-contain"
                   controls
                   autoPlay
