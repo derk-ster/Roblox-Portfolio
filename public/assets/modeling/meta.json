@@ -1,0 +1,101 @@
+{
+  "FinalOptimzationSHOWTHISFIRSTWITHANOTE.png": {
+    "title": "OUTRUN Lobby Overview",
+    "description": "Main lobby interior I modeled for OUTRUN. Optimized to ~160k tris.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "imag9.png": {
+    "title": "OUTRUN Lobby Dome View",
+    "description": "Another angle of the OUTRUN lobby with dome structures and rock field.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
+  "image1.png": {
+    "title": "OUTRUN Lobby Exterior",
+    "description": "Wide exterior view of the OUTRUN lobby and surrounding rocks.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "date": "2026"
+  },
+  "image2.png": {
+    "title": "OUTRUN Lobby Window View",
+    "description": "Interior viewport looking out at the lobby rock formations.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "date": "2026"
+  },
+  "image3.png": {
+    "title": "OUTRUN Train & Shop Area",
+    "description": "Lobby zone with Train archway, shop counters, and planter details.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 5,
+    "date": "2026"
+  },
+  "image4.png": {
+    "title": "OUTRUN Abilities Plaza",
+    "description": "Central plaza with Abilities, Cosmetics, and trophy display areas.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 6,
+    "date": "2026"
+  },
+  "image5.png": {
+    "title": "OUTRUN Duels Arena",
+    "description": "Symmetrical duel room with skylight, crystal ceiling, and 1v1/2v2 signs.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Arena"],
+    "status": "Completed",
+    "featured": false,
+    "order": 7,
+    "date": "2026"
+  },
+  "image6.png": {
+    "title": "OUTRUN Matchmaking Area",
+    "description": "Duels gateway with 1v1, 2v2 zones, and a Daily Rewards station.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 8,
+    "date": "2026"
+  },
+  "image7.png": {
+    "title": "OUTRUN Gateway Entrance",
+    "description": "Main entrance arch with OUTRUN signage, pipes, and crystal trim.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 9,
+    "date": "2026"
+  },
+  "image8.png": {
+    "title": "OUTRUN Spawn Platform",
+    "description": "Circular spawn pad with hologram displays and cavern walls.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 10,
+    "date": "2026"
+  },
+  "image10.png": {
+    "title": "OUTRUN Leaderboards",
+    "description": "Leaderboard room with monitor rig, cables, and a central display platform.",
+    "tags": ["3D Modeling", "Blender", "OUTRUN", "Lobby"],
+    "status": "Completed",
+    "featured": false,
+    "order": 11,
+    "date": "2026"
+  }
+}

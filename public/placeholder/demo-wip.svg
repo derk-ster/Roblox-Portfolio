@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8A00;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#94A3B8;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="#0B1026"/>
+  <rect width="800" height="450" fill="url(#g)" stroke="#FF8A00" stroke-width="2" stroke-dasharray="12 6" fill-opacity="0.5"/>
+  <text x="400" y="210" text-anchor="middle" fill="#FF8A00" font-family="system-ui,sans-serif" font-size="28" font-weight="bold">WIP Demo</text>
+  <text x="400" y="250" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="16">Placeholder  add media to public/assets/wip</text>
+  <text x="400" y="290" text-anchor="middle" fill="#FF8A00" font-family="system-ui,sans-serif" font-size="14" font-weight="bold">WORK IN PROGRESS</text>
+</svg>

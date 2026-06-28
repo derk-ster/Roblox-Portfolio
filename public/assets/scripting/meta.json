@@ -1,0 +1,101 @@
+{
+  "20260602-1939-13.4536130.mp4": {
+    "title": "Matchmaking UI Tweening",
+    "description": "Sidebar menu with Shop, Quests, Inventory, Abilities, Settings, and Play.",
+    "tags": ["Lua", "UI", "Matchmaking", "WIP"],
+    "status": "WIP",
+    "featured": false,
+    "order": 1,
+    "date": "2026"
+  },
+  "20260602-2026-10.3369303.mp4": {
+    "title": "Climbing System",
+    "description": "Climbing mechanics on a stylized platforming section with arrows and cloud scenery.",
+    "tags": ["Lua", "Movement", "Climbing"],
+    "status": "Completed",
+    "featured": false,
+    "order": 2,
+    "date": "2026"
+  },
+  "20260605-1900-16.1437941.mp4": {
+    "title": "Regional Matchmaking System",
+    "description": "Regional matchmaking UI on a showcase baseplate with sprint smoke effects.",
+    "tags": ["Lua", "UI", "Matchmaking", "WIP"],
+    "status": "WIP",
+    "featured": false,
+    "order": 3,
+    "date": "2026"
+  },
+  "20260608-0642-38.4015565.mp4": {
+    "title": "OUTRUN Lighting Ability Movement",
+    "description": "OUTRUN lighting ability movement with cyan trails and foot smoke.",
+    "tags": ["Lua", "Movement", "VFX", "OUTRUN"],
+    "status": "Completed",
+    "featured": true,
+    "order": 4,
+    "date": "2026"
+  },
+  "20260608-0645-32.5165223.mp4": {
+    "title": "Sukuna Emote",
+    "description": "Scripted Sukuna emote system with radial selection UI around the player.",
+    "tags": ["Lua", "UI", "Emotes", "WIP"],
+    "status": "WIP",
+    "featured": false,
+    "order": 5,
+    "date": "2026"
+  },
+  "20260608-0650-51.1901739.mp4": {
+    "title": "Sukuna Emote",
+    "description": "Sukuna emote system paired with scripted ground and border effects.",
+    "tags": ["Lua", "UI", "Emotes", "WIP"],
+    "status": "WIP",
+    "featured": false,
+    "order": 6,
+    "date": "2026"
+  },
+  "20260609-0358-44.4387555.mp4": {
+    "title": "Quests UI",
+    "description": "Quest window with daily, weekly, and exclusive tabs plus reward claims.",
+    "tags": ["Lua", "UI", "Quests"],
+    "status": "Completed",
+    "featured": false,
+    "order": 7,
+    "date": "2026"
+  },
+  "20260610-0206-57.4104519.mp4": {
+    "title": "Inventory UI",
+    "description": "Inventory grid with search, filter, delete, and equip controls.",
+    "tags": ["Lua", "UI", "Inventory"],
+    "status": "Completed",
+    "featured": false,
+    "order": 8,
+    "date": "2026"
+  },
+  "20260619-1959-11.3872645.mp4": {
+    "title": "Matchmaking UI Tweening",
+    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
+    "tags": ["Lua", "UI", "Matchmaking", "WIP"],
+    "status": "WIP",
+    "featured": false,
+    "order": 9,
+    "date": "2026"
+  },
+  "20260619-2143-04.9365424.mp4": {
+    "title": "Eliminated Screen",
+    "description": "Custom defeat overlay with respawn timer and corner HUD brackets.",
+    "tags": ["Lua", "UI", "Combat"],
+    "status": "Completed",
+    "featured": false,
+    "order": 10,
+    "date": "2026"
+  },
+  "20260626-0340-11.3104938.mp4": {
+    "title": "2D Movement System",
+    "description": "2D-style movement with a trailing smoke effect on a test baseplate.",
+    "tags": ["Lua", "Movement", "VFX", "VFXForge"],
+    "status": "Completed",
+    "featured": false,
+    "order": 11,
+    "date": "2026"
+  }
+}

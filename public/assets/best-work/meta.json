@@ -1,0 +1,29 @@
+{
+  "20260608-0645-32.5165223.mp4": {
+    "title": "Sukuna Emote",
+    "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
+    "tags": ["UI", "Scripting", "Emotes", "WIP", "Featured"],
+    "status": "WIP",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "20260619-1959-11.3872645.mp4": {
+    "title": "Matchmaking UI Tweening",
+    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
+    "tags": ["UI", "Scripting", "Matchmaking", "WIP", "Featured"],
+    "status": "WIP",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
+  "20260619-2143-04.9365424.mp4": {
+    "title": "Eliminated Screen",
+    "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
+    "tags": ["UI", "Scripting", "Combat", "Featured"],
+    "status": "Completed",
+    "featured": true,
+    "order": 3,
+    "date": "2026"
+  }
+}

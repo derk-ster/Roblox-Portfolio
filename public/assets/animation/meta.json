@@ -1,0 +1,74 @@
+{
+  "ElectroswingEmote.mp4": {
+    "title": "Electro Swing Emote",
+    "description": "Fortnite Electro Swing dance recreated on an R15 rig in Blender.",
+    "tags": ["Animation", "Emote", "Blender", "Fortnite"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "20260605-0616-02.2630161.mp4": {
+    "title": "Take the L Emote",
+    "description": "Fortnite Take the L emote with IK leg targets and full-body keyframing in Blender.",
+    "tags": ["Animation", "Emote", "Blender", "Fortnite"],
+    "status": "Completed",
+    "featured": false,
+    "order": 2,
+    "date": "2026"
+  },
+  "20260605-2136-01.1222330.mp4": {
+    "title": "Fortnite Hype Emote",
+    "description": "Fortnite Hype emote with dynamic poses across the full timeline.",
+    "tags": ["Animation", "Emote", "Blender", "Fortnite"],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "date": "2026"
+  },
+  "20260606-1809-43.6865501.mp4": {
+    "title": "Fortnite Bugha Emote",
+    "description": "Fortnite Bugha emote recreated on an R15 rig in Blender.",
+    "tags": ["Animation", "Emote", "Blender", "Fortnite"],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "date": "2026"
+  },
+  "20260607-0331-45.4575817.mp4": {
+    "title": "Luffy Gear 2 Emote",
+    "description": "Luffy Gear 2-style emote with a long keyframed sequence and graph edits.",
+    "tags": ["Animation", "Emote", "Blender", "Anime"],
+    "status": "Completed",
+    "featured": false,
+    "order": 5,
+    "date": "2026"
+  },
+  "20260607-0432-34.0626182.mp4": {
+    "title": "Sukuna Emote",
+    "description": "Sukuna-inspired emote with upper-body and torso keyframing in Pose Mode.",
+    "tags": ["Animation", "Emote", "Blender", "Anime"],
+    "status": "Completed",
+    "featured": false,
+    "order": 6,
+    "date": "2026"
+  },
+  "20260607-0517-55.9596517.mp4": {
+    "title": "Gojo Emote",
+    "description": "Gojo-inspired emote built with IK foot targets and full-body motion.",
+    "tags": ["Animation", "Emote", "Blender", "Anime"],
+    "status": "Completed",
+    "featured": false,
+    "order": 7,
+    "date": "2026"
+  },
+  "UpBlockStaticLoop.mp4": {
+    "title": "Emote Static Loop",
+    "description": "Static upper-body emote loop keyframed in Blender for Roblox export.",
+    "tags": ["Animation", "Emote", "Blender", "Loop"],
+    "status": "Completed",
+    "featured": false,
+    "order": 8,
+    "date": "2026"
+  }
+}

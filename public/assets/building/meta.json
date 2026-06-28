@@ -1,0 +1,38 @@
+{
+  "image3.png": {
+    "title": "Island Spawn Hub",
+    "description": "Multi-island spawn area with plot claiming, pools, and bridges.",
+    "tags": ["Building", "Lobby", "Map Design"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "image2.png": {
+    "title": "OUTRUN Neighborhood Map",
+    "description": "OUTRUN neighborhood area with arched sections, speed pads, and cloud layers.",
+    "tags": ["Building", "OUTRUN", "Map Design"],
+    "status": "Completed",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
+  "image1.png": {
+    "title": "OUTRUN Neighborhood Map",
+    "description": "Another angle of the OUTRUN neighborhood with clouds and greenery.",
+    "tags": ["Building", "OUTRUN", "Environment"],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "date": "2026"
+  },
+  "image.png": {
+    "title": "Swimming Pool Area",
+    "description": "Pool map with shells, bubbles, seaweed, and a custom item hotbar.",
+    "tags": ["Building", "Environment", "Pool"],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "date": "2026"
+  }
+}
