@@ -19,7 +19,6 @@ import {
   dampScrollProgress,
   getPhaseLayerVisual,
   getScrollProgress,
-  SCALE_MIN,
 } from "./scroll-scene-utils";
 import { SceneLoadingFallback } from "./SceneLoadingFallback";
 
@@ -79,7 +78,13 @@ function useIsMobile() {
 }
 
 function ScrollSceneCanvas() {
-  const { mouseRef, scrollRef, phaseCountRef } = useSceneInteraction();
+  const {
+    mouseRef,
+    scrollRef,
+    phaseCountRef,
+    layerOpacityRef,
+    notifyLayerVisibility,
+  } = useSceneInteraction();
   const reducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
 
@@ -91,6 +96,7 @@ function ScrollSceneCanvas() {
   const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const smoothScrollRef = useRef(0);
   const lastFrameRef = useRef(0);
+  const layerActiveRef = useRef<boolean[]>([]);
 
   useEffect(() => {
     phaseCountRef.current = phaseCount;
@@ -130,14 +136,29 @@ function ScrollSceneCanvas() {
       smoothScrollRef.current = progress;
       scrollRef.current = progress;
 
+      let visibilityChanged = false;
+
       for (let slot = 0; slot < phaseCount; slot++) {
         const el = layerRefs.current[slot];
+        const visual = getPhaseLayerVisual(slot, progress, phaseCount);
+        layerOpacityRef.current[slot] = visual.opacity;
+
+        const wasActive = layerActiveRef.current[slot] ?? false;
+        if (wasActive !== visual.active) {
+          layerActiveRef.current[slot] = visual.active;
+          visibilityChanged = true;
+        }
+
         if (!el) continue;
 
-        const visual = getPhaseLayerVisual(slot, progress, phaseCount);
         el.style.opacity = String(visual.opacity);
-        el.style.transform = formatLayerTransform(visual.scale);
+        el.style.transform = formatLayerTransform();
+        el.style.visibility = visual.active ? "visible" : "hidden";
         el.style.pointerEvents = "none";
+      }
+
+      if (visibilityChanged) {
+        notifyLayerVisibility();
       }
 
       raf = requestAnimationFrame(update);
@@ -145,7 +166,13 @@ function ScrollSceneCanvas() {
 
     raf = requestAnimationFrame(update);
     return () => cancelAnimationFrame(raf);
-  }, [reducedMotion, scrollRef, phaseCount]);
+  }, [
+    reducedMotion,
+    scrollRef,
+    phaseCount,
+    layerOpacityRef,
+    notifyLayerVisibility,
+  ]);
 
   if (reducedMotion) {
     return (
@@ -174,13 +201,16 @@ function ScrollSceneCanvas() {
                 scrollRef.current ?? 0,
                 phaseCount
               );
+              layerOpacityRef.current[slot] = visual.opacity;
               el.style.opacity = String(visual.opacity);
-              el.style.transform = formatLayerTransform(visual.scale);
+              el.style.transform = formatLayerTransform();
+              el.style.visibility = visual.active ? "visible" : "hidden";
             }}
-            className="absolute inset-0 origin-center will-change-[opacity,transform]"
+            className="absolute inset-0 origin-center will-change-[opacity]"
             style={{
               opacity: slot === 0 ? 1 : 0,
-              transform: formatLayerTransform(slot === 0 ? 1 : SCALE_MIN),
+              transform: formatLayerTransform(),
+              visibility: slot === 0 ? "visible" : "hidden",
             }}
           >
             <PhaseScrollProvider index={slot}>

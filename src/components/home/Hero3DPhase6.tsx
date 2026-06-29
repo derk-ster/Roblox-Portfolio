@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const ORBIT_SPHERES = [
   { angle: 0, radius: 2.5, color: "#e879f9", size: 0.32 },
@@ -187,7 +188,7 @@ export function Hero3DPhase6() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 0.5, 9.5], fov: 45 }}
       dpr={[1, 1.25]}
       gl={{ antialias: true, alpha: true }}
@@ -195,6 +196,6 @@ export function Hero3DPhase6() {
     >
       <fog attach="fog" args={["#050816", 11, 26]} />
       <Phase6Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }

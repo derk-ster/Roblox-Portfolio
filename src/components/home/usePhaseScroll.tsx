@@ -12,6 +12,8 @@ import { getPhaseLocalProgress } from "./scroll-scene-utils";
 
 const PhaseScrollIndexContext = createContext(0);
 
+export { PhaseScrollIndexContext };
+
 export function PhaseScrollProvider({
   index,
   children,

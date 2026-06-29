@@ -28,13 +28,6 @@ export function dampScrollProgress(
   return THREE.MathUtils.damp(current, target, smoothing, delta);
 }
 
-/** Scale at the far end of a fade-out / start of a fade-in. */
-export const SCALE_MIN = 0.86;
-export const SCALE_RANGE = 1 - SCALE_MIN;
-
-/** Hold full opacity at the start of each scroll segment before crossfade begins. */
-export const TRANSITION_HOLD = 0.12;
-
 export interface PhaseLayerVisual {
   opacity: number;
   scale: number;
@@ -46,13 +39,6 @@ function smootherstep(value: number): number {
   return t * t * t * (t * (t * 6 - 15) + 10);
 }
 
-/** Eased progress through the crossfade portion of a segment (0 → 1). */
-export function segmentEase(local: number): number {
-  if (local <= TRANSITION_HOLD) return 0;
-  if (local >= 1) return 1;
-  return smootherstep((local - TRANSITION_HOLD) / (1 - TRANSITION_HOLD));
-}
-
 /** Continuous scroll position mapped to phase indices (0 … phaseCount − 1). */
 export function getPhasePosition(global: number, phaseCount: number): number {
   if (phaseCount <= 1) return 0;
@@ -60,9 +46,8 @@ export function getPhasePosition(global: number, phaseCount: number): number {
 }
 
 /**
- * Per-phase opacity + scale driven only by scroll position.
- * Outgoing: fade out + scale down. Incoming: fade in + scale up.
- * No discrete role swapping — eliminates boundary snaps.
+ * Symmetric crossfade between adjacent phases — opacity only (no scale jumps).
+ * At phase center opacity is 1; fades to 0 one segment away in either direction.
  */
 export function getPhaseLayerVisual(
   slot: number,
@@ -73,46 +58,18 @@ export function getPhaseLayerVisual(
     return { opacity: slot === 0 ? 1 : 0, scale: 1, active: slot === 0 };
   }
 
-  const last = phaseCount - 1;
   const p = getPhasePosition(global, phaseCount);
+  const dist = Math.abs(p - slot);
 
-  if (p <= slot - 1 || p >= slot + 1) {
-    return { opacity: 0, scale: SCALE_MIN, active: false };
+  if (dist >= 1) {
+    return { opacity: 0, scale: 1, active: false };
   }
 
-  if (slot === 0 && p < TRANSITION_HOLD * 0.25) {
-    return { opacity: 1, scale: 1, active: true };
-  }
-
-  if (slot === last && p >= last - TRANSITION_HOLD * 0.25) {
-    return { opacity: 1, scale: 1, active: true };
-  }
-
-  // Incoming — scroll entering this phase from the one above.
-  if (p <= slot) {
-    if (slot === 0) {
-      return { opacity: 1, scale: 1, active: true };
-    }
-    const local = p - (slot - 1);
-    const t = segmentEase(local);
-    return {
-      opacity: t,
-      scale: SCALE_MIN + t * SCALE_RANGE,
-      active: t > 0.002,
-    };
-  }
-
-  // Outgoing — scroll leaving this phase toward the next.
-  const local = p - slot;
-  const t = segmentEase(local);
-  return {
-    opacity: 1 - t,
-    scale: 1 - t * SCALE_RANGE,
-    active: 1 - t > 0.002,
-  };
+  const opacity = smootherstep(1 - dist);
+  return { opacity, scale: 1, active: opacity > 0.008 };
 }
 
-/** Internal 3D animation progress for a given phase slot. */
+/** Internal 3D animation progress aligned to each phase scroll segment. */
 export function getPhaseLocalProgress(
   global: number,
   phaseIndex: number,
@@ -120,28 +77,9 @@ export function getPhaseLocalProgress(
 ): number {
   if (phaseCount <= 1) return global;
   const p = getPhasePosition(global, phaseCount);
-  return Math.max(0, Math.min(1, p - phaseIndex + 0.48));
+  return Math.max(0, Math.min(1, p - phaseIndex));
 }
 
-/** Pre-mount phases slightly before they become visible. */
-export function getSlotsToMount(
-  global: number,
-  phaseCount: number
-): Set<number> {
-  const slots = new Set<number>();
-  const p = getPhasePosition(global, phaseCount);
-  const lead = 0.35;
-
-  for (let slot = 0; slot < phaseCount; slot++) {
-    if (p >= slot - 1 - lead && p <= slot + 1 + lead) {
-      slots.add(slot);
-    }
-  }
-
-  if (slots.size === 0) slots.add(0);
-  return slots;
-}
-
-export function formatLayerTransform(scale: number): string {
-  return `translate3d(0, 0, 0) scale(${scale})`;
+export function formatLayerTransform(): string {
+  return "translate3d(0, 0, 0)";
 }

@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float, Line } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const PYRAMIDS = [
   { angle: 0.5, dist: 2.8, color: "#fb923c", height: 1.1 },
@@ -188,7 +189,7 @@ export function Hero3DPhase5() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 1, 10.5], fov: 47 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
@@ -196,6 +197,6 @@ export function Hero3DPhase5() {
     >
       <fog attach="fog" args={["#050816", 12, 28]} />
       <Phase5Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }

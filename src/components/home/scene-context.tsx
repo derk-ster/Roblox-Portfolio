@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useRef,
   type ReactNode,
@@ -17,6 +18,9 @@ interface SceneInteractionContextValue {
   mouseRef: RefObject<MousePosition>;
   scrollRef: RefObject<number>;
   phaseCountRef: RefObject<number>;
+  layerOpacityRef: RefObject<number[]>;
+  subscribeLayerVisibility: (listener: () => void) => () => void;
+  notifyLayerVisibility: () => void;
 }
 
 const SceneInteractionContext =
@@ -26,10 +30,30 @@ export function SceneInteractionProvider({ children }: { children: ReactNode }) 
   const mouseRef = useRef<MousePosition>({ x: 0, y: 0 });
   const scrollRef = useRef(0);
   const phaseCountRef = useRef(6);
+  const layerOpacityRef = useRef<number[]>([]);
+  const listenersRef = useRef(new Set<() => void>());
+
+  const subscribeLayerVisibility = useCallback((listener: () => void) => {
+    listenersRef.current.add(listener);
+    return () => {
+      listenersRef.current.delete(listener);
+    };
+  }, []);
+
+  const notifyLayerVisibility = useCallback(() => {
+    listenersRef.current.forEach((listener) => listener());
+  }, []);
 
   return (
     <SceneInteractionContext.Provider
-      value={{ mouseRef, scrollRef, phaseCountRef }}
+      value={{
+        mouseRef,
+        scrollRef,
+        phaseCountRef,
+        layerOpacityRef,
+        subscribeLayerVisibility,
+        notifyLayerVisibility,
+      }}
     >
       {children}
     </SceneInteractionContext.Provider>

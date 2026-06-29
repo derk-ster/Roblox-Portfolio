@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Torus } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const BLOCKS = [
   { rest: [-2, 1, 0] as const, orbit: 0.0, color: "#00E5FF", size: 1.2, speed: 0.8 },
@@ -323,7 +324,7 @@ export function Hero3D() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 0, 8], fov: 50 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
@@ -331,6 +332,6 @@ export function Hero3D() {
     >
       <fog attach="fog" args={["#050816", 14, 32]} />
       <Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }

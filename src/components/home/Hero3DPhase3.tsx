@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const TETRAS = [
   { offset: 0, radius: 2.6, color: "#f472b6", size: 0.55, speed: 0.85 },
@@ -185,7 +186,7 @@ export function Hero3DPhase3() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 1.2, 11], fov: 48 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
@@ -193,6 +194,6 @@ export function Hero3DPhase3() {
     >
       <fog attach="fog" args={["#050816", 13, 30]} />
       <Phase3Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }

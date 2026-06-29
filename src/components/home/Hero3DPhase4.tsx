@@ -1,11 +1,12 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const CHAIN_LINKS = 14;
 
@@ -197,7 +198,7 @@ export function Hero3DPhase4() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 0.8, 12], fov: 46 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
@@ -205,6 +206,6 @@ export function Hero3DPhase4() {
     >
       <fog attach="fog" args={["#050816", 14, 32]} />
       <Phase4Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }

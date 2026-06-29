@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Float, Sparkles, Torus } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
+import { PhaseCanvas } from "./PhaseCanvas";
 
 const ORBS = [
   { angle: 0, radius: 2.8, color: "#38bdf8", size: 0.55, speed: 0.7 },
@@ -205,7 +206,7 @@ export function Hero3DPhase2() {
   if (reducedMotion) return null;
 
   return (
-    <Canvas
+    <PhaseCanvas
       camera={{ position: [0, 1.5, 10], fov: 48 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
@@ -213,6 +214,6 @@ export function Hero3DPhase2() {
     >
       <fog attach="fog" args={["#050816", 12, 28]} />
       <Phase2Scene />
-    </Canvas>
+    </PhaseCanvas>
   );
 }
