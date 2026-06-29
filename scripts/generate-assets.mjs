@@ -1,12 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT = path.resolve(__dirname, "..");
 const ASSETS_DIR = path.join(ROOT, "public", "assets");
+const VIDEO_FRAMES_DIR = path.join(ROOT, ".video-frames");
 const OUTPUT_FILE = path.join(ROOT, "src", "generated", "portfolio-assets.ts");
 
 const CATEGORIES = [
@@ -90,6 +92,86 @@ function findThumbnail(categoryPath, basename, ext) {
   return undefined;
 }
 
+function findVideoFrameSource(category, basename) {
+  if (!fs.existsSync(VIDEO_FRAMES_DIR)) return null;
+
+  const prefix = `${category}_${basename}`;
+  const preferred = [
+    `${prefix}_mid.jpg`,
+    `${prefix}.jpg`,
+    `${prefix}_3s.jpg`,
+    `${prefix}_5s.jpg`,
+    `${prefix}_8s.jpg`,
+  ];
+
+  for (const name of preferred) {
+    const full = path.join(VIDEO_FRAMES_DIR, name);
+    if (fs.existsSync(full)) return full;
+  }
+
+  const match = fs
+    .readdirSync(VIDEO_FRAMES_DIR)
+    .find(
+      (file) =>
+        file.startsWith(prefix) &&
+        file.endsWith(".jpg") &&
+        !file.includes("_8s")
+    );
+
+  return match ? path.join(VIDEO_FRAMES_DIR, match) : null;
+}
+
+function hasFfmpeg() {
+  try {
+    execSync("ffmpeg -version", { stdio: "ignore" });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function extractFrameWithFfmpeg(videoPath, outputPath) {
+  if (!hasFfmpeg()) return false;
+
+  try {
+    execSync(
+      `ffmpeg -y -ss 0.5 -i "${videoPath}" -vframes 1 -q:v 3 "${outputPath}"`,
+      { stdio: "ignore" }
+    );
+    return fs.existsSync(outputPath);
+  } catch {
+    return false;
+  }
+}
+
+function ensureVideoThumbnail(categoryPath, category, basename, videoFile) {
+  const existing = findThumbnail(
+    categoryPath,
+    basename,
+    path.extname(videoFile).toLowerCase()
+  );
+  if (existing) return `/assets/${category}/${existing}`;
+
+  const thumbName = `${basename}-thumb.jpg`;
+  const thumbPath = path.join(categoryPath, thumbName);
+
+  if (!fs.existsSync(thumbPath)) {
+    const frameSource = findVideoFrameSource(category, basename);
+    if (frameSource) {
+      fs.copyFileSync(frameSource, thumbPath);
+    } else {
+      const videoPath = path.join(categoryPath, videoFile);
+      extractFrameWithFfmpeg(videoPath, thumbPath);
+    }
+  }
+
+  if (fs.existsSync(thumbPath)) {
+    return `/assets/${category}/${thumbName}`;
+  }
+
+  return undefined;
+}
+
 function scanCategory(category) {
   const categoryPath = path.join(ASSETS_DIR, category);
   if (!fs.existsSync(categoryPath)) {
@@ -106,13 +188,17 @@ function scanCategory(category) {
     if (!MEDIA_EXTENSIONS.has(ext)) continue;
 
     const basename = path.basename(file, ext);
+    if (basename.endsWith("-thumb") || basename.endsWith(".thumb")) continue;
     const fileMeta = meta[file] || meta[`${basename}${ext}`] || {};
     const src = `/assets/${category}/${file}`;
     const type = VIDEO_EXTENSIONS.has(ext) ? "video" : "image";
     const thumbFile = findThumbnail(categoryPath, basename, ext);
     const thumbnail = thumbFile
       ? `/assets/${category}/${thumbFile}`
-      : fileMeta.thumbnail;
+      : type === "video"
+        ? ensureVideoThumbnail(categoryPath, category, basename, file) ||
+          fileMeta.thumbnail
+        : fileMeta.thumbnail;
 
     const isWip = category === "wip";
     const isBestWork = category === "best-work";

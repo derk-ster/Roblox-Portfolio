@@ -61,24 +61,44 @@ export function VideoPreview({
   }, [src, poster]);
 
   useEffect(() => {
-    const fallback = window.setTimeout(() => markReady(), 5000);
+    if (poster) {
+      markReady();
+    }
+  }, [poster, markReady]);
+
+  useEffect(() => {
+    const fallback = window.setTimeout(() => markReady(), 2500);
     return () => window.clearTimeout(fallback);
   }, [src, markReady]);
 
   const resolvedSrc = resolveMediaUrl(src);
 
   return (
-    <video
-      ref={videoRef}
-      key={resolvedSrc}
-      src={resolvedSrc}
-      poster={poster}
-      className={cn(className, frameReady ? "opacity-100" : "opacity-0")}
-      muted
-      playsInline
-      preload="auto"
-      onLoadedData={(event) => primeFirstFrame(event.currentTarget)}
-      onError={onError}
-    />
+    <>
+      {poster && !frameReady && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={poster}
+          alt=""
+          className={cn(className, "absolute inset-0 h-full w-full object-cover")}
+          onLoad={markReady}
+          onError={markReady}
+        />
+      )}
+      <video
+        ref={videoRef}
+        key={resolvedSrc}
+        src={resolvedSrc}
+        poster={poster}
+        className={cn(className, frameReady ? "opacity-100" : "opacity-0")}
+        muted
+        playsInline
+        preload={poster ? "none" : "metadata"}
+        onLoadedData={(event) => {
+          if (!poster) primeFirstFrame(event.currentTarget);
+        }}
+        onError={onError}
+      />
+    </>
   );
 }

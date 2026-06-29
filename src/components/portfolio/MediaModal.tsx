@@ -5,11 +5,13 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Badge } from "@/components/ui/Badge";
+import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
 import { resolveMediaUrl } from "@/lib/media-url";
 import {
   CATEGORY_LABELS,
   type PortfolioAsset,
 } from "@/types/portfolio";
+import { cn } from "@/lib/utils";
 
 interface MediaModalProps {
   asset: PortfolioAsset | null;
@@ -116,24 +118,35 @@ export function MediaModal({
             </button>
 
             <div className="relative flex min-h-[40vh] flex-1 overflow-hidden bg-bg">
-              {!loaded && (
-                <div className="absolute inset-0 animate-pulse bg-white/5" />
-              )}
+              {!loaded && <MediaLoadingSkeleton />}
 
               {asset.type === "video" ? (
-                <video
-                  ref={videoRef}
-                  key={asset.id}
-                  src={resolveMediaUrl(asset.src)}
-                  className="max-h-[60vh] w-full object-contain"
-                  controls
-                  autoPlay
-                  playsInline
-                  poster={asset.thumbnail}
-                  onLoadedData={() => setLoaded(true)}
-                  onCanPlay={() => setLoaded(true)}
-                  onError={() => setLoaded(true)}
-                />
+                <>
+                  {asset.thumbnail && !loaded && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={asset.thumbnail}
+                      alt=""
+                      className="absolute inset-0 max-h-[60vh] w-full object-contain opacity-100"
+                    />
+                  )}
+                  <video
+                    ref={videoRef}
+                    key={asset.id}
+                    src={resolveMediaUrl(asset.src)}
+                    className={cn(
+                      "max-h-[60vh] w-full object-contain transition-opacity duration-300",
+                      loaded ? "opacity-100" : "opacity-0"
+                    )}
+                    controls
+                    autoPlay
+                    playsInline
+                    poster={asset.thumbnail}
+                    onLoadedData={() => setLoaded(true)}
+                    onCanPlay={() => setLoaded(true)}
+                    onError={() => setLoaded(true)}
+                  />
+                </>
               ) : (
                 <div className="relative flex min-h-[40vh] w-full items-center justify-center">
                   <Image

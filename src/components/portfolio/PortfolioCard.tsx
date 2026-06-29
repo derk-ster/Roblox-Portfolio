@@ -13,6 +13,7 @@ import { AnimatedBorder } from "@/components/effects/AnimatedBorder";
 import { MouseGlow } from "@/components/effects/MouseGlow";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
 import { cn } from "@/lib/utils";
 import { VideoPreview } from "@/components/portfolio/VideoPreview";
 import {
@@ -72,6 +73,7 @@ function MediaPreview({
 }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const previewSrc = asset.thumbnail || asset.src;
 
   return (
     <button
@@ -80,28 +82,11 @@ function MediaPreview({
       className="group/media relative aspect-video w-full overflow-hidden rounded-t-2xl bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan/50"
       aria-label={`Preview ${asset.title}`}
     >
-      {!loaded && !error && (
-        <div className="absolute inset-0 animate-pulse bg-white/5" aria-hidden />
-      )}
+      {!loaded && !error && <MediaLoadingSkeleton />}
 
-      {asset.type === "video" ? (
-        <>
-          <VideoPreview
-            src={asset.src}
-            poster={asset.thumbnail}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover/media:scale-105"
-            onReady={() => setLoaded(true)}
-            onError={() => setError(true)}
-          />
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div className="rounded-full bg-black/40 p-4 backdrop-blur-sm border border-cyan/40 transition-transform group-hover/media:scale-110">
-              <Play className="h-8 w-8 text-cyan fill-cyan" aria-hidden />
-            </div>
-          </div>
-        </>
-      ) : (
+      {asset.type === "video" && asset.thumbnail ? (
         <Image
-          src={asset.thumbnail || asset.src}
+          src={asset.thumbnail}
           alt={asset.title}
           fill
           className={cn(
@@ -112,6 +97,34 @@ function MediaPreview({
           onLoad={() => setLoaded(true)}
           onError={() => setError(true)}
         />
+      ) : asset.type === "video" ? (
+        <VideoPreview
+          src={asset.src}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover/media:scale-105"
+          onReady={() => setLoaded(true)}
+          onError={() => setError(true)}
+        />
+      ) : (
+        <Image
+          src={previewSrc}
+          alt={asset.title}
+          fill
+          className={cn(
+            "object-cover transition-transform duration-500 group-hover/media:scale-105",
+            loaded ? "opacity-100" : "opacity-0"
+          )}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          onLoad={() => setLoaded(true)}
+          onError={() => setError(true)}
+        />
+      )}
+
+      {asset.type === "video" && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="rounded-full bg-black/40 p-4 backdrop-blur-sm border border-cyan/40 transition-transform group-hover/media:scale-110">
+            <Play className="h-8 w-8 text-cyan fill-cyan" aria-hidden />
+          </div>
+        </div>
       )}
 
       {error && (
@@ -125,7 +138,6 @@ function MediaPreview({
 
 export function PortfolioCard({
   asset,
-  index = 0,
   onViewDetails,
   onOpenMedia,
   variant = "default",
@@ -133,10 +145,10 @@ export function PortfolioCard({
 }: PortfolioCardProps) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
       <MouseGlow color={categoryGlow[asset.category]}>
         <AnimatedBorder

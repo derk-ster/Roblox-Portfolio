@@ -7,7 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { getPhaseLocalProgress } from "./scroll-scene-utils";
 
@@ -35,8 +34,7 @@ export function usePhaseScroll() {
   useFrame(() => {
     const global = scrollRef.current ?? 0;
     const count = phaseCountRef.current;
-    const target = getPhaseLocalProgress(global, phaseIndex, count);
-    smooth.current = THREE.MathUtils.lerp(smooth.current, target, 0.07);
+    smooth.current = getPhaseLocalProgress(global, phaseIndex, count);
   });
 
   return smooth;

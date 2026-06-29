@@ -226,19 +226,18 @@ function ScrollGrid() {
     ref.current.position.y = -2.5 - s * 2;
     ref.current.position.z = -4 - s * 4;
     ref.current.scale.setScalar(1 + s * 1.8);
-    ref.current.visible = s > 0.06;
 
     ref.current.children.forEach((child) => {
       if (child instanceof THREE.LineSegments) {
         const mat = child.material as THREE.LineBasicMaterial;
         mat.transparent = true;
-        mat.opacity = THREE.MathUtils.lerp(0, 0.25, Math.max(0, (s - 0.06) / 0.94));
+        mat.opacity = THREE.MathUtils.lerp(0, 0.25, Math.max(0, (s - 0.02) / 0.98));
       }
     });
   });
 
   return (
-    <group ref={ref} rotation={[Math.PI * 0.5, 0, 0]} visible={false}>
+    <group ref={ref} rotation={[Math.PI * 0.5, 0, 0]}>
       <gridHelper args={[24, 24, "#38bdf8", "#1e293b"]} />
     </group>
   );

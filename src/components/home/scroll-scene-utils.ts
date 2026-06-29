@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 export const DESKTOP_PHASE_COUNT = 6;
 export const MOBILE_PHASE_COUNT = 5;
 
@@ -14,6 +16,16 @@ export function getMaxScroll(): number {
 
 export function getScrollProgress(): number {
   return Math.min(1, Math.max(0, window.scrollY / getMaxScroll()));
+}
+
+/** Frame-rate-independent smoothing for scroll-linked motion. */
+export function dampScrollProgress(
+  current: number,
+  target: number,
+  delta: number,
+  smoothing = 14
+): number {
+  return THREE.MathUtils.damp(current, target, smoothing, delta);
 }
 
 /** Scale at the far end of a fade-out / start of a fade-in. */

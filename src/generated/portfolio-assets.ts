@@ -11,6 +11,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/ElectroswingEmote.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/ElectroswingEmote-thumb.jpg",
     "description": "Fortnite Electro Swing dance recreated on an R15 rig in Blender.",
     "tags": [
       "Animation",
@@ -48,6 +49,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260602-1939-13.4536130.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260602-1939-13.4536130-thumb.jpg",
     "description": "Sidebar menu with Shop, Quests, Inventory, Abilities, Settings, and Play.",
     "tags": [
       "Lua",
@@ -86,6 +88,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/best-work/20260608-0645-32.5165223.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260608-0645-32.5165223-thumb.jpg",
     "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
     "tags": [
       "UI",
@@ -106,6 +109,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/vfx/putanotethatsaysTHISISNTMYVFXijustscriptedwithvfxforge.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/vfx/putanotethatsaysTHISISNTMYVFXijustscriptedwithvfxforge-thumb.jpg",
     "description": "Radial ability menu wired up with VFXForge assets. Effects are not custom-made.",
     "tags": [
       "Scripting",
@@ -124,6 +128,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260602-2026-10.3369303.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260602-2026-10.3369303-thumb.jpg",
     "description": "Climbing mechanics on a stylized platforming section with arrows and cloud scenery.",
     "tags": [
       "Lua",
@@ -142,6 +147,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/best-work/20260619-1959-11.3872645.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-1959-11.3872645-thumb.jpg",
     "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
     "tags": [
       "UI",
@@ -199,6 +205,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260605-0616-02.2630161.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260605-0616-02.2630161-thumb.jpg",
     "description": "Fortnite Take the L emote with IK leg targets and full-body keyframing in Blender.",
     "tags": [
       "Animation",
@@ -218,6 +225,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/best-work/20260619-2143-04.9365424.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-2143-04.9365424-thumb.jpg",
     "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
     "tags": [
       "UI",
@@ -237,6 +245,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260605-2136-01.1222330.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260605-2136-01.1222330-thumb.jpg",
     "description": "Fortnite Hype emote with dynamic poses across the full timeline.",
     "tags": [
       "Animation",
@@ -293,6 +302,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260605-1900-16.1437941.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260605-1900-16.1437941-thumb.jpg",
     "description": "Regional matchmaking UI on a showcase baseplate with sprint smoke effects.",
     "tags": [
       "Lua",
@@ -312,6 +322,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260606-1809-43.6865501.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260606-1809-43.6865501-thumb.jpg",
     "description": "Fortnite Bugha emote recreated on an R15 rig in Blender.",
     "tags": [
       "Animation",
@@ -331,6 +342,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260608-0642-38.4015565.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260608-0642-38.4015565-thumb.jpg",
     "description": "OUTRUN lighting ability movement with cyan trails and foot smoke.",
     "tags": [
       "Lua",
@@ -387,6 +399,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260607-0331-45.4575817.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260607-0331-45.4575817-thumb.jpg",
     "description": "Luffy Gear 2-style emote with a long keyframed sequence and graph edits.",
     "tags": [
       "Animation",
@@ -425,6 +438,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260608-0645-32.5165223.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260608-0645-32.5165223-thumb.jpg",
     "description": "Scripted Sukuna emote system with radial selection UI around the player.",
     "tags": [
       "Lua",
@@ -463,6 +477,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260608-0650-51.1901739.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260608-0650-51.1901739-thumb.jpg",
     "description": "Sukuna emote system paired with scripted ground and border effects.",
     "tags": [
       "Lua",
@@ -482,6 +497,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260607-0432-34.0626182.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260607-0432-34.0626182-thumb.jpg",
     "description": "Sukuna-inspired emote with upper-body and torso keyframing in Pose Mode.",
     "tags": [
       "Animation",
@@ -501,6 +517,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/20260607-0517-55.9596517.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/20260607-0517-55.9596517-thumb.jpg",
     "description": "Gojo-inspired emote built with IK foot targets and full-body motion.",
     "tags": [
       "Animation",
@@ -539,6 +556,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260609-0358-44.4387555.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260609-0358-44.4387555-thumb.jpg",
     "description": "Quest window with daily, weekly, and exclusive tabs plus reward claims.",
     "tags": [
       "Lua",
@@ -557,6 +575,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/animation/UpBlockStaticLoop.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/animation/UpBlockStaticLoop-thumb.jpg",
     "description": "Static upper-body emote loop keyframed in Blender for Roblox export.",
     "tags": [
       "Animation",
@@ -576,6 +595,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260610-0206-57.4104519.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260610-0206-57.4104519-thumb.jpg",
     "description": "Inventory grid with search, filter, delete, and equip controls.",
     "tags": [
       "Lua",
@@ -613,6 +633,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260619-1959-11.3872645.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260619-1959-11.3872645-thumb.jpg",
     "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
     "tags": [
       "Lua",
@@ -651,6 +672,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260619-2143-04.9365424.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260619-2143-04.9365424-thumb.jpg",
     "description": "Custom defeat overlay with respawn timer and corner HUD brackets.",
     "tags": [
       "Lua",
@@ -688,6 +710,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "src": "/assets/scripting/20260626-0340-11.3104938.mp4",
     "type": "video",
     "extension": "mp4",
+    "thumbnail": "/assets/scripting/20260626-0340-11.3104938-thumb.jpg",
     "description": "2D-style movement with a trailing smoke effect on a test baseplate.",
     "tags": [
       "Lua",

@@ -178,6 +178,19 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+@keyframes media-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.media-shimmer {
+  animation: media-shimmer 1.6s ease-in-out infinite;
+}
+
 .scrollbar-thin::-webkit-scrollbar {
   height: 4px;
   width: 4px;

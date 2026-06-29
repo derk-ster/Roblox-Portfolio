@@ -16,40 +16,41 @@ import {
 import { PhaseScrollProvider } from "./usePhaseScroll";
 import {
   formatLayerTransform,
+  dampScrollProgress,
   getPhaseLayerVisual,
   getScrollProgress,
-  getSlotsToMount,
   SCALE_MIN,
 } from "./scroll-scene-utils";
+import { SceneLoadingFallback } from "./SceneLoadingFallback";
 
 const Hero3D = dynamic(() => import("./Hero3D").then((m) => m.Hero3D), {
   ssr: false,
-  loading: () => null,
+  loading: SceneLoadingFallback,
 });
 
 const Hero3DPhase2 = dynamic(
   () => import("./Hero3DPhase2").then((m) => m.Hero3DPhase2),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: SceneLoadingFallback }
 );
 
 const Hero3DPhase3 = dynamic(
   () => import("./Hero3DPhase3").then((m) => m.Hero3DPhase3),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: SceneLoadingFallback }
 );
 
 const Hero3DPhase4 = dynamic(
   () => import("./Hero3DPhase4").then((m) => m.Hero3DPhase4),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: SceneLoadingFallback }
 );
 
 const Hero3DPhase5 = dynamic(
   () => import("./Hero3DPhase5").then((m) => m.Hero3DPhase5),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: SceneLoadingFallback }
 );
 
 const Hero3DPhase6 = dynamic(
   () => import("./Hero3DPhase6").then((m) => m.Hero3DPhase6),
-  { ssr: false, loading: () => null }
+  { ssr: false, loading: SceneLoadingFallback }
 );
 
 const ALL_PHASES: ComponentType[] = [
@@ -88,10 +89,8 @@ function ScrollSceneCanvas() {
   const phaseCount = componentIndices.length;
 
   const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mountedRef = useRef<Set<number>>(new Set([0, 1]));
-  const [mountedSlots, setMountedSlots] = useState<Set<number>>(
-    () => new Set([0, 1])
-  );
+  const smoothScrollRef = useRef(0);
+  const lastFrameRef = useRef(0);
 
   useEffect(() => {
     phaseCountRef.current = phaseCount;
@@ -110,26 +109,26 @@ function ScrollSceneCanvas() {
   useEffect(() => {
     if (reducedMotion) {
       scrollRef.current = 0;
+      smoothScrollRef.current = 0;
       return;
     }
 
     let raf = 0;
 
-    const update = () => {
-      const progress = getScrollProgress();
-      scrollRef.current = progress;
+    const update = (now: number) => {
+      const delta = lastFrameRef.current
+        ? Math.min(0.05, (now - lastFrameRef.current) / 1000)
+        : 1 / 60;
+      lastFrameRef.current = now;
 
-      const slotsToMount = getSlotsToMount(progress, phaseCount);
-      let mountChanged = false;
-      for (const slot of slotsToMount) {
-        if (!mountedRef.current.has(slot)) {
-          mountedRef.current.add(slot);
-          mountChanged = true;
-        }
-      }
-      if (mountChanged) {
-        setMountedSlots(new Set(mountedRef.current));
-      }
+      const target = getScrollProgress();
+      const progress = dampScrollProgress(
+        smoothScrollRef.current,
+        target,
+        delta
+      );
+      smoothScrollRef.current = progress;
+      scrollRef.current = progress;
 
       for (let slot = 0; slot < phaseCount; slot++) {
         const el = layerRefs.current[slot];
@@ -162,8 +161,6 @@ function ScrollSceneCanvas() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
       {componentIndices.map((componentIndex, slot) => {
-        if (!mountedSlots.has(slot)) return null;
-
         const Component = ALL_PHASES[componentIndex];
 
         return (
