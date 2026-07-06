@@ -69,6 +69,29 @@ export function getPhaseLayerVisual(
   return { opacity, scale: 1, active: opacity > 0.008 };
 }
 
+/**
+ * Crossfade backdrop layers based on which page section is in view.
+ * `activeIndex` may be fractional while transitioning between sections.
+ */
+export function getSectionLayerVisual(
+  slot: number,
+  activeIndex: number,
+  layerCount: number
+): PhaseLayerVisual {
+  if (layerCount <= 1) {
+    return { opacity: slot === 0 ? 1 : 0, scale: 1, active: slot === 0 };
+  }
+
+  const dist = Math.abs(activeIndex - slot);
+
+  if (dist >= 1) {
+    return { opacity: 0, scale: 1, active: false };
+  }
+
+  const opacity = smootherstep(1 - dist);
+  return { opacity, scale: 1, active: opacity > 0.008 };
+}
+
 /** Internal 3D animation progress aligned to each phase scroll segment. */
 export function getPhaseLocalProgress(
   global: number,

@@ -19,6 +19,7 @@ interface SceneInteractionContextValue {
   scrollRef: RefObject<number>;
   phaseCountRef: RefObject<number>;
   layerOpacityRef: RefObject<number[]>;
+  activeLayerIndexRef: RefObject<number>;
   subscribeLayerVisibility: (listener: () => void) => () => void;
   notifyLayerVisibility: () => void;
 }
@@ -31,6 +32,7 @@ export function SceneInteractionProvider({ children }: { children: ReactNode }) 
   const scrollRef = useRef(0);
   const phaseCountRef = useRef(6);
   const layerOpacityRef = useRef<number[]>([]);
+  const activeLayerIndexRef = useRef(0);
   const listenersRef = useRef(new Set<() => void>());
 
   const subscribeLayerVisibility = useCallback((listener: () => void) => {
@@ -51,6 +53,7 @@ export function SceneInteractionProvider({ children }: { children: ReactNode }) 
         scrollRef,
         phaseCountRef,
         layerOpacityRef,
+        activeLayerIndexRef,
         subscribeLayerVisibility,
         notifyLayerVisibility,
       }}

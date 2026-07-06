@@ -30,10 +30,19 @@ export function PhaseScrollProvider({
 
 export function usePhaseScroll() {
   const phaseIndex = useContext(PhaseScrollIndexContext);
-  const { scrollRef, phaseCountRef } = useSceneInteraction();
+  const { scrollRef, phaseCountRef, activeLayerIndexRef } = useSceneInteraction();
   const smooth = useRef(0);
 
-  useFrame(() => {
+  useFrame((state) => {
+    const activeLayer = activeLayerIndexRef.current;
+    const isActiveLayer = Math.abs(phaseIndex - activeLayer) < 0.55;
+
+    if (isActiveLayer) {
+      // Time-based loop so scenes animate while their section is visible
+      smooth.current = (Math.sin(state.clock.elapsedTime * 0.5) + 1) / 2;
+      return;
+    }
+
     const global = scrollRef.current ?? 0;
     const count = phaseCountRef.current;
     smooth.current = getPhaseLocalProgress(global, phaseIndex, count);

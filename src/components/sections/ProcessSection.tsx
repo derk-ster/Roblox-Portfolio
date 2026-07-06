@@ -26,7 +26,7 @@ const STEPS = [
   {
     step: 4,
     title: "Updates",
-    description: "You get videos and screenshots to review progress.",
+    description: "Videos and screenshots along the way.",
   },
   {
     step: 5,

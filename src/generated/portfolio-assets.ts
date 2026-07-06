@@ -12,7 +12,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "type": "video",
     "extension": "mp4",
     "thumbnail": "/assets/animation/ElectroswingEmote-thumb.jpg",
-    "description": "Fortnite Electro Swing dance recreated on an R15 rig in Blender.",
+    "description": "Fortnite Electro Swing dance recreated on an R6 rig in Blender.",
     "tags": [
       "Animation",
       "Emote",
@@ -323,7 +323,7 @@ export const portfolioAssets: PortfolioAsset[] = [
     "type": "video",
     "extension": "mp4",
     "thumbnail": "/assets/animation/20260606-1809-43.6865501-thumb.jpg",
-    "description": "Fortnite Bugha emote recreated on an R15 rig in Blender.",
+    "description": "Fortnite Bugha emote recreated on an R6 rig in Blender.",
     "tags": [
       "Animation",
       "Emote",

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import { Float, Sparkles } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
@@ -168,8 +168,9 @@ function Phase3Scene() {
     <group ref={groupRef}>
       <Phase3Camera />
       <ambientLight intensity={0.2} />
-      <pointLight position={[6, 8, 5]} intensity={0.85} color="#f472b6" />
-      <pointLight position={[-5, -3, 4]} intensity={0.55} color="#22d3ee" />
+      <pointLight position={[6, 8, 5]} intensity={0.95} color="#f472b6" />
+      <pointLight position={[-5, -3, 4]} intensity={0.65} color="#c084fc" />
+      <pointLight position={[0, 4, -2]} intensity={0.4} color="#a78bfa" />
 
       {TETRAS.map((t) => (
         <WaveTetra key={t.color + t.offset} {...t} />
@@ -177,6 +178,23 @@ function Phase3Scene() {
 
       <Phase3Knot />
       <Phase3Cones />
+
+      <Sparkles
+        count={80}
+        scale={[16, 10, 12]}
+        size={3}
+        speed={0.6}
+        color="#f472b6"
+        opacity={0.55}
+      />
+      <Sparkles
+        count={40}
+        scale={[12, 8, 10]}
+        size={2.5}
+        speed={0.4}
+        color="#c084fc"
+        opacity={0.4}
+      />
     </group>
   );
 }

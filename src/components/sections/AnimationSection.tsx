@@ -11,7 +11,7 @@ const ANIMATION_TAGS = [
   "Gojo",
   "Fortnite",
   "Blender",
-  "R15",
+  "R6",
   "Animation",
 ];
 
