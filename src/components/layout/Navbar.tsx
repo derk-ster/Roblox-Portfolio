@@ -16,6 +16,7 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -49,10 +50,10 @@ export function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-[background-color,border-color] duration-300",
           scrolled
-            ? "border-b border-white/6 bg-bg/50 backdrop-blur-lg"
-            : "bg-transparent"
+            ? "border-white/6 bg-bg/65"
+            : "border-transparent bg-bg/30"
         )}
         initial={reducedMotion ? false : { y: -100 }}
         animate={{ y: 0 }}
