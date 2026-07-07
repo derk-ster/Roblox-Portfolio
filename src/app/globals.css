@@ -114,14 +114,22 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   cursor: none !important;
 }
 
-/* Subtle mouse-following page glow */
+/* Subtle mouse-following page glow — moved via translate (no CSS var repaints) */
 .mouse-glow-bg {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 480px;
+  margin: -240px 0 0 -240px;
+  translate: -9999px -9999px;
+  will-change: translate;
+  contain: strict;
+  pointer-events: none;
   background: radial-gradient(
-    420px circle at var(--mouse-x) var(--mouse-y),
+    circle at 50% 50%,
     color-mix(in srgb, var(--primary) 4%, transparent),
-    transparent 60%
+    transparent 62%
   );
   opacity: 0.5;
 }

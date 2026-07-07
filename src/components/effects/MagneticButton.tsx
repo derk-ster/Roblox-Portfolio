@@ -8,7 +8,7 @@ interface MagneticButtonProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-/** Wrapper for elements pulled by the shared custom cursor (see CustomCursor.tsx). */
+/** Wrapper for elements pulled by the shared custom cursor (cursor-init.js). */
 export function MagneticButton({
   children,
   className,

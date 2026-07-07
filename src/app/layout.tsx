@@ -69,6 +69,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script src="/cursor-init.js" strategy="afterInteractive" />
         <LoadingScreenMarkup />
         <Script src="/loader-init.js" strategy="afterInteractive" />
         <PremiumShell>{children}</PremiumShell>
