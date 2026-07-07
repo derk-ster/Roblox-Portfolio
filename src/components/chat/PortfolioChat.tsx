@@ -163,7 +163,7 @@ export function PortfolioChat() {
             {/* Messages */}
             <div
               ref={listRef}
-              className="flex max-h-64 flex-col gap-3 overflow-y-auto px-4 py-3 scrollbar-thin sm:max-h-72"
+              className="flex max-h-64 flex-col gap-3 overflow-y-auto px-4 py-3 scrollbar-none sm:max-h-72"
             >
               {messages.length === 0 && (
                 <p className="text-xs leading-relaxed text-muted">

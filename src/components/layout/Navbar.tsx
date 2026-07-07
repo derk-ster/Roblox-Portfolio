@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { NAV_LINKS, WORK_WITH_ME_SECTIONS, isWorkWithMeSection } from "@/types/portfolio";
+import { PORTFOLIO_LOGO, PORTFOLIO_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
 
@@ -55,7 +56,7 @@ export function Navbar() {
         )}
         initial={reducedMotion ? false : { y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
       >
         <nav
           className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
@@ -63,9 +64,22 @@ export function Navbar() {
         >
           <a
             href="#home"
-            className="text-lg font-bold gradient-text-animated sm:text-xl"
+            className="flex items-center gap-2.5"
+            aria-label={`${PORTFOLIO_NAME}, Roblox developer portfolio`}
           >
-            DErk2104
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              data-navbar-logo
+              src={PORTFOLIO_LOGO}
+              alt=""
+              width={36}
+              height={36}
+              className="h-8 w-8 rounded-[22%] object-contain sm:h-9 sm:w-9"
+              decoding="async"
+            />
+            <span className="text-lg font-bold gradient-text-animated sm:text-xl">
+              {PORTFOLIO_NAME}
+            </span>
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">

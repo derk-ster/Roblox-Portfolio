@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_MEDIA_BASE_URL: mediaCdnBase,
   },
+  serverExternalPackages: ["three", "@react-three/fiber", "@react-three/drei"],
   images: {
     remotePatterns: [],
     formats: ["image/avif", "image/webp"],

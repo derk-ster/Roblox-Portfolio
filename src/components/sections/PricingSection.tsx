@@ -58,7 +58,7 @@ function PricingCard({ category }: { category: PricingCategory }) {
             </span>
           </div>
 
-          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto pr-1 scrollbar-thin">
+          <div className="min-h-0 flex-1 space-y-4 overflow-y-auto pr-1 scrollbar-none">
             {category.groups.map((group, gi) => (
               <div key={gi}>
                 {group.title && (
@@ -84,7 +84,7 @@ function PricingCard({ category }: { category: PricingCategory }) {
           </div>
 
           <div className="mt-4 shrink-0 border-t border-white/8 pt-4">
-            <ul className="max-h-24 space-y-1 overflow-y-auto pr-1 scrollbar-thin">
+            <ul className="max-h-24 space-y-1 overflow-y-auto pr-1 scrollbar-none">
               {category.info.map((line) => (
                 <li
                   key={line}

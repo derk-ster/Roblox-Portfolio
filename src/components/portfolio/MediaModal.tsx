@@ -25,6 +25,7 @@ const categoryBadgeVariant: Record<
   building: "orange",
   modeling: "lime",
   wip: "wip",
+  certifications: "cyan",
 };
 
 function getRole(asset: PortfolioAsset): string {

@@ -23,6 +23,7 @@ const categoryAccent: Record<PortfolioCategory, "cyan" | "purple" | "pink" | "or
   building: "orange",
   modeling: "lime",
   wip: "orange",
+  certifications: "cyan",
 };
 
 const categoryBadgeVariant: Record<
@@ -36,6 +37,7 @@ const categoryBadgeVariant: Record<
   building: "orange",
   modeling: "lime",
   wip: "wip",
+  certifications: "cyan",
 };
 
 function getRole(asset: PortfolioAsset): string {

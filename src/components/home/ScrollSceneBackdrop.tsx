@@ -3,7 +3,8 @@
 import {
   useEffect,
   useRef,
-  type ReactNode,
+  useState,
+  type ComponentType,
 } from "react";
 import dynamic from "next/dynamic";
 import { useReducedMotion } from "motion/react";
@@ -11,19 +12,14 @@ import {
   SceneInteractionProvider,
   useSceneInteraction,
 } from "./scene-context";
-import { PhaseScrollProvider } from "./usePhaseScroll";
+import { PhaseScrollProvider } from "./phase-scroll-context";
 import {
   formatLayerTransform,
   dampScrollProgress,
-  getSectionLayerVisual,
+  getPhaseLayerVisual,
+  getScrollProgress,
 } from "./scroll-scene-utils";
-import { getScrollLayerIndex } from "@/lib/section-scroll";
 import { SceneLoadingFallback } from "./SceneLoadingFallback";
-import {
-  BACKGROUND_LAYERS,
-  type BackgroundSceneId,
-  type SceneComponentMap,
-} from "@/lib/section-layers";
 
 const Hero3D = dynamic(() => import("./Hero3D").then((m) => m.Hero3D), {
   ssr: false,
@@ -35,46 +31,50 @@ const Hero3DPhase2 = dynamic(
   { ssr: false, loading: SceneLoadingFallback }
 );
 
-const Hero3DScripting = dynamic(
-  () => import("./Hero3DScripting").then((m) => m.Hero3DScripting),
+const Hero3DPhase3 = dynamic(
+  () => import("./Hero3DPhase3").then((m) => m.Hero3DPhase3),
   { ssr: false, loading: SceneLoadingFallback }
 );
 
-const Hero3DAnimation = dynamic(
-  () => import("./Hero3DAnimation").then((m) => m.Hero3DAnimation),
+const Hero3DPhase4 = dynamic(
+  () => import("./Hero3DPhase4").then((m) => m.Hero3DPhase4),
   { ssr: false, loading: SceneLoadingFallback }
 );
 
-const Hero3DWorkWithMe = dynamic(
-  () => import("./Hero3DWorkWithMe").then((m) => m.Hero3DWorkWithMe),
+const Hero3DPhase5 = dynamic(
+  () => import("./Hero3DPhase5").then((m) => m.Hero3DPhase5),
   { ssr: false, loading: SceneLoadingFallback }
 );
 
-const Hero3DVfx = dynamic(
-  () => import("./Hero3DVfx").then((m) => m.Hero3DVfx),
+const Hero3DPhase6 = dynamic(
+  () => import("./Hero3DPhase6").then((m) => m.Hero3DPhase6),
   { ssr: false, loading: SceneLoadingFallback }
 );
 
-const Hero3DBuilding = dynamic(
-  () => import("./Hero3DBuilding").then((m) => m.Hero3DBuilding),
-  { ssr: false, loading: SceneLoadingFallback }
-);
+const ALL_PHASES: ComponentType[] = [
+  Hero3D,
+  Hero3DPhase2,
+  Hero3DPhase3,
+  Hero3DPhase4,
+  Hero3DPhase5,
+  Hero3DPhase6,
+];
 
-const Hero3DModeling = dynamic(
-  () => import("./Hero3DModeling").then((m) => m.Hero3DModeling),
-  { ssr: false, loading: SceneLoadingFallback }
-);
+const MOBILE_COMPONENT_INDICES = [0, 1, 3, 4, 5];
 
-const SCENE_COMPONENTS: SceneComponentMap = {
-  hero: Hero3D,
-  showcase: Hero3DPhase2,
-  scripting: Hero3DScripting,
-  animation: Hero3DAnimation,
-  vfx: Hero3DVfx,
-  building: Hero3DBuilding,
-  modeling: Hero3DModeling,
-  "work-with-me": Hero3DWorkWithMe,
-};
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return mobile;
+}
 
 function ScrollSceneCanvas() {
   const {
@@ -82,20 +82,24 @@ function ScrollSceneCanvas() {
     scrollRef,
     phaseCountRef,
     layerOpacityRef,
-    activeLayerIndexRef,
     notifyLayerVisibility,
   } = useSceneInteraction();
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
 
-  const layerCount = BACKGROUND_LAYERS.length;
+  const componentIndices = isMobile
+    ? MOBILE_COMPONENT_INDICES
+    : ALL_PHASES.map((_, i) => i);
+  const phaseCount = componentIndices.length;
+
   const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const smoothLayerRef = useRef(0);
+  const smoothScrollRef = useRef(0);
   const lastFrameRef = useRef(0);
   const layerActiveRef = useRef<boolean[]>([]);
 
   useEffect(() => {
-    phaseCountRef.current = layerCount;
-  }, [layerCount, phaseCountRef]);
+    phaseCountRef.current = phaseCount;
+  }, [phaseCount, phaseCountRef]);
 
   useEffect(() => {
     const onMove = (e: globalThis.MouseEvent) => {
@@ -108,7 +112,11 @@ function ScrollSceneCanvas() {
   }, [mouseRef]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion) {
+      scrollRef.current = 0;
+      smoothScrollRef.current = 0;
+      return;
+    }
 
     let raf = 0;
 
@@ -118,27 +126,20 @@ function ScrollSceneCanvas() {
         : 1 / 60;
       lastFrameRef.current = now;
 
-      const targetIndex = getScrollLayerIndex();
-      let layerIndex = dampScrollProgress(
-        smoothLayerRef.current,
-        targetIndex,
-        delta,
-        18
+      const target = getScrollProgress();
+      const progress = dampScrollProgress(
+        smoothScrollRef.current,
+        target,
+        delta
       );
-
-      if (Math.abs(layerIndex - targetIndex) < 0.003) {
-        layerIndex = targetIndex;
-      }
-
-      smoothLayerRef.current = layerIndex;
-      activeLayerIndexRef.current = layerIndex;
-      scrollRef.current = layerIndex / Math.max(1, layerCount - 1);
+      smoothScrollRef.current = progress;
+      scrollRef.current = progress;
 
       let visibilityChanged = false;
 
-      for (let slot = 0; slot < layerCount; slot++) {
+      for (let slot = 0; slot < phaseCount; slot++) {
         const el = layerRefs.current[slot];
-        const visual = getSectionLayerVisual(slot, layerIndex, layerCount);
+        const visual = getPhaseLayerVisual(slot, progress, phaseCount);
         layerOpacityRef.current[slot] = visual.opacity;
 
         const wasActive = layerActiveRef.current[slot] ?? false;
@@ -167,9 +168,8 @@ function ScrollSceneCanvas() {
   }, [
     reducedMotion,
     scrollRef,
-    layerCount,
+    phaseCount,
     layerOpacityRef,
-    activeLayerIndexRef,
     notifyLayerVisibility,
   ]);
 
@@ -186,19 +186,20 @@ function ScrollSceneCanvas() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
-      {BACKGROUND_LAYERS.map((layer, slot) => {
-        const Component = SCENE_COMPONENTS[layer.scene as BackgroundSceneId];
+      <div className="absolute inset-0 bg-bg" />
+      {componentIndices.map((componentIndex, slot) => {
+        const Component = ALL_PHASES[componentIndex];
 
         return (
           <div
-            key={layer.scene}
+            key={slot}
             ref={(el) => {
               layerRefs.current[slot] = el;
               if (!el) return;
-              const visual = getSectionLayerVisual(
+              const visual = getPhaseLayerVisual(
                 slot,
-                smoothLayerRef.current,
-                layerCount
+                scrollRef.current ?? 0,
+                phaseCount
               );
               layerOpacityRef.current[slot] = visual.opacity;
               el.style.opacity = String(visual.opacity);
@@ -224,11 +225,11 @@ function ScrollSceneCanvas() {
   );
 }
 
-export function ScrollSceneBackdrop({ children }: { children: ReactNode }) {
+/** Fixed 3D scroll backdrop — load client-only from the page (see page.tsx). */
+export function ScrollSceneBackdrop() {
   return (
     <SceneInteractionProvider>
       <ScrollSceneCanvas />
-      <div className="relative z-10">{children}</div>
     </SceneInteractionProvider>
   );
 }

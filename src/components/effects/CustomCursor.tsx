@@ -3,32 +3,130 @@
 import { useEffect, useRef } from "react";
 import { useIsTouchDevice } from "@/lib/use-is-touch";
 
+/** Higher = ring catches up faster (frame-rate independent). */
+const RING_SMOOTHING = 22;
+const SETTLE_PX = 0.35;
+
 export function CustomCursor() {
   const isTouch = useIsTouchDevice();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({
+    targetX: -200,
+    targetY: -200,
+    ringX: -200,
+    ringY: -200,
+    visible: false,
+    moved: false,
+    rafId: 0,
+    lastTime: 0,
+  });
 
   useEffect(() => {
     if (isTouch) return;
 
-    const move = (x: number, y: number) => {
-      const transform = `translate(${x}px, ${y}px)`;
-      if (dotRef.current) dotRef.current.style.transform = transform;
-      if (ringRef.current) ringRef.current.style.transform = transform;
+    const root = document.documentElement;
+    root.classList.add("has-custom-cursor");
+
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    const move = (el: HTMLElement, x: number, y: number) => {
+      el.style.transform = `translate3d(${x}px,${y}px,0)`;
     };
 
-    const onMouseMove = (e: MouseEvent) => move(e.clientX, e.clientY);
-    const onPointerMove = (e: PointerEvent) => move(e.clientX, e.clientY);
+    const startLoop = () => {
+      const s = stateRef.current;
+      if (!s.rafId) {
+        s.rafId = requestAnimationFrame(tick);
+      }
+    };
 
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-    document.addEventListener("pointermove", onPointerMove, {
-      passive: true,
-      capture: true,
-    });
+    const stopLoop = () => {
+      const s = stateRef.current;
+      if (s.rafId) {
+        cancelAnimationFrame(s.rafId);
+        s.rafId = 0;
+        s.lastTime = 0;
+      }
+    };
+
+    const tick = (now: number) => {
+      const s = stateRef.current;
+      const dt = s.lastTime
+        ? Math.min(0.05, (now - s.lastTime) / 1000)
+        : 1 / 60;
+      s.lastTime = now;
+
+      const blend = 1 - Math.exp(-RING_SMOOTHING * dt);
+      s.ringX += (s.targetX - s.ringX) * blend;
+      s.ringY += (s.targetY - s.ringY) * blend;
+      move(ring, s.ringX, s.ringY);
+
+      if (s.moved) {
+        root.style.setProperty(
+          "--mouse-x",
+          `${(s.targetX / window.innerWidth) * 100}%`
+        );
+        root.style.setProperty(
+          "--mouse-y",
+          `${(s.targetY / window.innerHeight) * 100}%`
+        );
+        s.moved = false;
+      }
+
+      const ringDist = Math.hypot(s.targetX - s.ringX, s.targetY - s.ringY);
+      if (s.visible && ringDist > SETTLE_PX) {
+        s.rafId = requestAnimationFrame(tick);
+      } else {
+        s.rafId = 0;
+        s.lastTime = 0;
+      }
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+
+      const s = stateRef.current;
+      s.targetX = e.clientX;
+      s.targetY = e.clientY;
+      s.moved = true;
+
+      move(dot, e.clientX, e.clientY);
+
+      if (!s.visible) {
+        s.visible = true;
+        s.ringX = e.clientX;
+        s.ringY = e.clientY;
+        move(ring, e.clientX, e.clientY);
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+      }
+
+      startLoop();
+    };
+
+    const hide = () => {
+      const s = stateRef.current;
+      if (!s.visible) return;
+      s.visible = false;
+      s.moved = false;
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+      stopLoop();
+    };
+
+    document.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("mouseleave", hide);
+    window.addEventListener("blur", hide);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("pointermove", onPointerMove, true);
+      stopLoop();
+      document.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("mouseleave", hide);
+      window.removeEventListener("blur", hide);
+      root.classList.remove("has-custom-cursor");
     };
   }, [isTouch]);
 

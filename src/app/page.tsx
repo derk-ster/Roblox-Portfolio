@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
-import { ScrollSceneBackdrop } from "@/components/home/ScrollSceneBackdrop";
+import { ScrollSceneBackdropLoader } from "@/components/home/ScrollSceneBackdropLoader";
 import { Hero } from "@/components/home/Hero";
 import { StatsStrip } from "@/components/home/StatsStrip";
 import { BestWorkSection } from "@/components/sections/BestWorkSection";
@@ -18,25 +18,28 @@ import { PortfolioChat } from "@/components/chat/PortfolioChat";
 
 export default function Home() {
   return (
-    <ScrollSceneBackdrop>
-      <ScrollProgress />
-      <Navbar />
-      <main>
-        <Hero />
-        <StatsStrip />
-        <ProjectShowcaseSection />
-        <BestWorkSection />
-        <ScriptingSection />
-        <AnimationSection />
-        <VFXSection />
-        <BuildingSection />
-        <ModelingSection />
-        <PricingSection />
-        <WhyHireSection />
-        <ProcessSection />
-      </main>
-      <Footer />
-      <PortfolioChat />
-    </ScrollSceneBackdrop>
+    <>
+      <ScrollSceneBackdropLoader />
+      <div className="relative z-10">
+        <ScrollProgress />
+        <Navbar />
+        <main>
+          <Hero />
+          <StatsStrip />
+          <ProjectShowcaseSection />
+          <BestWorkSection />
+          <ScriptingSection />
+          <AnimationSection />
+          <VFXSection />
+          <BuildingSection />
+          <ModelingSection />
+          <PricingSection />
+          <WhyHireSection />
+          <ProcessSection />
+        </main>
+        <Footer />
+        <PortfolioChat />
+      </div>
+    </>
   );
 }

@@ -1,0 +1,114 @@
+{
+  "html.png": {
+    "title": "HTML",
+    "description": "Codecademy HTML certification.",
+    "group": "languages",
+    "order": 1,
+    "tags": ["HTML", "Web", "Certification"]
+  },
+  "css.png": {
+    "title": "CSS",
+    "description": "Codecademy CSS certification.",
+    "group": "languages",
+    "order": 2,
+    "tags": ["CSS", "Web", "Certification"]
+  },
+  "JS.png": {
+    "title": "JavaScript",
+    "description": "Codecademy JavaScript certification.",
+    "group": "languages",
+    "order": 3,
+    "tags": ["JavaScript", "Web", "Certification"]
+  },
+  "React.png": {
+    "title": "React",
+    "description": "Codecademy React certification.",
+    "group": "languages",
+    "order": 4,
+    "tags": ["React", "Web", "Certification"]
+  },
+  "SQL.png": {
+    "title": "MySQL",
+    "description": "Codecademy SQL / MySQL certification.",
+    "group": "languages",
+    "order": 5,
+    "tags": ["MySQL", "SQL", "Certification"]
+  },
+  "BackEnd.png": {
+    "title": "Back End",
+    "description": "Back end development path certification.",
+    "group": "languages",
+    "order": 6,
+    "tags": ["Backend", "Web", "Certification"]
+  },
+  "FrontEnd.png": {
+    "title": "Front End",
+    "description": "Front end development path certification.",
+    "group": "languages",
+    "order": 7,
+    "tags": ["Front end", "Web", "Certification"]
+  },
+  "FullStack.png": {
+    "title": "Full Stack",
+    "description": "Full stack development certification.",
+    "group": "languages",
+    "order": 8,
+    "tags": ["Full stack", "Web", "Certification"]
+  },
+  "FullStackPath.png": {
+    "title": "Full Stack Path",
+    "description": "Completed full stack developer career path.",
+    "group": "languages",
+    "order": 9,
+    "tags": ["Full stack", "Career path", "Certification"]
+  },
+  "Jan.png": {
+    "title": "January",
+    "description": "Monthly learning time log.",
+    "group": "monthly",
+    "order": 1,
+    "tags": ["Time log", "Monthly"]
+  },
+  "Feb.png": {
+    "title": "February",
+    "description": "Monthly learning time log.",
+    "group": "monthly",
+    "order": 2,
+    "tags": ["Time log", "Monthly"]
+  },
+  "March.png": {
+    "title": "March",
+    "description": "Monthly learning time log.",
+    "group": "monthly",
+    "order": 3,
+    "tags": ["Time log", "Monthly"]
+  },
+  "April.png": {
+    "title": "April",
+    "description": "Monthly learning time log.",
+    "group": "monthly",
+    "order": 4,
+    "tags": ["Time log", "Monthly"]
+  },
+  "May.png": {
+    "title": "May",
+    "description": "Monthly learning time log.",
+    "group": "monthly",
+    "order": 5,
+    "tags": ["Time log", "Monthly"]
+  },
+  "Account.png": {
+    "title": "Codecademy Profile",
+    "description": "Account overview showing completed paths and credentials.",
+    "group": "proof",
+    "order": 1,
+    "tags": ["Account", "Proof"]
+  },
+  "MiniTasksTime.png": {
+    "title": "Practice Time",
+    "description": "Total practice hours and activity on the platform.",
+    "group": "proof",
+    "order": 2,
+    "tags": ["Time", "Proof", "Activity"]
+  }
+}

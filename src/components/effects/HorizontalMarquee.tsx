@@ -124,12 +124,15 @@ export function HorizontalMarquee({
     animationRef.current = animation;
 
     let raf = 0;
+    let frame = 0;
     const syncScrubber = () => {
+      frame += 1;
       const scrub = scrubRef.current;
       if (
         scrub &&
         !isDraggingRef.current &&
-        animation.playState === "running"
+        animation.playState === "running" &&
+        frame % 4 === 0
       ) {
         const time = Number(animation.currentTime ?? 0);
         const progress = ((time % durationMs) / durationMs) * 100;

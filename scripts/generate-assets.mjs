@@ -19,6 +19,7 @@ const CATEGORIES = [
   "building",
   "modeling",
   "wip",
+  "certifications",
 ];
 
 const MEDIA_EXTENSIONS = new Set([
@@ -42,6 +43,7 @@ const DEFAULT_TAGS = {
   building: ["Building", "Environment", "Roblox Studio"],
   modeling: ["3D Modeling", "Blender", "Roblox"],
   wip: ["WIP", "In Progress"],
+  certifications: ["Certification", "Credential"],
 };
 
 function titleFromFilename(filename) {
@@ -266,6 +268,7 @@ function scanCategory(category) {
       status: fileMeta.status || (isWip ? "WIP" : "Completed"),
       featured: fileMeta.featured ?? isBestWork,
       order: fileMeta.order ?? 999,
+      ...(fileMeta.group ? { group: fileMeta.group } : {}),
     });
   }
 

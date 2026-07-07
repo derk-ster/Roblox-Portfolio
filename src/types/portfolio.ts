@@ -5,7 +5,8 @@ export type PortfolioCategory =
   | "vfx"
   | "building"
   | "modeling"
-  | "wip";
+  | "wip"
+  | "certifications";
 
 export type PortfolioStatus = "Completed" | "WIP" | "Commission" | "Personal";
 
@@ -25,6 +26,7 @@ export interface PortfolioAsset {
   status: PortfolioStatus;
   featured: boolean;
   order: number;
+  group?: string;
 }
 
 export const CATEGORY_LABELS: Record<PortfolioCategory, string> = {
@@ -35,6 +37,7 @@ export const CATEGORY_LABELS: Record<PortfolioCategory, string> = {
   building: "Building",
   modeling: "3D Modeling",
   wip: "Work In Progress",
+  certifications: "Certifications",
 };
 
 export const CATEGORY_COLORS: Record<PortfolioCategory, string> = {
@@ -45,6 +48,7 @@ export const CATEGORY_COLORS: Record<PortfolioCategory, string> = {
   building: "#f97316",
   modeling: "#84cc16",
   wip: "#94a3b8",
+  certifications: "#38bdf8",
 };
 
 export const NAV_LINKS = [

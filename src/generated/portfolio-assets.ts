@@ -5,6 +5,23 @@ import type { PortfolioAsset } from "@/types/portfolio";
 
 export const portfolioAssets: PortfolioAsset[] = [
   {
+    "id": "certifications-account",
+    "title": "Codecademy Profile",
+    "category": "certifications",
+    "src": "/assets/certifications/Account.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Account overview showing completed paths and credentials.",
+    "tags": [
+      "Account",
+      "Proof"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 1,
+    "group": "proof"
+  },
+  {
     "id": "animation-electroswingemote",
     "title": "Electro Swing Emote",
     "category": "animation",
@@ -25,6 +42,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 1
   },
   {
+    "id": "certifications-html",
+    "title": "HTML",
+    "category": "certifications",
+    "src": "/assets/certifications/html.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Codecademy HTML certification.",
+    "tags": [
+      "HTML",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 1,
+    "group": "languages"
+  },
+  {
     "id": "building-image3",
     "title": "Island Spawn Hub",
     "category": "building",
@@ -41,6 +76,23 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "Completed",
     "featured": true,
     "order": 1
+  },
+  {
+    "id": "certifications-jan",
+    "title": "January",
+    "category": "certifications",
+    "src": "/assets/certifications/Jan.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Monthly learning time log.",
+    "tags": [
+      "Time log",
+      "Monthly"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 1,
+    "group": "monthly"
   },
   {
     "id": "scripting-20260602-1939-13-4536130",
@@ -141,6 +193,41 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 2
   },
   {
+    "id": "certifications-css",
+    "title": "CSS",
+    "category": "certifications",
+    "src": "/assets/certifications/css.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Codecademy CSS certification.",
+    "tags": [
+      "CSS",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 2,
+    "group": "languages"
+  },
+  {
+    "id": "certifications-feb",
+    "title": "February",
+    "category": "certifications",
+    "src": "/assets/certifications/Feb.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Monthly learning time log.",
+    "tags": [
+      "Time log",
+      "Monthly"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 2,
+    "group": "monthly"
+  },
+  {
     "id": "best-work-20260619-1959-11-3872645",
     "title": "Matchmaking UI Tweening",
     "category": "best-work",
@@ -197,6 +284,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "Completed",
     "featured": true,
     "order": 2
+  },
+  {
+    "id": "certifications-minitaskstime",
+    "title": "Practice Time",
+    "category": "certifications",
+    "src": "/assets/certifications/MiniTasksTime.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Total practice hours and activity on the platform.",
+    "tags": [
+      "Time",
+      "Proof",
+      "Activity"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 2,
+    "group": "proof"
   },
   {
     "id": "animation-20260605-0616-02-2630161",
@@ -259,6 +364,41 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 3
   },
   {
+    "id": "certifications-js",
+    "title": "JavaScript",
+    "category": "certifications",
+    "src": "/assets/certifications/JS.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Codecademy JavaScript certification.",
+    "tags": [
+      "JavaScript",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "group": "languages"
+  },
+  {
+    "id": "certifications-march",
+    "title": "March",
+    "category": "certifications",
+    "src": "/assets/certifications/March.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Monthly learning time log.",
+    "tags": [
+      "Time log",
+      "Monthly"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "group": "monthly"
+  },
+  {
     "id": "modeling-image1",
     "title": "OUTRUN Lobby Exterior",
     "category": "modeling",
@@ -314,6 +454,23 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "WIP",
     "featured": false,
     "order": 3
+  },
+  {
+    "id": "certifications-april",
+    "title": "April",
+    "category": "certifications",
+    "src": "/assets/certifications/April.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Monthly learning time log.",
+    "tags": [
+      "Time log",
+      "Monthly"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "group": "monthly"
   },
   {
     "id": "animation-20260606-1809-43-6865501",
@@ -375,6 +532,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 4
   },
   {
+    "id": "certifications-react",
+    "title": "React",
+    "category": "certifications",
+    "src": "/assets/certifications/React.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Codecademy React certification.",
+    "tags": [
+      "React",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "group": "languages"
+  },
+  {
     "id": "building-image",
     "title": "Swimming Pool Area",
     "category": "building",
@@ -411,6 +586,41 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "Completed",
     "featured": false,
     "order": 5
+  },
+  {
+    "id": "certifications-may",
+    "title": "May",
+    "category": "certifications",
+    "src": "/assets/certifications/May.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Monthly learning time log.",
+    "tags": [
+      "Time log",
+      "Monthly"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 5,
+    "group": "monthly"
+  },
+  {
+    "id": "certifications-sql",
+    "title": "MySQL",
+    "category": "certifications",
+    "src": "/assets/certifications/SQL.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Codecademy SQL / MySQL certification.",
+    "tags": [
+      "MySQL",
+      "SQL",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 5,
+    "group": "languages"
   },
   {
     "id": "modeling-image3",
@@ -450,6 +660,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "WIP",
     "featured": false,
     "order": 5
+  },
+  {
+    "id": "certifications-backend",
+    "title": "Back End",
+    "category": "certifications",
+    "src": "/assets/certifications/BackEnd.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Back end development path certification.",
+    "tags": [
+      "Backend",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 6,
+    "group": "languages"
   },
   {
     "id": "modeling-image4",
@@ -509,6 +737,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "Completed",
     "featured": false,
     "order": 6
+  },
+  {
+    "id": "certifications-frontend",
+    "title": "Front End",
+    "category": "certifications",
+    "src": "/assets/certifications/FrontEnd.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Front end development path certification.",
+    "tags": [
+      "Front end",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 7,
+    "group": "languages"
   },
   {
     "id": "animation-20260607-0517-55-9596517",
@@ -589,6 +835,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 8
   },
   {
+    "id": "certifications-fullstack",
+    "title": "Full Stack",
+    "category": "certifications",
+    "src": "/assets/certifications/FullStack.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Full stack development certification.",
+    "tags": [
+      "Full stack",
+      "Web",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 8,
+    "group": "languages"
+  },
+  {
     "id": "scripting-20260610-0206-57-4104519",
     "title": "Inventory UI",
     "category": "scripting",
@@ -625,6 +889,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "status": "Completed",
     "featured": false,
     "order": 8
+  },
+  {
+    "id": "certifications-fullstackpath",
+    "title": "Full Stack Path",
+    "category": "certifications",
+    "src": "/assets/certifications/FullStackPath.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Completed full stack developer career path.",
+    "tags": [
+      "Full stack",
+      "Career path",
+      "Certification"
+    ],
+    "status": "Completed",
+    "featured": false,
+    "order": 9,
+    "group": "languages"
   },
   {
     "id": "scripting-20260619-1959-11-3872645",

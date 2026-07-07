@@ -1,5 +1,3 @@
-import * as THREE from "three";
-
 export const DESKTOP_PHASE_COUNT = 6;
 export const MOBILE_PHASE_COUNT = 5;
 
@@ -25,7 +23,7 @@ export function dampScrollProgress(
   delta: number,
   smoothing = 14
 ): number {
-  return THREE.MathUtils.damp(current, target, smoothing, delta);
+  return current + (target - current) * (1 - Math.exp(-smoothing * delta));
 }
 
 export interface PhaseLayerVisual {

@@ -42,7 +42,7 @@ export function SectionHeader({
     <motion.header
       id={id}
       className={cn(
-        "mb-6",
+        "mb-4",
         align === "center" && "mx-auto max-w-2xl text-center",
         className
       )}
@@ -65,7 +65,7 @@ export function SectionHeader({
         {title}
       </h2>
       {description && (
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+        <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
           {description}
         </p>
       )}

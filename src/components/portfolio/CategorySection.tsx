@@ -14,6 +14,7 @@ interface CategorySectionProps {
   children: ReactNode;
   className?: string;
   glow?: boolean;
+  contentClassName?: string;
 }
 
 export function CategorySection({
@@ -25,12 +26,13 @@ export function CategorySection({
   children,
   className,
   glow = false,
+  contentClassName,
 }: CategorySectionProps) {
   return (
     <section
       id={id}
       className={cn(
-        "relative scroll-mt-20 py-8 sm:py-10",
+        "relative scroll-mt-20 py-6 sm:py-8",
         className
       )}
       aria-labelledby={`${id}-heading`}
@@ -53,13 +55,13 @@ export function CategorySection({
           accent={accent}
         />
 
-        <ScrollReveal className="overflow-hidden">
+        <ScrollReveal className={cn("overflow-hidden", contentClassName)}>
           {children}
         </ScrollReveal>
       </div>
 
       <div
-        className="mx-auto mt-6 h-px max-w-3xl bg-white/8"
+        className="mx-auto mt-4 h-px max-w-3xl bg-white/8"
         aria-hidden
       />
     </section>

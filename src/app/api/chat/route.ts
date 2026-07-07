@@ -39,10 +39,13 @@ function parseAssistantJson(raw: string): ChatResponseBody | null {
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.GROQ_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY?.trim();
   if (!apiKey) {
     return NextResponse.json(
-      { error: "Chat is not configured. Missing GROQ_API_KEY." },
+      {
+        error:
+          "Chat is not configured. Add GROQ_API_KEY to .env.local (local) or Vercel Environment Variables (production).",
+      },
       { status: 503 }
     );
   }

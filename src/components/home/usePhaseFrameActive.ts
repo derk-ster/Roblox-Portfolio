@@ -2,7 +2,7 @@
 
 import { useContext, useSyncExternalStore } from "react";
 import { useSceneInteraction } from "./scene-context";
-import { PhaseScrollIndexContext } from "./usePhaseScroll";
+import { PhaseScrollIndexContext } from "./phase-scroll-context";
 
 const ACTIVE_THRESHOLD = 0.008;
 
