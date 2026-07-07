@@ -918,6 +918,42 @@ main {
   display: none;
 }
 
+/* Visible scrollbars inside panels (overrides custom-cursor global hide) */
+.scrollbar-visible {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.45) rgba(5, 8, 22, 0.6);
+}
+
+.scrollbar-visible::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-visible::-webkit-scrollbar-track {
+  background: rgba(5, 8, 22, 0.55);
+  border-radius: 999px;
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.4);
+  border-radius: 999px;
+  border: 2px solid rgba(5, 8, 22, 0.55);
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.6);
+}
+
+html.has-custom-cursor .scrollbar-visible {
+  scrollbar-width: thin;
+}
+
+html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+  height: 8px;
+}
+
 .marquee-scrubber {
   -webkit-appearance: none;
   appearance: none;

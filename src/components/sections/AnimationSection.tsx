@@ -35,6 +35,7 @@ export function AnimationSection() {
         categoryLabel="animation work"
         folderPath="public/assets/animation"
         extraTags={ANIMATION_TAGS}
+        libraryTitle="Animation"
       />
     </CategorySection>
   );

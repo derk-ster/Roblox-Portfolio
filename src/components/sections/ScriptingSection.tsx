@@ -36,6 +36,7 @@ export function ScriptingSection() {
         categoryLabel="scripting work"
         folderPath="public/assets/scripting"
         extraTags={SCRIPTING_TAGS}
+        libraryTitle="Scripting"
       />
     </CategorySection>
   );

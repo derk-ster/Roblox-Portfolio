@@ -1,10 +1,13 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { Library } from "lucide-react";
 import { HorizontalMarquee } from "@/components/effects/HorizontalMarquee";
+import { Button } from "@/components/ui/Button";
 import { PortfolioCard } from "./PortfolioCard";
 import { PortfolioFilters } from "./PortfolioFilters";
 import { MediaModal } from "./MediaModal";
+import { PortfolioLibraryModal } from "./PortfolioLibraryModal";
 import { EmptyState } from "@/components/ui/EmptyState";
 import type { PortfolioAsset } from "@/types/portfolio";
 
@@ -17,6 +20,7 @@ interface PortfolioGridProps {
   showFilters?: boolean;
   layout?: "marquee" | "grid";
   marqueeDurationSeconds?: number;
+  libraryTitle?: string;
 }
 
 const CARD_WIDTH = "w-[min(88vw,20rem)] shrink-0 sm:w-80";
@@ -50,9 +54,14 @@ export function PortfolioGrid({
   showFilters = true,
   layout = "marquee",
   marqueeDurationSeconds = 75,
+  libraryTitle,
 }: PortfolioGridProps) {
   const [filtered, setFiltered] = useState(assets);
   const [modalAsset, setModalAsset] = useState<PortfolioAsset | null>(null);
+  const [libraryOpen, setLibraryOpen] = useState(false);
+
+  const resolvedLibraryTitle =
+    libraryTitle ?? categoryLabel.replace(/\b\w/g, (c) => c.toUpperCase());
 
   const handleFilterChange = useCallback((filteredAssets: PortfolioAsset[]) => {
     setFiltered(filteredAssets);
@@ -97,14 +106,31 @@ export function PortfolioGrid({
 
   return (
     <>
-      {showFilters && assets.length > 1 && (
-        <PortfolioFilters
-          assets={assets}
-          onFilterChange={handleFilterChange}
-          extraTags={extraTags}
-          className="mb-6"
-        />
-      )}
+      <div
+        className={
+          showFilters && assets.length > 1
+            ? "mb-6 flex flex-wrap items-center justify-between gap-3"
+            : "mb-6 flex justify-end"
+        }
+      >
+        {showFilters && assets.length > 1 ? (
+          <PortfolioFilters
+            assets={assets}
+            onFilterChange={handleFilterChange}
+            extraTags={extraTags}
+            className="flex-1"
+          />
+        ) : null}
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          icon={<Library className="h-4 w-4" aria-hidden />}
+          onClick={() => setLibraryOpen(true)}
+        >
+          Full Library
+        </Button>
+      </div>
 
       {filtered.length === 0 ? (
         <p className="py-8 text-center text-muted">
@@ -125,6 +151,14 @@ export function PortfolioGrid({
         assets={filtered}
         onClose={() => setModalAsset(null)}
         onNavigate={setModalAsset}
+      />
+
+      <PortfolioLibraryModal
+        open={libraryOpen}
+        onClose={() => setLibraryOpen(false)}
+        title={resolvedLibraryTitle}
+        assets={filtered}
+        variant={variant}
       />
     </>
   );

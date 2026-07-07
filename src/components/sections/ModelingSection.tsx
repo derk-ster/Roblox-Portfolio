@@ -25,6 +25,7 @@ export function ModelingSection() {
         categoryLabel="3D modeling work"
         folderPath="public/assets/modeling"
         variant="modeling"
+        libraryTitle="3D Modeling"
       />
     </CategorySection>
   );

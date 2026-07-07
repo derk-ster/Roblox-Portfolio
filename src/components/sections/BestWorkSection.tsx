@@ -27,6 +27,7 @@ export function BestWorkSection() {
         categoryLabel="best work"
         folderPath="public/assets/best-work"
         showFilters={assets.length > 2}
+        libraryTitle="Best Work"
       />
     </CategorySection>
   );

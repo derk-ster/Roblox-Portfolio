@@ -21,7 +21,7 @@ export const SCRIPTING_EXPERIENCE = `I have solo developed a game for 8 months t
 
 export const SCRIPTING_WORK = `I create a wide variety of systems, across both the client and server. Whether it's VFX + SFX + animations + UI visuals, I can combine all and any previous work into one combined system. I have created regional matchmaking across servers, and I have tons of experience with animating UI as well as the positioning of player, part, VFX, and pretty much anything else.
 
-As for my work schedule, I have my daily stuff that usually takes 2–3 hours out of my full 12 hours I have to work in the summer. Outside the summer I only have 2–3 hours after school to work.`;
+As for my work schedule, I have my daily stuff that usually takes 2-3 hours out of my full 12 hours I have to work in the summer. Outside the summer I only have 2-3 hours after school to work.`;
 
 export const SCRIPTING_INFO_CTA = {
   text: "If you have any other questions about me or this portfolio, feel free to send my Discord account a DM and ask anything.",

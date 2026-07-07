@@ -25,6 +25,7 @@ export function BuildingSection() {
         categoryLabel="building work"
         folderPath="public/assets/building"
         variant="building"
+        libraryTitle="Building"
       />
     </CategorySection>
   );

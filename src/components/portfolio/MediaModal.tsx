@@ -255,7 +255,7 @@ export function MediaModal({
               {(asset.date || asset.type === "video") && (
                 <p className="mt-4 flex items-center gap-1.5 text-sm text-[var(--muted)]">
                   <span className="font-medium text-[var(--text)]">Posted</span>
-                  {asset.date ?? "—"}
+                  {asset.date ?? "N/A"}
                 </p>
               )}
               {assets.length > 1 && safeIndex >= 0 && (

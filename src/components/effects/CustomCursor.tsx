@@ -3,9 +3,8 @@
 import { useEffect, useRef } from "react";
 import { useIsTouchDevice } from "@/lib/use-is-touch";
 
-/** Higher = ring catches up faster (frame-rate independent). */
-const RING_SMOOTHING = 22;
-const SETTLE_PX = 0.35;
+/** Ring follow speed — frame-rate independent; higher = snappier trail. */
+const RING_SMOOTHING = 24;
 
 export function CustomCursor() {
   const isTouch = useIsTouchDevice();
@@ -17,7 +16,6 @@ export function CustomCursor() {
     ringX: -200,
     ringY: -200,
     visible: false,
-    moved: false,
     rafId: 0,
     lastTime: 0,
   });
@@ -36,54 +34,35 @@ export function CustomCursor() {
       el.style.transform = `translate3d(${x}px,${y}px,0)`;
     };
 
-    const startLoop = () => {
-      const s = stateRef.current;
-      if (!s.rafId) {
-        s.rafId = requestAnimationFrame(tick);
-      }
-    };
-
-    const stopLoop = () => {
-      const s = stateRef.current;
-      if (s.rafId) {
-        cancelAnimationFrame(s.rafId);
-        s.rafId = 0;
-        s.lastTime = 0;
-      }
-    };
-
     const tick = (now: number) => {
       const s = stateRef.current;
+      s.rafId = requestAnimationFrame(tick);
+
+      if (!s.visible) return;
+
       const dt = s.lastTime
         ? Math.min(0.05, (now - s.lastTime) / 1000)
         : 1 / 60;
       s.lastTime = now;
+
+      move(dot, s.targetX, s.targetY);
 
       const blend = 1 - Math.exp(-RING_SMOOTHING * dt);
       s.ringX += (s.targetX - s.ringX) * blend;
       s.ringY += (s.targetY - s.ringY) * blend;
       move(ring, s.ringX, s.ringY);
 
-      if (s.moved) {
-        root.style.setProperty(
-          "--mouse-x",
-          `${(s.targetX / window.innerWidth) * 100}%`
-        );
-        root.style.setProperty(
-          "--mouse-y",
-          `${(s.targetY / window.innerHeight) * 100}%`
-        );
-        s.moved = false;
-      }
-
-      const ringDist = Math.hypot(s.targetX - s.ringX, s.targetY - s.ringY);
-      if (s.visible && ringDist > SETTLE_PX) {
-        s.rafId = requestAnimationFrame(tick);
-      } else {
-        s.rafId = 0;
-        s.lastTime = 0;
-      }
+      root.style.setProperty(
+        "--mouse-x",
+        `${(s.targetX / window.innerWidth) * 100}%`
+      );
+      root.style.setProperty(
+        "--mouse-y",
+        `${(s.targetY / window.innerHeight) * 100}%`
+      );
     };
+
+    stateRef.current.rafId = requestAnimationFrame(tick);
 
     const onPointerMove = (e: PointerEvent) => {
       if (e.pointerType && e.pointerType !== "mouse") return;
@@ -91,30 +70,24 @@ export function CustomCursor() {
       const s = stateRef.current;
       s.targetX = e.clientX;
       s.targetY = e.clientY;
-      s.moved = true;
-
-      move(dot, e.clientX, e.clientY);
 
       if (!s.visible) {
         s.visible = true;
         s.ringX = e.clientX;
         s.ringY = e.clientY;
-        move(ring, e.clientX, e.clientY);
+        s.lastTime = 0;
         dot.style.opacity = "1";
         ring.style.opacity = "1";
       }
-
-      startLoop();
     };
 
     const hide = () => {
       const s = stateRef.current;
       if (!s.visible) return;
       s.visible = false;
-      s.moved = false;
+      s.lastTime = 0;
       dot.style.opacity = "0";
       ring.style.opacity = "0";
-      stopLoop();
     };
 
     document.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -122,7 +95,7 @@ export function CustomCursor() {
     window.addEventListener("blur", hide);
 
     return () => {
-      stopLoop();
+      cancelAnimationFrame(stateRef.current.rafId);
       document.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("mouseleave", hide);
       window.removeEventListener("blur", hide);

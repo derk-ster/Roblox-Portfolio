@@ -87,17 +87,17 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
         title: "Single animations",
         items: [
           {
-            label: "Static idle/blocking loop, 1–3 seconds",
+            label: "Static idle/blocking loop, 1-3 seconds",
             robux: "450+",
             usd: "$4+",
           },
           {
-            label: "Walking/blocking loop, 1–3 seconds",
+            label: "Walking/blocking loop, 1-3 seconds",
             robux: "520+",
             usd: "$5+",
           },
           {
-            label: "Basic movement animation, 0.5–2 seconds",
+            label: "Basic movement animation, 0.5-2 seconds",
             robux: "600+",
             usd: "$6+",
           },
@@ -121,16 +121,16 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
       {
         title: "Packs",
         items: [
-          { label: "4–6 animations", robux: "2,000+", usd: "$18+" },
-          { label: "7–10 animations", robux: "3,500+", usd: "$30+" },
-          { label: "11–15 animations", robux: "5,500+", usd: "$45+" },
+          { label: "4-6 animations", robux: "2,000+", usd: "$18+" },
+          { label: "7-10 animations", robux: "3,500+", usd: "$30+" },
+          { label: "11-15 animations", robux: "5,500+", usd: "$45+" },
         ],
       },
     ],
     info: [
       ...SHARED_INFO.slice(0, 1),
       "More detail, longer animations, or fast deadlines cost more.",
-      "R6 rigs only — emotes are made in Blender for Roblox.",
+      "R6 rigs only, emotes are made in Blender for Roblox.",
       ...SHARED_INFO.slice(1),
     ],
     cta: "DM me with references, deadline, budget, and details.",
@@ -147,7 +147,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
           { label: "Weapon/tool, sword, hammer, item", robux: "1,000+", usd: "$9+" },
           { label: "Detailed asset, clean shape and details", robux: "1,800+", usd: "$16+" },
           { label: "Stylized model, more custom design", robux: "2,500+", usd: "$22+" },
-          { label: "Asset pack, 4–6 simple assets", robux: "3,500+", usd: "$30+" },
+          { label: "Asset pack, 4-6 simple assets", robux: "3,500+", usd: "$30+" },
         ],
       },
     ],
@@ -167,7 +167,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
         items: [
           { label: "Single prop/detail piece", robux: "300+", usd: "$3+" },
           { label: "Small room, 1 basic room", robux: "1,000+", usd: "$9+" },
-          { label: "Obby section, 5–10 obstacles", robux: "1,500+", usd: "$13+" },
+          { label: "Obby section, 5-10 obstacles", robux: "1,500+", usd: "$13+" },
           { label: "Arena, one playable fight area", robux: "2,500+", usd: "$22+" },
           { label: "Lobby, small spawn/lobby area", robux: "3,500+", usd: "$30+" },
           { label: "Medium lobby, multiple sections/details", robux: "5,000+", usd: "$40+" },
@@ -194,7 +194,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
           { label: "Movement VFX, dash, jump, trail, slide", robux: "800+", usd: "$7+" },
           { label: "Ability VFX, one full ability effect", robux: "1,200+", usd: "$10+" },
           { label: "Aura VFX, looped body effect", robux: "1,200+", usd: "$10+" },
-          { label: "VFX pack, 3–5 effects", robux: "3,000+", usd: "$25+" },
+          { label: "VFX pack, 3-5 effects", robux: "3,000+", usd: "$25+" },
           { label: "Cinematic VFX, cutscene or special move", robux: "3,500+", usd: "$30+" },
         ],
       },

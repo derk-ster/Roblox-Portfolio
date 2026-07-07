@@ -34,6 +34,7 @@ export function VFXSection() {
         folderPath="public/assets/vfx"
         extraTags={VFX_TAGS}
         variant="vfx"
+        libraryTitle="VFX"
       />
     </CategorySection>
   );

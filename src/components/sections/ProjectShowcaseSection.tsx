@@ -123,7 +123,7 @@ export function ProjectShowcaseSection() {
       id="project-showcase"
       eyebrow="Showcase"
       title="What I Build"
-      description="Roblox systems, animation, UI, VFX, and commission work — click a card to jump in."
+      description="Roblox systems, animation, UI, VFX, and commission work. Click a card to jump in."
       accent="cyan"
       contentClassName="!overflow-visible px-1 py-3"
     >

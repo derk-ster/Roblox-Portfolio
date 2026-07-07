@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
 import { cn } from "@/lib/utils";
 import { VideoPreview } from "@/components/portfolio/VideoPreview";
+import { VideoPlayOverlay } from "@/components/portfolio/VideoPlayOverlay";
 import {
   CATEGORY_LABELS,
   type PortfolioAsset,
@@ -113,6 +114,8 @@ function MediaPreview({
           Media unavailable
         </div>
       )}
+
+      {isVideo && !error && <VideoPlayOverlay />}
     </button>
   );
 }

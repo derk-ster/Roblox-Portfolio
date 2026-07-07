@@ -9,7 +9,7 @@ export const CERT_GROUPS = [
   {
     id: "monthly",
     title: "Monthly time logs",
-    description: "Screenshots of monthly learning hours — proof of consistent practice over time.",
+    description: "Screenshots of monthly learning hours, proof of consistent practice over time.",
   },
   {
     id: "proof",
