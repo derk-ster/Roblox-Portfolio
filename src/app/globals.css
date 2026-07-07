@@ -97,20 +97,20 @@ body {
   overflow-x: hidden;
 }
 
-html.has-custom-cursor,
-html.has-custom-cursor * {
+body.has-custom-cursor,
+body.has-custom-cursor * {
   cursor: none !important;
 }
 
-html.has-custom-cursor .marquee-scrubber {
+body.has-custom-cursor .marquee-scrubber {
   cursor: none !important;
 }
 
-html.has-custom-cursor .marquee-scrubber::-webkit-slider-thumb {
+body.has-custom-cursor .marquee-scrubber::-webkit-slider-thumb {
   cursor: none !important;
 }
 
-html.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
+body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   cursor: none !important;
 }
 
@@ -252,49 +252,101 @@ html.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   }
 }
 
-/* Custom cursor — dot snaps each frame; ring eases (see CustomCursor.tsx) */
+/* Custom cursor — matches dereks-website-services.com */
 .cursor-dot,
 .cursor-ring {
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  will-change: translate;
+  contain: layout style paint;
+  border-radius: 50%;
+  transition: opacity 0.22s ease;
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate3d(-200px, -200px, 0);
-  will-change: transform;
-  contain: strict;
-  backface-visibility: hidden;
-  transition: opacity 120ms ease;
+  translate: 0;
 }
 
 .cursor-dot {
   width: 6px;
   height: 6px;
   margin: -3px 0 0 -3px;
-  border-radius: 999px;
   background: var(--primary);
-  box-shadow: 0 0 12px var(--glow);
-  z-index: 201;
+  box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.55);
 }
 
 .cursor-ring {
   width: 34px;
   height: 34px;
   margin: -17px 0 0 -17px;
-  border-radius: 999px;
-  border: 1.5px solid color-mix(in srgb, var(--primary) 70%, transparent);
+  border: 1.5px solid rgba(var(--primary-rgb), 0.7);
   background: transparent;
-  z-index: 200;
   transition:
-    opacity 120ms ease,
-    scale 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 180ms ease,
-    background-color 180ms ease;
+    scale 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    opacity 0.22s ease;
+  scale: 1;
+}
+
+.cursor-ring.is-link {
+  background: rgba(var(--primary-rgb), 0.18);
+  border-color: var(--primary);
+  scale: 1.65;
+}
+
+.cursor-ring.is-card {
+  border-color: rgba(var(--primary-rgb), 0.6);
+  background: rgba(var(--primary-rgb), 0.08);
+  scale: 1.35;
+}
+
+.cursor-ring.is-text {
+  background: rgba(var(--primary-rgb), 0.85);
+  width: 3px;
+  height: 24px;
+  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.45);
+  border: 0;
+  border-radius: 2px;
+  margin: -12px 0 0 -1.5px;
+  scale: 1;
+}
+
+.cursor-dot.is-text {
+  opacity: 0;
+}
+
+.cursor-ring.is-pressed {
+  background: rgba(var(--primary-rgb), 0.3);
+  scale: 0.65;
 }
 
 body.has-custom-cursor .cursor-dot,
 body.has-custom-cursor .cursor-ring {
   opacity: 1;
+}
+
+.magnetic {
+  transform-origin: 50%;
+  translate: 0;
+  scale: 1;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
 }
 
 /* 3D tilt cards — matches dereks-website-services.com interaction */
@@ -761,10 +813,6 @@ main {
   box-shadow: 0 4px 24px color-mix(in srgb, var(--primary) 8%, transparent);
 }
 
-.magnetic-btn {
-  will-change: transform;
-}
-
 
 ::selection {
   background: rgba(56, 189, 248, 0.25);
@@ -921,7 +969,7 @@ main {
   background: rgba(56, 189, 248, 0.6);
 }
 
-html.has-custom-cursor .scrollbar-visible {
+body.has-custom-cursor .scrollbar-visible {
   scrollbar-width: thin;
 }
 

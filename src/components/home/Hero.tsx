@@ -90,12 +90,12 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <MagneticButton strength={0.4} influenceRadius={150}>
+              <MagneticButton>
                 <Button href="#best-work" size="lg" className="hero-cta">
                   View Work
                 </Button>
               </MagneticButton>
-              <MagneticButton strength={0.4} influenceRadius={150}>
+              <MagneticButton>
                 <Button href="#commission-process" size="lg" variant="secondary" className="hero-cta">
                   Commissions
                 </Button>
@@ -108,7 +108,7 @@ export function Hero() {
               >
                 Discord
               </Button>
-              <MagneticButton strength={0.4} influenceRadius={150} className="shrink-0">
+              <MagneticButton className="shrink-0">
                 <Button
                   type="button"
                   variant="outline"
