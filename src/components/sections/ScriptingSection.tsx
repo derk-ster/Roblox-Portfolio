@@ -29,6 +29,7 @@ export function ScriptingSection() {
       title="Scripting"
       description="Mostly UI and emote systems, plus movement and gameplay scripts."
       accent="cyan"
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}

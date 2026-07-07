@@ -18,13 +18,13 @@ export function BuildingSection() {
       title="Building"
       description="Maps, lobbies, and environments built in Roblox Studio."
       accent="orange"
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}
         categoryLabel="building work"
         folderPath="public/assets/building"
         variant="building"
-        columns="large"
       />
     </CategorySection>
   );

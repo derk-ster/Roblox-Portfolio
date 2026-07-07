@@ -53,6 +53,7 @@ export const NAV_LINKS = [
   { href: "#vfx", label: "VFX" },
   { href: "#building", label: "Building" },
   { href: "#modeling", label: "3D Modeling" },
+  { href: "#pricing", label: "Pricing" },
 ] as const;
 
 /** Sections grouped under the nav CTA (Work With Me). */

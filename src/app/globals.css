@@ -17,13 +17,25 @@
 }
 
 :root {
+  --bg: #050816;
+  --panel: #0b1026;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --secondary: #8b5cf6;
+  --accent: #c084fc;
+  --border: rgba(255, 255, 255, 0.1);
+  --glow: rgba(56, 189, 248, 0.28);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+
   --brand-gradient: linear-gradient(
     90deg,
-    #38bdf8,
+    var(--primary),
     #6366f1,
-    #8b5cf6,
-    #c084fc,
-    #38bdf8
+    var(--secondary),
+    var(--accent),
+    var(--primary)
   );
   --brand-gradient-size: 300% 100%;
   --brand-gradient-duration: 7s;
@@ -78,11 +90,199 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
+
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor .marquee-scrubber {
+  cursor: none !important;
+}
+
+html.has-custom-cursor .marquee-scrubber::-webkit-slider-thumb {
+  cursor: none !important;
+}
+
+html.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
+  cursor: none !important;
+}
+
+/* Subtle mouse-following page glow */
+.mouse-glow-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px circle at var(--mouse-x) var(--mouse-y),
+    color-mix(in srgb, var(--primary) 4%, transparent),
+    transparent 60%
+  );
+  opacity: 0.5;
+}
+
+.atmo-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 80%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 80%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 10%, transparent 70%);
+  opacity: 0.2;
+}
+
+.atmo-shape {
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  border-radius: 4px;
+  opacity: 0.35;
+  animation: atmo-float 18s ease-in-out infinite;
+}
+
+.atmo-shape-a {
+  width: 48px;
+  height: 48px;
+  top: 18%;
+  left: 8%;
+  transform: rotate(12deg);
+}
+
+.atmo-shape-b {
+  width: 32px;
+  height: 32px;
+  top: 62%;
+  right: 12%;
+  border-color: color-mix(in srgb, var(--secondary) 30%, transparent);
+  animation-delay: -6s;
+}
+
+.atmo-shape-c {
+  width: 24px;
+  height: 24px;
+  bottom: 22%;
+  left: 22%;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+  animation-delay: -12s;
+}
+
+.atmo-glow-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.35;
+  animation: atmo-float 22s ease-in-out infinite;
+}
+
+.atmo-glow-orb-a {
+  width: 180px;
+  height: 180px;
+  top: 30%;
+  right: 18%;
+  background: color-mix(in srgb, var(--secondary) 35%, transparent);
+}
+
+.atmo-glow-orb-b {
+  width: 140px;
+  height: 140px;
+  bottom: 28%;
+  left: 10%;
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  animation-delay: -9s;
+}
+
+.atmo-bracket {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+.atmo-bracket-tl {
+  top: 5rem;
+  left: 1rem;
+  border-width: 2px 0 0 2px;
+}
+
+.atmo-bracket-tr {
+  top: 5rem;
+  right: 1rem;
+  border-width: 2px 2px 0 0;
+}
+
+.atmo-bracket-bl {
+  bottom: 2rem;
+  left: 1rem;
+  border-width: 0 0 2px 2px;
+}
+
+.atmo-bracket-br {
+  bottom: 2rem;
+  right: 1rem;
+  border-width: 0 2px 2px 0;
+}
+
+.atmo-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--primary) 50%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 48px 48px;
+  opacity: 0.12;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+@keyframes atmo-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(6deg);
+  }
+}
+
+/* Custom cursor */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 12px var(--glow);
+  z-index: 201;
+  pointer-events: none;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+  z-index: 200;
+  pointer-events: none;
+}
+
+.calm-card {
+  border-radius: 1rem;
+}
+
 
 ::selection {
   background: rgba(56, 189, 248, 0.25);
@@ -142,18 +342,18 @@ body {
 .inner-glow {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 0 48px rgba(56, 189, 248, 0.04);
+    inset 0 0 48px color-mix(in srgb, var(--primary) 8%, transparent);
 }
 
 .inner-glow-accent {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 0 56px var(--glow-color, rgba(56, 189, 248, 0.06));
+    inset 0 0 56px var(--glow-color, color-mix(in srgb, var(--primary) 10%, transparent));
 }
 
 .card-surface {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(11, 16, 38, 0.85);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
@@ -161,7 +361,7 @@ body {
 }
 
 .card-surface:hover {
-  border-color: rgba(56, 189, 248, 0.22);
+  border-color: color-mix(in srgb, var(--primary) 35%, transparent);
 }
 
 @keyframes float {
@@ -203,4 +403,76 @@ body {
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: rgba(56, 189, 248, 0.25);
   border-radius: 999px;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-scrubber {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.marquee-scrubber::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.marquee-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -4px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--primary) 50%, transparent);
+  background: var(--primary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+.marquee-scrubber:active::-webkit-slider-thumb {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+.marquee-scrubber::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.marquee-scrubber::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--primary) 50%, transparent);
+  background: var(--primary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+@keyframes horizontal-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-horizontal-marquee {
+  animation: horizontal-marquee 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-horizontal-marquee {
+    animation: none;
+  }
 }

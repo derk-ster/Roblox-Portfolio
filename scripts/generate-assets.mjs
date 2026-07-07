@@ -60,6 +60,53 @@ function slugify(filename) {
     .replace(/^-|-$/g, "");
 }
 
+/** Parse YYYYMMDD from screen-recording style filenames (e.g. 20260605-0616-02.mp4). */
+function dateFromFilename(filename) {
+  const match = path.basename(filename).match(/^(\d{4})(\d{2})(\d{2})-/);
+  if (!match) return undefined;
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (month < 1 || month > 12 || day < 1 || day > 31) return undefined;
+
+  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function dateFromMtime(filePath) {
+  const { mtime } = fs.statSync(filePath);
+  return mtime.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function resolveAssetDate(fileMeta, file, categoryPath, type) {
+  const metaDate = fileMeta.date;
+  const fromFilename = dateFromFilename(file);
+  const filePath = path.join(categoryPath, file);
+
+  if (metaDate && !/^\d{4}$/.test(String(metaDate).trim())) {
+    return metaDate;
+  }
+
+  if (fromFilename) return fromFilename;
+
+  if (type === "video") {
+    if (fs.existsSync(filePath)) {
+      return dateFromMtime(filePath);
+    }
+    return metaDate || undefined;
+  }
+
+  return metaDate || undefined;
+}
+
 function loadMeta(categoryPath) {
   const metaPath = path.join(categoryPath, "meta.json");
   if (!fs.existsSync(metaPath)) return {};
@@ -215,7 +262,7 @@ function scanCategory(category) {
         fileMeta.description ||
         `Portfolio work from the ${category.replace("-", " ")} category.`,
       tags: fileMeta.tags || DEFAULT_TAGS[category] || [],
-      date: fileMeta.date,
+      date: resolveAssetDate(fileMeta, file, categoryPath, type),
       status: fileMeta.status || (isWip ? "WIP" : "Completed"),
       featured: fileMeta.featured ?? isBestWork,
       order: fileMeta.order ?? 999,

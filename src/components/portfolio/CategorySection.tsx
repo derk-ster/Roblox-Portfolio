@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion } from "motion/react";
+import { ScrollReveal } from "@/components/effects/ScrollReveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +30,7 @@ export function CategorySection({
     <section
       id={id}
       className={cn(
-        "relative scroll-mt-20 py-10 sm:py-12",
+        "relative scroll-mt-20 py-8 sm:py-10",
         className
       )}
       aria-labelledby={`${id}-heading`}
@@ -53,18 +53,13 @@ export function CategorySection({
           accent={accent}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <ScrollReveal className="overflow-hidden">
           {children}
-        </motion.div>
+        </ScrollReveal>
       </div>
 
       <div
-        className="mx-auto mt-8 h-px max-w-3xl bg-white/8"
+        className="mx-auto mt-6 h-px max-w-3xl bg-white/8"
         aria-hidden
       />
     </section>

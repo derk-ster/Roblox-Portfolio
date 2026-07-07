@@ -26,6 +26,7 @@ export function VFXSection() {
       description="Particle and trail work, mostly tied into scripted systems."
       accent="pink"
       glow
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}

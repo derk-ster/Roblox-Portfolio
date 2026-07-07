@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PremiumShell } from "@/components/effects/PremiumShell";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,7 +45,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <PremiumShell>{children}</PremiumShell>
       </body>
     </html>
   );

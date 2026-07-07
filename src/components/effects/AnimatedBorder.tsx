@@ -33,7 +33,7 @@ export function AnimatedBorder({
     <div
       className={cn(
         "group/border relative rounded-2xl p-px transition-shadow duration-300",
-        glow && "hover:shadow-[0_8px_32px_rgba(56,189,248,0.08)]",
+        glow && "hover:shadow-[0_8px_32px_color-mix(in_srgb,var(--primary)_12%,transparent)]",
         className
       )}
     >
@@ -53,7 +53,7 @@ export function AnimatedBorder({
         )}
         style={
           glow
-            ? ({ "--glow-color": "rgba(56, 189, 248, 0.07)" } as CSSProperties)
+            ? ({ "--glow-color": "color-mix(in srgb, var(--primary) 10%, transparent)" } as CSSProperties)
             : undefined
         }
       >

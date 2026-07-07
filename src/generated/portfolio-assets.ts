@@ -19,7 +19,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Fortnite"
     ],
-    "date": "2026",
+    "date": "Jun 27, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
@@ -57,7 +57,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Matchmaking",
       "WIP"
     ],
-    "date": "2026",
+    "date": "Jun 2, 2026",
     "status": "WIP",
     "featured": false,
     "order": 1
@@ -97,7 +97,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "WIP",
       "Featured"
     ],
-    "date": "2026",
+    "date": "Jun 8, 2026",
     "status": "WIP",
     "featured": true,
     "order": 1
@@ -116,7 +116,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "VFXForge",
       "UI"
     ],
-    "date": "2026",
+    "date": "Jun 27, 2026",
     "status": "Completed",
     "featured": false,
     "order": 1
@@ -135,7 +135,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Movement",
       "Climbing"
     ],
-    "date": "2026",
+    "date": "Jun 2, 2026",
     "status": "Completed",
     "featured": false,
     "order": 2
@@ -156,7 +156,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "WIP",
       "Featured"
     ],
-    "date": "2026",
+    "date": "Jun 19, 2026",
     "status": "WIP",
     "featured": true,
     "order": 2
@@ -213,7 +213,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Fortnite"
     ],
-    "date": "2026",
+    "date": "Jun 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 2
@@ -233,7 +233,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Combat",
       "Featured"
     ],
-    "date": "2026",
+    "date": "Jun 19, 2026",
     "status": "Completed",
     "featured": true,
     "order": 3
@@ -253,7 +253,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Fortnite"
     ],
-    "date": "2026",
+    "date": "Jun 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 3
@@ -310,7 +310,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Matchmaking",
       "WIP"
     ],
-    "date": "2026",
+    "date": "Jun 5, 2026",
     "status": "WIP",
     "featured": false,
     "order": 3
@@ -330,7 +330,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Fortnite"
     ],
-    "date": "2026",
+    "date": "Jun 6, 2026",
     "status": "Completed",
     "featured": false,
     "order": 4
@@ -350,7 +350,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "VFX",
       "OUTRUN"
     ],
-    "date": "2026",
+    "date": "Jun 8, 2026",
     "status": "Completed",
     "featured": true,
     "order": 4
@@ -407,7 +407,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Anime"
     ],
-    "date": "2026",
+    "date": "Jun 7, 2026",
     "status": "Completed",
     "featured": false,
     "order": 5
@@ -446,7 +446,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Emotes",
       "WIP"
     ],
-    "date": "2026",
+    "date": "Jun 8, 2026",
     "status": "WIP",
     "featured": false,
     "order": 5
@@ -485,7 +485,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Emotes",
       "WIP"
     ],
-    "date": "2026",
+    "date": "Jun 8, 2026",
     "status": "WIP",
     "featured": false,
     "order": 6
@@ -505,7 +505,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Anime"
     ],
-    "date": "2026",
+    "date": "Jun 7, 2026",
     "status": "Completed",
     "featured": false,
     "order": 6
@@ -525,7 +525,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Anime"
     ],
-    "date": "2026",
+    "date": "Jun 7, 2026",
     "status": "Completed",
     "featured": false,
     "order": 7
@@ -563,7 +563,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "UI",
       "Quests"
     ],
-    "date": "2026",
+    "date": "Jun 9, 2026",
     "status": "Completed",
     "featured": false,
     "order": 7
@@ -583,7 +583,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Loop"
     ],
-    "date": "2026",
+    "date": "Jun 27, 2026",
     "status": "Completed",
     "featured": false,
     "order": 8
@@ -602,7 +602,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "UI",
       "Inventory"
     ],
-    "date": "2026",
+    "date": "Jun 10, 2026",
     "status": "Completed",
     "featured": false,
     "order": 8
@@ -641,7 +641,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Matchmaking",
       "WIP"
     ],
-    "date": "2026",
+    "date": "Jun 19, 2026",
     "status": "WIP",
     "featured": false,
     "order": 9
@@ -679,7 +679,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "UI",
       "Combat"
     ],
-    "date": "2026",
+    "date": "Jun 19, 2026",
     "status": "Completed",
     "featured": false,
     "order": 10
@@ -718,7 +718,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "VFX",
       "VFXForge"
     ],
-    "date": "2026",
+    "date": "Jun 26, 2026",
     "status": "Completed",
     "featured": false,
     "order": 11

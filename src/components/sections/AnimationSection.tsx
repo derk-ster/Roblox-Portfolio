@@ -28,6 +28,7 @@ export function AnimationSection() {
       title="Animation"
       description="Emotes and movement animations made in Blender for Roblox."
       accent="purple"
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}

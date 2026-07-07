@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { HorizontalMarquee } from "@/components/effects/HorizontalMarquee";
 import { PortfolioCard } from "./PortfolioCard";
 import { PortfolioFilters } from "./PortfolioFilters";
 import { MediaModal } from "./MediaModal";
@@ -14,7 +15,30 @@ interface PortfolioGridProps {
   extraTags?: string[];
   variant?: "default" | "vfx" | "wip" | "modeling" | "building";
   showFilters?: boolean;
-  columns?: "default" | "large" | "grid-3d";
+  layout?: "marquee" | "grid";
+  marqueeDurationSeconds?: number;
+}
+
+const CARD_WIDTH = "w-[min(88vw,20rem)] shrink-0 sm:w-80";
+
+function expandAssetsForMarquee(
+  assets: PortfolioAsset[],
+  minCount = 6
+): Array<{ asset: PortfolioAsset; key: string }> {
+  if (assets.length === 0) return [];
+
+  const items: Array<{ asset: PortfolioAsset; key: string }> = [];
+  let round = 0;
+
+  while (items.length < minCount) {
+    for (const asset of assets) {
+      items.push({ asset, key: `${asset.id}-marquee-${round}` });
+      if (items.length >= minCount) break;
+    }
+    round += 1;
+  }
+
+  return items;
 }
 
 export function PortfolioGrid({
@@ -24,7 +48,8 @@ export function PortfolioGrid({
   extraTags = [],
   variant = "default",
   showFilters = true,
-  columns = "default",
+  layout = "marquee",
+  marqueeDurationSeconds = 75,
 }: PortfolioGridProps) {
   const [filtered, setFiltered] = useState(assets);
   const [modalAsset, setModalAsset] = useState<PortfolioAsset | null>(null);
@@ -33,16 +58,42 @@ export function PortfolioGrid({
     setFiltered(filteredAssets);
   }, []);
 
-  const gridClass =
-    columns === "large"
-      ? "grid gap-5 sm:grid-cols-1 lg:grid-cols-2"
-      : columns === "grid-3d"
-        ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        : "grid gap-4 sm:grid-cols-2 lg:grid-cols-3";
+  const marqueeItems = useMemo(
+    () => expandAssetsForMarquee(filtered, 6),
+    [filtered]
+  );
 
   if (assets.length === 0) {
     return <EmptyState category={categoryLabel} folderPath={folderPath} />;
   }
+
+  const cards = filtered.map((asset, i) => (
+    <div key={asset.id} className={layout === "marquee" ? CARD_WIDTH : undefined}>
+      <PortfolioCard
+        asset={asset}
+        index={i}
+        variant={variant}
+        compact={layout === "marquee"}
+        isPlaceholder={asset.id.startsWith("placeholder-")}
+        onViewDetails={setModalAsset}
+        onOpenMedia={setModalAsset}
+      />
+    </div>
+  ));
+
+  const marqueeCards = marqueeItems.map(({ asset, key }, i) => (
+    <div key={key} className={CARD_WIDTH}>
+      <PortfolioCard
+        asset={asset}
+        index={i}
+        variant={variant}
+        compact
+        isPlaceholder={asset.id.startsWith("placeholder-")}
+        onViewDetails={setModalAsset}
+        onOpenMedia={setModalAsset}
+      />
+    </div>
+  ));
 
   return (
     <>
@@ -56,23 +107,17 @@ export function PortfolioGrid({
       )}
 
       {filtered.length === 0 ? (
-        <p className="text-center text-muted py-12">
+        <p className="py-8 text-center text-muted">
           No items match the current filters.
         </p>
+      ) : layout === "marquee" ? (
+        <HorizontalMarquee
+          durationSeconds={marqueeDurationSeconds}
+        >
+          {marqueeCards}
+        </HorizontalMarquee>
       ) : (
-        <div className={gridClass}>
-          {filtered.map((asset, i) => (
-            <PortfolioCard
-              key={asset.id}
-              asset={asset}
-              index={i}
-              variant={variant}
-              isPlaceholder={asset.id.startsWith("placeholder-")}
-              onViewDetails={setModalAsset}
-              onOpenMedia={setModalAsset}
-            />
-          ))}
-        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cards}</div>
       )}
 
       <MediaModal

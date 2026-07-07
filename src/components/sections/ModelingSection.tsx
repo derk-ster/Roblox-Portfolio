@@ -18,13 +18,13 @@ export function ModelingSection() {
       title="3D Modeling"
       description="Blender work for OUTRUN, a game lobby I modeled. Same map, different angles."
       accent="lime"
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}
         categoryLabel="3D modeling work"
         folderPath="public/assets/modeling"
         variant="modeling"
-        columns="grid-3d"
       />
     </CategorySection>
   );

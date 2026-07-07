@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
@@ -17,12 +16,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-cyan/10 text-cyan border border-cyan/25 hover:bg-cyan/15 hover:border-cyan/40",
+    "bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-[var(--primary)] border border-[color-mix(in_srgb,var(--primary)_28%,transparent)] hover:bg-[color-mix(in_srgb,var(--primary)_16%,transparent)] hover:border-[color-mix(in_srgb,var(--primary)_42%,transparent)]",
   secondary:
-    "bg-purple/10 text-purple border border-purple/25 hover:bg-purple/15 hover:border-purple/40",
-  ghost: "text-muted hover:text-text hover:bg-white/5 border border-transparent",
+    "bg-[color-mix(in_srgb,var(--secondary)_10%,transparent)] text-[var(--secondary)] border border-[color-mix(in_srgb,var(--secondary)_28%,transparent)] hover:bg-[color-mix(in_srgb,var(--secondary)_16%,transparent)] hover:border-[color-mix(in_srgb,var(--secondary)_42%,transparent)]",
+  ghost:
+    "text-[var(--muted)] hover:text-[var(--text)] hover:bg-white/5 border border-transparent",
   outline:
-    "border border-white/15 text-text hover:border-white/25 hover:bg-white/[0.03]",
+    "border border-[var(--border)] text-[var(--text)] hover:border-[color-mix(in_srgb,var(--primary)_30%,transparent)] hover:bg-white/[0.03]",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const classes = cn(
-      "relative inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40 focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:pointer-events-none",
+      "relative inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--primary)_40%,transparent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]",
       variants[variant],
       sizes[size],
       className
@@ -53,29 +53,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <motion.a
-          href={href}
-          className={classes}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
+        <a href={href} className={classes}>
           {icon}
           {children}
-        </motion.a>
+        </a>
       );
     }
 
     return (
-      <motion.button
-        ref={ref}
-        className={classes}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        {...(props as object)}
-      >
+      <button ref={ref} className={classes} {...props}>
         {icon}
         {children}
-      </motion.button>
+      </button>
     );
   }
 );

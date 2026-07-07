@@ -3,3 +3,14 @@ export const DISCORD_USERNAME = "derk2104";
 export const EMAIL = "Derek.ray.2104@gmail.com";
 export const ROBLOX_PROFILE_URL =
   "https://www.roblox.com/users/1591153391/profile";
+
+export const PAYMENT_METHODS = [
+  "Robux",
+  "Zelle",
+  "Venmo",
+  "PayPal",
+  "Cash App",
+] as const;
+
+export const PAYMENT_SUMMARY =
+  "Robux or USD via Zelle, Venmo, PayPal, or Cash App";

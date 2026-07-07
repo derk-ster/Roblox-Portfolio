@@ -14,7 +14,6 @@ import {
 import { motion } from "motion/react";
 import { CategorySection } from "@/components/portfolio/CategorySection";
 import { AnimatedBorder } from "@/components/effects/AnimatedBorder";
-import { MouseGlow } from "@/components/effects/MouseGlow";
 import {
   DISCORD_URL,
   DISCORD_USERNAME,
@@ -62,7 +61,6 @@ const CONTACT_LINKS = [
     description: DISCORD_USERNAME,
     href: DISCORD_URL,
     color: "#5865F2",
-    glow: "rgba(88, 101, 242, 0.12)",
   },
   {
     icon: Gamepad2,
@@ -70,7 +68,6 @@ const CONTACT_LINKS = [
     description: "View my profile",
     href: ROBLOX_PROFILE_URL,
     color: "#c084fc",
-    glow: "rgba(192, 132, 252, 0.12)",
   },
   {
     icon: Mail,
@@ -78,7 +75,6 @@ const CONTACT_LINKS = [
     description: EMAIL,
     href: `mailto:${EMAIL}`,
     color: "#38bdf8",
-    glow: "rgba(56, 189, 248, 0.12)",
   },
 ];
 
@@ -119,41 +115,39 @@ export function WhyHireSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <MouseGlow color={link.glow}>
-                <AnimatedBorder>
-                  <a
-                    href={link.href}
-                    target={
-                      link.href.startsWith("mailto") ? undefined : "_blank"
-                    }
-                    rel={
-                      link.href.startsWith("mailto")
-                        ? undefined
-                        : "noopener noreferrer"
-                    }
-                    className="group flex items-start gap-4 p-5 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40 rounded-2xl"
+              <AnimatedBorder>
+                <a
+                  href={link.href}
+                  target={
+                    link.href.startsWith("mailto") ? undefined : "_blank"
+                  }
+                  rel={
+                    link.href.startsWith("mailto")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
+                  className="group flex items-start gap-4 rounded-2xl p-5 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40"
+                >
+                  <div
+                    className="rounded-lg p-2.5"
+                    style={{ backgroundColor: `${link.color}12` }}
                   >
-                    <div
-                      className="rounded-lg p-2.5"
-                      style={{ backgroundColor: `${link.color}12` }}
-                    >
-                      <link.icon
-                        className="h-5 w-5"
-                        style={{ color: link.color }}
-                        aria-hidden
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-base font-semibold text-text group-hover:text-cyan transition-colors">
-                        {link.label}
-                      </h4>
-                      <p className="mt-0.5 text-sm text-muted break-all">
-                        {link.description}
-                      </p>
-                    </div>
-                  </a>
-                </AnimatedBorder>
-              </MouseGlow>
+                    <link.icon
+                      className="h-5 w-5"
+                      style={{ color: link.color }}
+                      aria-hidden
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-semibold text-text transition-colors group-hover:text-cyan">
+                      {link.label}
+                    </h4>
+                    <p className="mt-0.5 break-all text-sm text-muted">
+                      {link.description}
+                    </p>
+                  </div>
+                </a>
+              </AnimatedBorder>
             </motion.div>
           ))}
         </div>

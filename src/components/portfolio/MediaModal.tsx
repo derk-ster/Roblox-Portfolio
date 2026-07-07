@@ -6,12 +6,35 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Badge } from "@/components/ui/Badge";
 import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
+import { DISCORD_URL } from "@/lib/constants";
 import { resolveMediaUrl } from "@/lib/media-url";
 import {
   CATEGORY_LABELS,
   type PortfolioAsset,
 } from "@/types/portfolio";
 import { cn } from "@/lib/utils";
+
+const categoryBadgeVariant: Record<
+  PortfolioAsset["category"],
+  "cyan" | "purple" | "pink" | "orange" | "lime" | "wip"
+> = {
+  "best-work": "cyan",
+  scripting: "cyan",
+  animation: "purple",
+  vfx: "pink",
+  building: "orange",
+  modeling: "lime",
+  wip: "wip",
+};
+
+function getRole(asset: PortfolioAsset): string {
+  if (asset.category === "animation") return "Animator · Blender · R6";
+  if (asset.category === "scripting") return "Roblox Scripter · Luau";
+  if (asset.category === "vfx") return "VFX Artist";
+  if (asset.category === "building") return "Builder · Map Design";
+  if (asset.category === "modeling") return "3D Modeler · Blender";
+  return CATEGORY_LABELS[asset.category];
+}
 
 interface MediaModalProps {
   asset: PortfolioAsset | null;
@@ -103,10 +126,10 @@ export function MediaModal({
           />
 
           <motion.div
-            className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-white/15 bg-panel shadow-[0_0_60px_rgba(0,229,255,0.15)]"
-            initial={{ scale: 0.9, y: 20 }}
+            className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--panel)] shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_20%,transparent)]"
+            initial={{ scale: 0.96, y: 12 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.9, y: 20 }}
+            exit={{ scale: 0.96, y: 12 }}
           >
             <button
               type="button"
@@ -185,31 +208,57 @@ export function MediaModal({
               )}
             </div>
 
-            <div className="border-t border-white/10 p-6">
+            <div className="border-t border-[var(--border)] p-6">
               <div className="mb-2 flex flex-wrap gap-2">
-                <Badge variant="cyan">{CATEGORY_LABELS[asset.category]}</Badge>
+                <Badge variant={categoryBadgeVariant[asset.category]}>
+                  {CATEGORY_LABELS[asset.category]}
+                </Badge>
                 {asset.status === "WIP" && <Badge variant="wip">WIP</Badge>}
                 {asset.featured && <Badge variant="purple">Featured</Badge>}
               </div>
-              <h3 className="text-2xl font-bold text-text">{asset.title}</h3>
-              <p className="mt-2 text-muted leading-relaxed">
+              <h3 className="text-2xl font-bold text-[var(--text)]">{asset.title}</h3>
+              <p className="mt-1 text-sm font-medium text-[var(--primary)]">
+                {getRole(asset)}
+              </p>
+              <p className="mt-3 leading-relaxed text-[var(--muted)]">
                 {asset.description}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {asset.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
+
+              <div className="mt-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                  Tools used
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {asset.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md border border-[var(--border)] bg-white/[0.04] px-2.5 py-1 text-xs text-[var(--muted)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              {asset.date && (
-                <p className="mt-3 text-sm text-muted">{asset.date}</p>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href={DISCORD_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-[var(--primary)] hover:underline"
+                >
+                  Commission on Discord →
+                </a>
+              </div>
+
+              {(asset.date || asset.type === "video") && (
+                <p className="mt-4 flex items-center gap-1.5 text-sm text-[var(--muted)]">
+                  <span className="font-medium text-[var(--text)]">Posted</span>
+                  {asset.date ?? "—"}
+                </p>
               )}
               {assets.length > 1 && safeIndex >= 0 && (
-                <p className="mt-2 text-xs text-muted">
+                <p className="mt-2 text-xs text-[var(--muted)]">
                   {safeIndex + 1} of {assets.length}
                 </p>
               )}

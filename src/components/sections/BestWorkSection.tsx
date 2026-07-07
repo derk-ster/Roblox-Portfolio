@@ -20,6 +20,7 @@ export function BestWorkSection() {
       title="Best Work"
       description="A few projects I am most happy with."
       accent="cyan"
+      className="overflow-hidden"
     >
       <PortfolioGrid
         assets={assets}
