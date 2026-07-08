@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/Button";
+import { ModalPortal } from "@/components/ui/ModalPortal";
 import { CertificationsGallery } from "@/components/sections/CertificationsGallery";
 import {
   SCRIPTING_CERTIFICATIONS,
@@ -37,10 +38,11 @@ export function ScriptingInfoModal({ open, onClose }: ScriptingInfoModalProps) {
   }, [open, onClose]);
 
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          className="fixed inset-0 z-[85] flex items-center justify-center p-4 sm:p-6"
+    <ModalPortal>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -147,5 +149,6 @@ export function ScriptingInfoModal({ open, onClose }: ScriptingInfoModalProps) {
         </motion.div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }

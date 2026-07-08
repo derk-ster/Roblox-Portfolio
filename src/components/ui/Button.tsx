@@ -31,6 +31,10 @@ const sizes: Record<ButtonSize, string> = {
   lg: "px-6 py-3 text-base",
 };
 
+function isExternalHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -52,8 +56,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (href) {
+      const external = isExternalHref(href);
       return (
-        <a href={href} className={classes}>
+        <a
+          href={href}
+          className={classes}
+          {...(external
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
           {icon}
           {children}
         </a>

@@ -18,6 +18,7 @@
   var CARD_SELECTOR =
     ".tilt-card, .calm-card, .certification-trigger, .impact-card";
   var MAGNETIC_SELECTOR = ".magnetic";
+  var PANEL_SCROLL_SELECTOR = ".scrollbar-visible, .scrollbar-thin";
 
   var priority = new Set();
   var rafId = 0;
@@ -111,6 +112,7 @@
 
   document.body.appendChild(ring);
   document.body.appendChild(dot);
+  document.documentElement.classList.add("has-custom-cursor");
   document.body.classList.add("has-custom-cursor");
 
   var glow = null;
@@ -462,12 +464,134 @@
     ring.classList.remove("is-pressed");
   }
 
-  window.addEventListener("pointermove", onPointerMove, {
+  function isPointerInWindow(clientX, clientY) {
+    return (
+      clientX >= 0 &&
+      clientY >= 0 &&
+      clientX <= window.innerWidth &&
+      clientY <= window.innerHeight
+    );
+  }
+
+  function isPointerInElementBox(el, clientX, clientY) {
+    var rect = el.getBoundingClientRect();
+    return (
+      clientX >= rect.left &&
+      clientX <= rect.right &&
+      clientY >= rect.top &&
+      clientY <= rect.bottom
+    );
+  }
+
+  function isOverPageScrollbar(clientX, clientY) {
+    var scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth <= 0) return false;
+    return (
+      clientX >= document.documentElement.clientWidth &&
+      clientY >= 0 &&
+      clientY <= window.innerHeight
+    );
+  }
+
+  function isOverPanelScrollbar(clientX, clientY) {
+    var nodes = document.querySelectorAll(PANEL_SCROLL_SELECTOR);
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (!(el instanceof HTMLElement)) continue;
+      if (!isPointerInElementBox(el, clientX, clientY)) continue;
+
+      var rect = el.getBoundingClientRect();
+      var scrollbarWidth = el.offsetWidth - el.clientWidth;
+      var scrollbarHeight = el.offsetHeight - el.clientHeight;
+
+      if (
+        scrollbarWidth > 0 &&
+        clientX >= rect.right - scrollbarWidth &&
+        clientX <= rect.right &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom
+      ) {
+        return true;
+      }
+
+      if (
+        scrollbarHeight > 0 &&
+        clientY >= rect.bottom - scrollbarHeight &&
+        clientY <= rect.bottom &&
+        clientX >= rect.left &&
+        clientX <= rect.right
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function isOverAnyScrollbar(clientX, clientY) {
+    return (
+      isOverPageScrollbar(clientX, clientY) ||
+      isOverPanelScrollbar(clientX, clientY)
+    );
+  }
+
+  function onDocumentMouseLeave(event) {
+    // Native scrollbar gutters sit outside the document box on Windows;
+    // keep the custom cursor visible while the pointer is still in-window.
+    if (isPointerInWindow(event.clientX, event.clientY)) {
+      show();
+      return;
+    }
+    hide();
+  }
+
+  function onPanelScrollMouseLeave(event) {
+    var el = event.currentTarget;
+    if (el instanceof HTMLElement) {
+      if (isPointerInElementBox(el, event.clientX, event.clientY)) {
+        show();
+        return;
+      }
+    }
+    if (isPointerInWindow(event.clientX, event.clientY)) {
+      show();
+    }
+  }
+
+  var boundPanelScrolls = new WeakSet();
+
+  function bindPanelScrollTargets() {
+    document.querySelectorAll(PANEL_SCROLL_SELECTOR).forEach(function (node) {
+      if (!(node instanceof HTMLElement) || boundPanelScrolls.has(node)) return;
+      boundPanelScrolls.add(node);
+      node.addEventListener("mouseleave", onPanelScrollMouseLeave, {
+        passive: true,
+      });
+    });
+  }
+
+  function onPointerMoveTracked(event) {
+    if (event.pointerType && event.pointerType !== "mouse") return;
+    onPointer(event);
+    if (isOverAnyScrollbar(event.clientX, event.clientY)) {
+      show();
+    }
+  }
+
+  window.addEventListener("pointermove", onPointerMoveTracked, {
     passive: true,
     capture: true,
   });
-  window.addEventListener("pointerenter", onPointerMove);
-  document.addEventListener("mouseleave", hide);
+  window.addEventListener("mousemove", function (event) {
+    if (!pointer.visible && isPointerInWindow(event.clientX, event.clientY)) {
+      onPointer(event);
+    }
+    if (isOverAnyScrollbar(event.clientX, event.clientY)) {
+      show();
+    }
+  }, { passive: true });
+  window.addEventListener("pointerenter", onPointerMoveTracked);
+  document.addEventListener("mouseleave", onDocumentMouseLeave);
   window.addEventListener("blur", hide);
   window.addEventListener("scroll", measureMagnetic, {
     passive: true,
@@ -485,6 +609,12 @@
   document.addEventListener("pointerdown", onPointerDown, true);
   document.addEventListener("pointerup", onPointerUp);
   document.addEventListener("pointercancel", onPointerUp);
+
+  bindPanelScrollTargets();
+  var panelScrollObserver = new MutationObserver(function () {
+    bindPanelScrollTargets();
+  });
+  panelScrollObserver.observe(document.body, { childList: true, subtree: true });
   }
 
   if (document.readyState === "loading") {

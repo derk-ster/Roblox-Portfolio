@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Badge } from "@/components/ui/Badge";
 import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
+import { ModalPortal } from "@/components/ui/ModalPortal";
 import { DISCORD_URL } from "@/lib/constants";
 import { resolveMediaUrl } from "@/lib/media-url";
 import {
@@ -109,10 +110,11 @@ export function MediaModal({
   }, [asset]);
 
   return (
-    <AnimatePresence>
-      {asset && (
-        <motion.div
-          className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-8"
+    <ModalPortal>
+      <AnimatePresence>
+        {asset && (
+          <motion.div
+            className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -127,7 +129,7 @@ export function MediaModal({
           />
 
           <motion.div
-            className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--panel)] shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_20%,transparent)]"
+            className="relative z-10 flex max-h-[min(85vh,40rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--panel)] shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_20%,transparent)]"
             initial={{ scale: 0.96, y: 12 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.96, y: 12 }}
@@ -141,7 +143,7 @@ export function MediaModal({
               <X className="h-5 w-5" />
             </button>
 
-            <div className="relative flex min-h-[40vh] flex-1 overflow-hidden bg-bg">
+            <div className="relative flex min-h-[20vh] flex-1 overflow-hidden bg-bg">
               {!loaded && <MediaLoadingSkeleton />}
 
               {asset.type === "video" ? (
@@ -151,7 +153,7 @@ export function MediaModal({
                     <img
                       src={asset.thumbnail}
                       alt=""
-                      className="absolute inset-0 max-h-[60vh] w-full object-contain opacity-100"
+                      className="absolute inset-0 max-h-[45vh] w-full object-contain opacity-100"
                     />
                   )}
                   <video
@@ -159,7 +161,7 @@ export function MediaModal({
                     key={asset.id}
                     src={resolveMediaUrl(asset.src)}
                     className={cn(
-                      "max-h-[60vh] w-full object-contain transition-opacity duration-300",
+                      "max-h-[45vh] w-full object-contain transition-opacity duration-300",
                       loaded ? "opacity-100" : "opacity-0"
                     )}
                     controls
@@ -172,14 +174,14 @@ export function MediaModal({
                   />
                 </>
               ) : (
-                <div className="relative flex min-h-[40vh] w-full items-center justify-center">
+                <div className="relative flex min-h-[20vh] w-full items-center justify-center">
                   <Image
                     key={asset.id}
                     src={asset.src}
                     alt={asset.title}
                     width={1920}
                     height={1080}
-                    className="max-h-[60vh] w-auto object-contain"
+                    className="max-h-[45vh] w-auto object-contain"
                     onLoad={() => setLoaded(true)}
                     onError={() => setLoaded(true)}
                     priority
@@ -209,7 +211,7 @@ export function MediaModal({
               )}
             </div>
 
-            <div className="border-t border-[var(--border)] p-6">
+            <div className="border-t border-[var(--border)] p-4 sm:p-5">
               <div className="mb-2 flex flex-wrap gap-2">
                 <Badge variant={categoryBadgeVariant[asset.category]}>
                   {CATEGORY_LABELS[asset.category]}
@@ -217,7 +219,7 @@ export function MediaModal({
                 {asset.status === "WIP" && <Badge variant="wip">WIP</Badge>}
                 {asset.featured && <Badge variant="purple">Featured</Badge>}
               </div>
-              <h3 className="text-2xl font-bold text-[var(--text)]">{asset.title}</h3>
+              <h3 className="text-xl font-bold text-[var(--text)]">{asset.title}</h3>
               <p className="mt-1 text-sm font-medium text-[var(--primary)]">
                 {getRole(asset)}
               </p>
@@ -268,5 +270,6 @@ export function MediaModal({
         </motion.div>
       )}
     </AnimatePresence>
+    </ModalPortal>
   );
 }

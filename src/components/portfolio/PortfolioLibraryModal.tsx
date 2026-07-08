@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
 import { MediaModal } from "@/components/portfolio/MediaModal";
 import { Button } from "@/components/ui/Button";
+import { ModalPortal } from "@/components/ui/ModalPortal";
 import type { PortfolioAsset } from "@/types/portfolio";
 
 interface PortfolioLibraryModalProps {
@@ -47,10 +48,11 @@ export function PortfolioLibraryModal({
 
   return (
     <>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6"
+      <ModalPortal>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              className="fixed inset-0 z-[9990] flex items-center justify-center p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -120,6 +122,7 @@ export function PortfolioLibraryModal({
           </motion.div>
         )}
       </AnimatePresence>
+      </ModalPortal>
 
       <MediaModal
         asset={modalAsset}

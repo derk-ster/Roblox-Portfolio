@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import { MediaModal } from "@/components/portfolio/MediaModal";
 import { getAssetsByCategory } from "@/lib/assets";
-import { CERT_GROUPS, groupCertificationAssets } from "@/lib/certifications";
+import { CERT_GROUPS, CERT_SECTIONS, groupCertificationAssets } from "@/lib/certifications";
 import type { PortfolioAsset } from "@/types/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -71,12 +71,44 @@ function CertGroupGallery({
   );
 }
 
+function CertSection({
+  title,
+  description,
+  children,
+}: {
+  title: string;
+  description?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <h4 className="text-sm font-semibold text-[var(--text)]">{title}</h4>
+        {description && (
+          <p className="mt-1 text-xs leading-relaxed text-[var(--muted)] sm:text-sm">
+            {description}
+          </p>
+        )}
+      </div>
+      <div className="space-y-4">{children}</div>
+    </div>
+  );
+}
+
 export function CertificationsGallery() {
   const assets = getAssetsByCategory("certifications").filter(
     (a) => a.type === "image"
   );
   const { buckets, ungrouped } = groupCertificationAssets(assets);
   const [modalAsset, setModalAsset] = useState<PortfolioAsset | null>(null);
+
+  const standaloneGroups = CERT_GROUPS.filter((group) => !("section" in group));
+  const sectionedGroups = CERT_SECTIONS.map((section) => ({
+    section,
+    groups: CERT_GROUPS.filter(
+      (group) => "section" in group && group.section === section.id
+    ),
+  }));
 
   if (assets.length === 0) return null;
 
@@ -92,15 +124,39 @@ export function CertificationsGallery() {
           </p>
         </div>
 
-        {CERT_GROUPS.map((group) => (
+        {standaloneGroups.map((group) => (
           <CertGroupGallery
             key={group.id}
             title={group.title}
             assets={buckets.get(group.id) ?? []}
             onOpen={setModalAsset}
-            columns={group.id === "monthly" ? 5 : 3}
           />
         ))}
+
+        {sectionedGroups.map(({ section, groups }) => {
+          const hasAssets = groups.some(
+            (group) => (buckets.get(group.id) ?? []).length > 0
+          );
+          if (!hasAssets) return null;
+
+          return (
+            <CertSection
+              key={section.id}
+              title={section.title}
+              description={section.description}
+            >
+              {groups.map((group) => (
+                <CertGroupGallery
+                  key={group.id}
+                  title={group.title}
+                  assets={buckets.get(group.id) ?? []}
+                  onOpen={setModalAsset}
+                  columns={"columns" in group ? group.columns : 3}
+                />
+              ))}
+            </CertSection>
+          );
+        })}
 
         {ungrouped.length > 0 && (
           <CertGroupGallery

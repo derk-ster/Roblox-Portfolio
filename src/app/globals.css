@@ -97,8 +97,16 @@ body {
   overflow-x: hidden;
 }
 
+html.has-custom-cursor,
 body.has-custom-cursor,
 body.has-custom-cursor * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor::-webkit-scrollbar,
+html.has-custom-cursor::-webkit-scrollbar-track,
+html.has-custom-cursor::-webkit-scrollbar-thumb,
+html.has-custom-cursor::-webkit-scrollbar-corner {
   cursor: none !important;
 }
 
@@ -351,6 +359,7 @@ body.has-custom-cursor .cursor-ring {
     display: none !important;
   }
 
+  html.has-custom-cursor,
   body.has-custom-cursor,
   body.has-custom-cursor * {
     cursor: auto !important;
@@ -977,14 +986,44 @@ main {
   background: rgba(56, 189, 248, 0.6);
 }
 
-body.has-custom-cursor .scrollbar-visible {
+/* Panel scrollbars (library modals, pricing cards, etc.) — keep custom cursor */
+html.has-custom-cursor .scrollbar-visible,
+html.has-custom-cursor .scrollbar-thin,
+body.has-custom-cursor .scrollbar-visible,
+body.has-custom-cursor .scrollbar-thin {
+  cursor: none !important;
   scrollbar-width: thin;
 }
 
-html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar {
+html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar,
+html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar,
+body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar,
+body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar {
   display: block;
   width: 8px;
   height: 8px;
+  cursor: none !important;
+}
+
+html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-track,
+html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-track,
+body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-track,
+body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-track {
+  cursor: none !important;
+}
+
+html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-thumb,
+html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-thumb,
+body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-thumb,
+body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-thumb {
+  cursor: none !important;
+}
+
+html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-corner,
+html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-corner,
+body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-corner,
+body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-corner {
+  cursor: none !important;
 }
 
 .marquee-scrubber {
