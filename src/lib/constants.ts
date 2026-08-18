@@ -8,13 +8,7 @@ export const PORTFOLIO_NAME = "DErk2104";
 export const PORTFOLIO_LOGO = "/DErk2104PortLogo.png";
 export const LOADER_SESSION_KEY = "derk2104-loader-played";
 
-export const PAYMENT_METHODS = [
-  "Robux",
-  "Zelle",
-  "Venmo",
-  "PayPal",
-  "Cash App",
-] as const;
+export const PAYMENT_METHODS = ["Robux", "PayPal Business"] as const;
 
 export const PAYMENT_SUMMARY =
-  "Robux or USD via Zelle, Venmo, PayPal, or Cash App";
+  "Robux or USD via PayPal Business. Card payments are accepted, and no PayPal account is needed";

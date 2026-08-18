@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Torus } from "@react-three/drei";
+import { Float, Torus } from "@react-three/drei";
 import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
@@ -155,13 +155,12 @@ function ScrollCore() {
     <Float speed={1.2} floatIntensity={0.4}>
       <mesh ref={ref}>
         <icosahedronGeometry args={[0.8, 1]} />
-        <MeshDistortMaterial
+        <meshStandardMaterial
           color="#3B82F6"
           emissive="#3B82F6"
           emissiveIntensity={0.4}
-          distort={0.3}
-          speed={2}
-          roughness={0.2}
+          metalness={0.35}
+          roughness={0.22}
         />
       </mesh>
     </Float>

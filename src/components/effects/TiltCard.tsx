@@ -126,6 +126,8 @@ export function TiltCard({
 
   const tickEdgeGlow = useCallback(() => {
     const s = state.current;
+    const prevMx = s.curMx;
+    const prevMy = s.curMy;
     if (s.active) {
       s.curMx = s.targetMx;
       s.curMy = s.targetMy;
@@ -133,7 +135,12 @@ export function TiltCard({
       s.curMx += (s.targetMx - s.curMx) * EDGE_LERP;
       s.curMy += (s.targetMy - s.curMy) * EDGE_LERP;
     }
-    updateEdgeGlow(s.curMx, s.curMy);
+    if (
+      Math.abs(s.curMx - prevMx) > 0.003 ||
+      Math.abs(s.curMy - prevMy) > 0.003
+    ) {
+      updateEdgeGlow(s.curMx, s.curMy);
+    }
   }, [updateEdgeGlow]);
 
   const frame = useCallback(() => {
@@ -198,7 +205,6 @@ export function TiltCard({
     s.myPct = y * 100;
     s.curMx = x;
     s.curMy = y;
-    updateEdgeGlow(x, y);
   };
 
   const handlePointerEnter = (e: PointerEvent<HTMLDivElement>) => {
@@ -212,7 +218,10 @@ export function TiltCard({
     s.targetScale = HOVER_SCALE;
 
     const pt = pointerLocal(e);
-    if (pt) applyPointer(pt.x, pt.y);
+    if (pt) {
+      applyPointer(pt.x, pt.y);
+      updateEdgeGlow(pt.x, pt.y);
+    }
     applyVars();
     ensureFrame();
   };
@@ -227,8 +236,11 @@ export function TiltCard({
     const s = state.current;
     s.targetRx = ny * MAX_DEG;
     s.targetRy = -nx * MAX_DEG;
-    applyPointer(pt.x, pt.y);
-    applyVars();
+    s.targetMx = pt.x;
+    s.targetMy = pt.y;
+    s.mxPct = pt.x * 100;
+    s.myPct = pt.y * 100;
+    ensureFrame();
   };
 
   const handlePointerLeave = () => {

@@ -16,7 +16,7 @@ export function ModelingSection() {
       id="modeling"
       eyebrow="3D Modeling"
       title="3D Modeling"
-      description="Blender work for OUTRUN, a game lobby I modeled. Same map, different angles."
+      description="Blender and Substance Painter work, including textured assets and the OUTRUN lobby."
       accent="lime"
       className="overflow-hidden"
     >

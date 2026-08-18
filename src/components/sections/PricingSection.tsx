@@ -5,8 +5,22 @@ import { AnimatedBorder } from "@/components/effects/AnimatedBorder";
 import { HorizontalMarquee } from "@/components/effects/HorizontalMarquee";
 import { Button } from "@/components/ui/Button";
 import { DISCORD_URL, PAYMENT_METHODS, PAYMENT_SUMMARY } from "@/lib/constants";
-import { PRICING_CATEGORIES, type PricingCategory } from "@/lib/pricing";
+import {
+  PRICING_CATEGORIES,
+  type PriceItem,
+  type PricingCategory,
+} from "@/lib/pricing";
 import { cn } from "@/lib/utils";
+
+function formatPrice(item: PriceItem) {
+  const parts: string[] = [];
+  if (item.robux) parts.push(`${item.robux} Robux`);
+  if (item.usd) {
+    const alreadyLabeled = /usd|quote|per second/i.test(item.usd);
+    parts.push(alreadyLabeled ? item.usd : `${item.usd} USD`);
+  }
+  return parts.join(" · ");
+}
 
 const ACCENT_STYLES: Record<
   PricingCategory["accent"],
@@ -74,7 +88,7 @@ function PricingCard({ category }: { category: PricingCategory }) {
                     >
                       <p className="text-xs leading-snug text-text/90">{item.label}</p>
                       <p className={cn("mt-1 text-xs font-medium", styles.price)}>
-                        {item.robux} Robux · {item.usd} USD
+                        {formatPrice(item)}
                       </p>
                     </li>
                   ))}
@@ -84,7 +98,7 @@ function PricingCard({ category }: { category: PricingCategory }) {
           </div>
 
           <div className="mt-4 shrink-0 border-t border-white/8 pt-4">
-            <ul className="max-h-24 space-y-1 overflow-y-auto pr-1 scrollbar-visible">
+            <ul className="max-h-32 space-y-1 overflow-y-auto pr-1 scrollbar-visible">
               {category.info.map((line) => (
                 <li
                   key={line}

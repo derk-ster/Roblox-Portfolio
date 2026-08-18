@@ -7,6 +7,7 @@ import { getSectionAssets } from "@/lib/placeholders";
 
 const SCRIPTING_TAGS = [
   "UI Systems",
+  "Tools",
   "Emote Systems",
   "Movement",
   "Inventory",

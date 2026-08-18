@@ -1,7 +1,7 @@
 export interface PriceItem {
   label: string;
-  robux: string;
-  usd: string;
+  robux?: string;
+  usd?: string;
 }
 
 export interface PriceGroup {
@@ -18,11 +18,10 @@ export interface PricingCategory {
   cta: string;
 }
 
-const SHARED_INFO = [
-  "Prices are starting prices.",
-  "Robux prices include Roblox tax in the final payment amount.",
-  "USD prices do not need Roblox tax added.",
-  "50% payment is required once half the work is done.",
+const SHARED_PAYMENT = [
+  "Robux prices include Roblox tax in the final payment price.",
+  "USD payments are through PayPal Business. No PayPal account is needed, card payments are accepted.",
+  "Once half of the work is done, 50% payment is required.",
   "Final files are sent after full payment is complete.",
 ];
 
@@ -34,47 +33,31 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     groups: [
       {
         items: [
-          { label: "Small bug fix, 1 clear issue", robux: "300+", usd: "$3+" },
-          { label: "Basic script, 1 simple feature", robux: "700+", usd: "$6+" },
-          { label: "Tool script, weapon/tool/item", robux: "1,200+", usd: "$10+" },
           {
-            label: "Ability script, dash, boost, attack, power",
-            robux: "1,500+",
-            usd: "$13+",
+            label:
+              "Basic script: bug fixes, simple tools, basic buttons, interactions, cooldowns, or one straightforward gameplay feature",
+            robux: "1,600+",
+            usd: "$15+",
           },
           {
-            label: "Movement mechanic, slide, dash, roll, double jump",
-            robux: "2,000+",
-            usd: "$18+",
-          },
-          {
-            label: "Movement system, multiple mechanics together",
-            robux: "3,500+",
+            label:
+              "Intermediate script: abilities, movement mechanics, UI functionality, shops, data handling, weapons, or several connected gameplay features",
+            robux: "3,200+",
             usd: "$30+",
           },
           {
-            label: "UI system scripting, buttons, menus, shops, inventory logic",
-            robux: "3,500+",
-            usd: "$30+",
-          },
-          {
-            label: "Combat system, basic attacks, blocking, cooldowns",
-            robux: "4,000+",
-            usd: "$35+",
-          },
-          {
-            label: "Custom system, multiple features",
+            label:
+              "Hard/complex script: combat systems, movement systems, inventories, advanced UI systems, custom frameworks, or multiple interconnected mechanics",
             robux: "5,500+",
-            usd: "$45+",
+            usd: "$50+",
           },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "More features, cleaner polish, or fast deadlines cost more.",
+      "Prices are starting prices. More features, complexity, polish, debugging, or fast deadlines cost more.",
       "I can script full UI systems, but I do not make custom UI designs.",
-      ...SHARED_INFO.slice(1),
+      ...SHARED_PAYMENT,
     ],
     cta: "DM me with what system you need, references, deadline, and budget.",
   },
@@ -86,52 +69,33 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
       {
         title: "Single animations",
         items: [
-          {
-            label: "Static idle/blocking loop, 1-3 seconds",
-            robux: "450+",
-            usd: "$4+",
-          },
-          {
-            label: "Walking/blocking loop, 1-3 seconds",
-            robux: "520+",
-            usd: "$5+",
-          },
-          {
-            label: "Basic movement animation, 0.5-2 seconds",
-            robux: "600+",
-            usd: "$6+",
-          },
-          {
-            label: "Dash, slide, roll, jump animation",
-            robux: "600+",
-            usd: "$6+",
-          },
-          {
-            label: "Combat animation, swing, hit, block, parry",
-            robux: "750+",
-            usd: "$7+",
-          },
-          {
-            label: "Transition animation, guard swap or pose change",
-            robux: "400+",
-            usd: "$4+",
-          },
+          { label: "Basic animation", robux: "850+", usd: "$8+" },
+          { label: "Intermediate animation", robux: "1,100+", usd: "$10+" },
+          { label: "Hard/complex animation", robux: "1,400+", usd: "$13+" },
+        ],
+      },
+      {
+        title: "Cutscenes",
+        items: [
+          { label: "Cutscenes", usd: "$5 per second" },
+          { label: "5 second cutscene", usd: "$25+" },
+          { label: "10 second cutscene", usd: "$50+" },
+          { label: "15 second cutscene", usd: "$75+" },
         ],
       },
       {
         title: "Packs",
         items: [
-          { label: "4-6 animations", robux: "2,000+", usd: "$18+" },
-          { label: "7-10 animations", robux: "3,500+", usd: "$30+" },
-          { label: "11-15 animations", robux: "5,500+", usd: "$45+" },
+          { label: "4 to 6 animations", robux: "4,000+", usd: "$38+" },
+          { label: "7 to 10 animations", robux: "6,500+", usd: "$62+" },
+          { label: "11 to 15 animations", robux: "9,500+", usd: "$90+" },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "More detail, longer animations, or fast deadlines cost more.",
-      "R6 rigs only, emotes are made in Blender for Roblox.",
-      ...SHARED_INFO.slice(1),
+      "Prices are starting prices. More detail, longer animations, or fast deadlines cost more.",
+      "More complex choreography, multiple characters, or detailed camera movement may cost more.",
+      ...SHARED_PAYMENT,
     ],
     cta: "DM me with references, deadline, budget, and details.",
   },
@@ -142,19 +106,30 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     groups: [
       {
         items: [
-          { label: "Simple prop, low detail object", robux: "300+", usd: "$3+" },
-          { label: "Small asset, crate, sign, simple decor", robux: "500+", usd: "$5+" },
-          { label: "Weapon/tool, sword, hammer, item", robux: "1,000+", usd: "$9+" },
-          { label: "Detailed asset, clean shape and details", robux: "1,800+", usd: "$16+" },
-          { label: "Stylized model, more custom design", robux: "2,500+", usd: "$22+" },
-          { label: "Asset pack, 4-6 simple assets", robux: "3,500+", usd: "$30+" },
+          {
+            label:
+              "Basic model: simple props, crates, signs, basic tools, low-detail decor, or other straightforward models",
+            robux: "1,100+",
+            usd: "$10+",
+          },
+          {
+            label:
+              "Intermediate model: custom props, stylized objects, furniture, equipment, detailed assets, or models requiring custom shapes and design",
+            robux: "2,200+",
+            usd: "$20+",
+          },
+          {
+            label:
+              "Hard/complex model: highly detailed assets, complex stylized models, mechanical objects, textured assets, or models requiring extensive custom work",
+            robux: "4,000+",
+            usd: "$35+",
+          },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "Textures, extra detail, changes, or fast deadlines cost more.",
-      ...SHARED_INFO.slice(1),
+      "Prices are starting prices. Texturing, UV work, extra detail, revisions, or fast deadlines cost more.",
+      ...SHARED_PAYMENT,
     ],
     cta: "DM me with references, style, deadline, and budget.",
   },
@@ -165,22 +140,41 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     groups: [
       {
         items: [
-          { label: "Single prop/detail piece", robux: "300+", usd: "$3+" },
-          { label: "Small room, 1 basic room", robux: "1,000+", usd: "$9+" },
-          { label: "Obby section, 5-10 obstacles", robux: "1,500+", usd: "$13+" },
-          { label: "Arena, one playable fight area", robux: "2,500+", usd: "$22+" },
-          { label: "Lobby, small spawn/lobby area", robux: "3,500+", usd: "$30+" },
-          { label: "Medium lobby, multiple sections/details", robux: "5,000+", usd: "$40+" },
-          { label: "Small map, one full playable area", robux: "7,000+", usd: "$55+" },
+          {
+            label:
+              "Basic build: simple rooms, small obby sections, basic structures, small environmental pieces, or straightforward Studio builds",
+            robux: "1,600+",
+            usd: "$15+",
+          },
+          {
+            label:
+              "Intermediate build: arenas, detailed rooms, small lobbies, larger obby sections, moderately detailed environments, or multi-area builds",
+            robux: "4,500+",
+            usd: "$40+",
+          },
+          {
+            label:
+              "Hard/complex build: full lobbies, full playable maps, large environments, detailed terrain, complex structures, or multiple themed areas",
+            robux: "9,000+",
+            usd: "$80+",
+          },
+        ],
+      },
+      {
+        title: "Larger builds",
+        items: [
+          { label: "Small/full lobby", usd: "$80–$125+" },
+          { label: "Medium detailed lobby", usd: "$125–$200+" },
+          { label: "Large/polished lobby", usd: "$200+" },
+          { label: "Full maps, based on size and detail", usd: "Custom quote" },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "More detail, larger spaces, or fast deadlines cost more.",
-      ...SHARED_INFO.slice(1),
+      "Prices are starting prices. More detail, larger spaces, custom assets, or fast deadlines cost more.",
+      ...SHARED_PAYMENT,
     ],
-    cta: "DM me with references, map size, deadline, and budget.",
+    cta: "DM me with references, map size, style, deadline, and budget.",
   },
   {
     id: "vfx",
@@ -189,20 +183,30 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     groups: [
       {
         items: [
-          { label: "Simple VFX, 1 quick effect", robux: "500+", usd: "$5+" },
-          { label: "Impact VFX, hit, ground slam, burst", robux: "700+", usd: "$6+" },
-          { label: "Movement VFX, dash, jump, trail, slide", robux: "800+", usd: "$7+" },
-          { label: "Ability VFX, one full ability effect", robux: "1,200+", usd: "$10+" },
-          { label: "Aura VFX, looped body effect", robux: "1,200+", usd: "$10+" },
-          { label: "VFX pack, 3-5 effects", robux: "3,000+", usd: "$25+" },
-          { label: "Cinematic VFX, cutscene or special move", robux: "3,500+", usd: "$30+" },
+          {
+            label:
+              "Basic VFX: impact effects, small bursts, simple trails, basic auras, sparks, slashes, or other straightforward single effects",
+            robux: "1,100+",
+            usd: "$10+",
+          },
+          {
+            label:
+              "Intermediate VFX: full ability effects, ground slams, detailed movement effects, layered auras, larger attacks, or effects using multiple timed elements",
+            robux: "2,200+",
+            usd: "$20+",
+          },
+          {
+            label:
+              "Hard/complex VFX: multi-stage abilities, cinematic attacks, highly detailed effects, complex particle/beam combinations, custom meshes, or large coordinated VFX sequences",
+            robux: "4,000+",
+            usd: "$35+",
+          },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "More particles, timing, sound syncing, or fast deadlines cost more.",
-      ...SHARED_INFO.slice(1),
+      "Prices are starting prices. More layers, custom textures/models, complexity, sound syncing, or fast deadlines cost more.",
+      ...SHARED_PAYMENT,
     ],
     cta: "DM me with references, style, deadline, and budget.",
   },
@@ -213,26 +217,27 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     groups: [
       {
         items: [
-          { label: "Animation + VFX, 1 move/ability", robux: "1,500+", usd: "$13+" },
+          { label: "Animation + VFX, 1 move/ability", robux: "2,800+", usd: "$25+" },
           {
             label: "Simple ability setup, script + animation or VFX",
-            robux: "3,000+",
-            usd: "$25+",
+            robux: "4,000+",
+            usd: "$35+",
           },
-          { label: "Movement mechanic + animation", robux: "3,500+", usd: "$30+" },
-          { label: "Movement system + animations", robux: "5,000+", usd: "$40+" },
-          { label: "Combat mechanic + animation", robux: "5,000+", usd: "$40+" },
-          { label: "Combat system + animations", robux: "6,500+", usd: "$55+" },
-          { label: "Full system with animation and VFX", robux: "8,000+", usd: "$65+" },
-          { label: "UI scripting + system setup", robux: "6,000+", usd: "$50+" },
+          { label: "Movement mechanic + animation", robux: "5,000+", usd: "$45+" },
+          { label: "Movement system + animations", robux: "8,500+", usd: "$75+" },
+          { label: "Combat mechanic + animation", robux: "5,500+", usd: "$50+" },
+          { label: "Combat system + animations", robux: "11,000+", usd: "$100+" },
+          { label: "Full system with animation and VFX", robux: "14,000+", usd: "$125+" },
+          { label: "UI scripting + system setup", robux: "6,500+", usd: "$60+" },
         ],
       },
     ],
     info: [
-      ...SHARED_INFO.slice(0, 1),
-      "Final price depends on detail, amount of work, and deadline.",
+      "Prices are starting prices.",
+      "Final price depends on complexity, amount of content, polish, and deadline.",
+      "Bundled services are priced based on the total work required across each role.",
       "I can script UI systems, but I do not make custom UI designs.",
-      ...SHARED_INFO.slice(1),
+      ...SHARED_PAYMENT,
     ],
     cta: "DM me with the full idea, references, deadline, and budget.",
   },

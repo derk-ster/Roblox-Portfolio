@@ -1,11 +1,92 @@
 {
+  "Red Sword Slash.mp4": {
+    "title": "Red Sword Slash",
+    "description": "Cinematic katana slash with layered red energy, petals, and impact debris.",
+    "tags": ["Roblox VFX", "Combat", "Slash", "Particles"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "LightingPunchBarrage.mp4": {
+    "title": "Lightning Punch Barrage",
+    "description": "Punch barrage with shockwaves, lightning trails, and impact sparks.",
+    "tags": ["Roblox VFX", "Lightning", "Combat", "Impact"],
+    "status": "Completed",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
+  "Thunder.mp4": {
+    "title": "Thunder Strike",
+    "description": "Thunder strike with shockwave rings, debris, and cyan lightning.",
+    "tags": ["Roblox VFX", "Lightning", "Impact", "Combat"],
+    "status": "Completed",
+    "featured": true,
+    "order": 3,
+    "date": "2026"
+  },
+  "ElectricWhip.mp4": {
+    "title": "Electric Whip",
+    "description": "Vertical lightning whip with a star burst and cyan energy streaks.",
+    "tags": ["Roblox VFX", "Lightning", "Combat"],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "date": "2026"
+  },
+  "ElectricGrabbed.mp4": {
+    "title": "Electric Grab",
+    "description": "Lightning grab wrapping a rig, built with layered beams and sparks.",
+    "tags": ["Roblox VFX", "Lightning", "Combat"],
+    "status": "Completed",
+    "featured": false,
+    "order": 5,
+    "date": "2026"
+  },
+  "Lightning Dash.mp4": {
+    "title": "Lightning Dash",
+    "description": "Lightning dash trail with smoke and cyan energy following the rig.",
+    "tags": ["Roblox VFX", "Lightning", "Dash", "Movement"],
+    "status": "Completed",
+    "featured": false,
+    "order": 6,
+    "date": "2026"
+  },
+  "FireExplosion.mp4": {
+    "title": "Fire Explosion",
+    "description": "Fire explosion with shockwave debris, trails, and camera shake timing.",
+    "tags": ["Roblox VFX", "Fire", "Impact", "Explosion"],
+    "status": "Completed",
+    "featured": false,
+    "order": 7,
+    "date": "2026"
+  },
+  "PracticeBeam.mp4": {
+    "title": "Energy Beam",
+    "description": "Green energy beam with a source orb, streak, and swirling impact burst.",
+    "tags": ["Roblox VFX", "Beam", "Particles"],
+    "status": "Completed",
+    "featured": false,
+    "order": 8,
+    "date": "2026"
+  },
+  "ScreenEffectPractice.mp4": {
+    "title": "Screen Fire Effect",
+    "description": "Screen-space fire overlay with distance-based framing around the viewport.",
+    "tags": ["Roblox VFX", "Fire", "Screen Effect"],
+    "status": "Completed",
+    "featured": false,
+    "order": 9,
+    "date": "2026"
+  },
   "putanotethatsaysTHISISNTMYVFXijustscriptedwithvfxforge.mp4": {
     "title": "VFXForge Radial Menu",
     "description": "Radial ability menu wired up with VFXForge assets. Effects are not custom-made.",
     "tags": ["Scripting", "VFXForge", "UI"],
     "status": "Completed",
     "featured": false,
-    "order": 1,
+    "order": 10,
     "date": "2026"
   }
 }

@@ -17,6 +17,7 @@ import {
   formatLayerTransform,
   dampScrollProgress,
   getPhaseLayerVisual,
+  getPhasePosition,
   getScrollProgress,
 } from "./scroll-scene-utils";
 import { SceneLoadingFallback } from "./SceneLoadingFallback";
@@ -62,6 +63,17 @@ const ALL_PHASES: ComponentType[] = [
 
 const MOBILE_COMPONENT_INDICES = [0, 1, 3, 4, 5];
 
+function slotsToMount(progress: number, phaseCount: number): number[] {
+  const p = getPhasePosition(progress, phaseCount);
+  const lo = Math.max(0, Math.floor(p));
+  const hi = Math.min(phaseCount - 1, Math.ceil(p));
+  return lo === hi ? [lo] : [lo, hi];
+}
+
+function sameSlots(a: number[], b: number[]) {
+  return a.length === b.length && a.every((value, index) => value === b[index]);
+}
+
 function useIsMobile() {
   const [mobile, setMobile] = useState(false);
 
@@ -96,19 +108,22 @@ function ScrollSceneCanvas() {
   const smoothScrollRef = useRef(0);
   const lastFrameRef = useRef(0);
   const layerActiveRef = useRef<boolean[]>([]);
+  const mountedRef = useRef<number[]>([0]);
+  const [mountedSlots, setMountedSlots] = useState<number[]>([0]);
 
   useEffect(() => {
     phaseCountRef.current = phaseCount;
   }, [phaseCount, phaseCountRef]);
 
   useEffect(() => {
-    const onMove = (e: globalThis.MouseEvent) => {
+    const onMove = (e: globalThis.PointerEvent) => {
+      if (e.pointerType && e.pointerType !== "mouse") return;
       mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouseRef.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
     };
 
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
   }, [mouseRef]);
 
   useEffect(() => {
@@ -119,6 +134,14 @@ function ScrollSceneCanvas() {
     }
 
     let raf = 0;
+    let cancelled = false;
+
+    const syncMounted = (progress: number) => {
+      const next = slotsToMount(progress, phaseCount);
+      if (sameSlots(mountedRef.current, next)) return;
+      mountedRef.current = next;
+      if (!cancelled) setMountedSlots(next);
+    };
 
     const update = (now: number) => {
       const delta = lastFrameRef.current
@@ -134,6 +157,7 @@ function ScrollSceneCanvas() {
       );
       smoothScrollRef.current = progress;
       scrollRef.current = progress;
+      syncMounted(progress);
 
       let visibilityChanged = false;
 
@@ -151,20 +175,34 @@ function ScrollSceneCanvas() {
         if (!el) continue;
 
         el.style.opacity = String(visual.opacity);
-        el.style.transform = formatLayerTransform();
         el.style.visibility = visual.active ? "visible" : "hidden";
-        el.style.pointerEvents = "none";
       }
 
       if (visibilityChanged) {
         notifyLayerVisibility();
       }
 
-      raf = requestAnimationFrame(update);
+      if (Math.abs(progress - target) > 0.0002) {
+        raf = requestAnimationFrame(update);
+      } else {
+        raf = 0;
+        lastFrameRef.current = 0;
+      }
     };
 
-    raf = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(raf);
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    kick();
+    window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick, { passive: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("scroll", kick);
+      window.removeEventListener("resize", kick);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [
     reducedMotion,
     scrollRef,
@@ -189,6 +227,7 @@ function ScrollSceneCanvas() {
       <div className="absolute inset-0 bg-bg" />
       {componentIndices.map((componentIndex, slot) => {
         const Component = ALL_PHASES[componentIndex];
+        const mounted = mountedSlots.includes(slot);
 
         return (
           <div
@@ -206,16 +245,18 @@ function ScrollSceneCanvas() {
               el.style.transform = formatLayerTransform();
               el.style.visibility = visual.active ? "visible" : "hidden";
             }}
-            className="absolute inset-0 origin-center will-change-[opacity]"
+            className="absolute inset-0 origin-center"
             style={{
               opacity: slot === 0 ? 1 : 0,
               transform: formatLayerTransform(),
               visibility: slot === 0 ? "visible" : "hidden",
             }}
           >
-            <PhaseScrollProvider index={slot}>
-              <Component />
-            </PhaseScrollProvider>
+            {mounted ? (
+              <PhaseScrollProvider index={slot}>
+                <Component />
+              </PhaseScrollProvider>
+            ) : null}
           </div>
         );
       })}

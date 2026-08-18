@@ -25,7 +25,7 @@ const SHOWCASE = [
   {
     title: "Animation",
     description:
-      "R6 emotes and movement animations created in Blender for Roblox.",
+      "R6 combat, movement, and emote animations created in Blender for Roblox.",
     href: "#animation",
     icon: Film,
     accent: "purple" as const,

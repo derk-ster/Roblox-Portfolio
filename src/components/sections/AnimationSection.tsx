@@ -6,6 +6,8 @@ import { getAssetsByCategory } from "@/lib/assets";
 import { getSectionAssets } from "@/lib/placeholders";
 
 const ANIMATION_TAGS = [
+  "Combat",
+  "JJS",
   "Emotes",
   "Sukuna",
   "Gojo",
@@ -26,7 +28,7 @@ export function AnimationSection() {
       id="animation"
       eyebrow="Animation"
       title="Animation"
-      description="Emotes and movement animations made in Blender for Roblox."
+      description="Combat, movement, and emote animations made in Blender for Roblox."
       accent="purple"
       className="overflow-hidden"
     >

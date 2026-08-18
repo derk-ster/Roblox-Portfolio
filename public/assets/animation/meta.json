@@ -1,11 +1,29 @@
 {
+  "JJSCombo.mp4": {
+    "title": "JJS Combo",
+    "description": "Jujutsu Shenanigans-style combat combo keyframed on a blocky rig in Blender.",
+    "tags": ["Animation", "Combat", "Blender", "JJS"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "DashFinisher.mp4": {
+    "title": "Dash Finisher",
+    "description": "Combat dash finisher on R6 rigs in Blender, with an attacker and a victim.",
+    "tags": ["Animation", "Combat", "Blender", "R6"],
+    "status": "Completed",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
   "ElectroswingEmote.mp4": {
     "title": "Electro Swing Emote",
     "description": "Fortnite Electro Swing dance recreated on an R6 rig in Blender.",
     "tags": ["Animation", "Emote", "Blender", "Fortnite"],
     "status": "Completed",
     "featured": true,
-    "order": 1,
+    "order": 3,
     "date": "2026"
   },
   "20260605-0616-02.2630161.mp4": {
@@ -14,7 +32,7 @@
     "tags": ["Animation", "Emote", "Blender", "Fortnite"],
     "status": "Completed",
     "featured": false,
-    "order": 2,
+    "order": 4,
     "date": "2026"
   },
   "20260605-2136-01.1222330.mp4": {
@@ -23,7 +41,7 @@
     "tags": ["Animation", "Emote", "Blender", "Fortnite"],
     "status": "Completed",
     "featured": false,
-    "order": 3,
+    "order": 5,
     "date": "2026"
   },
   "20260606-1809-43.6865501.mp4": {
@@ -32,7 +50,7 @@
     "tags": ["Animation", "Emote", "Blender", "Fortnite"],
     "status": "Completed",
     "featured": false,
-    "order": 4,
+    "order": 6,
     "date": "2026"
   },
   "20260607-0331-45.4575817.mp4": {
@@ -41,7 +59,7 @@
     "tags": ["Animation", "Emote", "Blender", "Anime"],
     "status": "Completed",
     "featured": false,
-    "order": 5,
+    "order": 7,
     "date": "2026"
   },
   "20260607-0432-34.0626182.mp4": {
@@ -50,7 +68,7 @@
     "tags": ["Animation", "Emote", "Blender", "Anime"],
     "status": "Completed",
     "featured": false,
-    "order": 6,
+    "order": 8,
     "date": "2026"
   },
   "20260607-0517-55.9596517.mp4": {
@@ -59,7 +77,7 @@
     "tags": ["Animation", "Emote", "Blender", "Anime"],
     "status": "Completed",
     "featured": false,
-    "order": 7,
+    "order": 9,
     "date": "2026"
   },
   "UpBlockStaticLoop.mp4": {
@@ -68,7 +86,7 @@
     "tags": ["Animation", "Emote", "Blender", "Loop"],
     "status": "Completed",
     "featured": false,
-    "order": 8,
+    "order": 10,
     "date": "2026"
   }
 }

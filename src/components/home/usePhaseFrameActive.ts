@@ -13,6 +13,6 @@ export function usePhaseFrameActive(): boolean {
   return useSyncExternalStore(
     subscribeLayerVisibility,
     () => (layerOpacityRef.current[phaseIndex] ?? 0) > ACTIVE_THRESHOLD,
-    () => true
+    () => false
   );
 }

@@ -7,12 +7,14 @@ import { getSectionAssets } from "@/lib/placeholders";
 
 const VFX_TAGS = [
   "Roblox VFX",
-  "Particles",
-  "Trails",
+  "Lightning",
+  "Fire",
+  "Combat",
+  "Slash",
+  "Beam",
   "Impact",
   "Dash",
-  "Domain",
-  "Combat",
+  "Particles",
 ];
 
 export function VFXSection() {
@@ -23,7 +25,7 @@ export function VFXSection() {
       id="vfx"
       eyebrow="VFX"
       title="VFX"
-      description="Particle and trail work, mostly tied into scripted systems."
+      description="Custom ability effects, lightning, beams, explosions, and screen VFX in Roblox Studio."
       accent="pink"
       glow
       className="overflow-hidden"

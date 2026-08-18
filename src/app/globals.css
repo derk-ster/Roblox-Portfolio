@@ -98,8 +98,28 @@ body {
 }
 
 html.has-custom-cursor,
-body.has-custom-cursor,
-body.has-custom-cursor * {
+html.has-custom-cursor body {
+  cursor: none !important;
+}
+
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role="button"],
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select,
+html.has-custom-cursor label,
+html.has-custom-cursor summary,
+html.has-custom-cursor .magnetic,
+html.has-custom-cursor .tilt-card,
+html.has-custom-cursor .calm-card,
+html.has-custom-cursor .certification-trigger,
+html.has-custom-cursor .impact-card,
+html.has-custom-cursor .marquee-scrubber,
+html.has-custom-cursor [data-chat-toggle],
+html.has-custom-cursor [data-chat-send],
+html.has-custom-cursor [data-chat-close],
+html.has-custom-cursor [data-cursor] {
   cursor: none !important;
 }
 
@@ -127,11 +147,10 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   position: fixed;
   top: 0;
   left: 0;
-  width: 480px;
-  height: 480px;
-  margin: -240px 0 0 -240px;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
   translate: -9999px -9999px;
-  will-change: translate;
   contain: strict;
   pointer-events: none;
   background: radial-gradient(
@@ -139,7 +158,7 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
     color-mix(in srgb, var(--primary) 4%, transparent),
     transparent 62%
   );
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .atmo-grid {
@@ -274,7 +293,6 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  will-change: translate;
   contain: layout style paint;
   border-radius: 50%;
   transition: opacity 0.22s ease;
@@ -289,7 +307,6 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   height: 6px;
   margin: -3px 0 0 -3px;
   background: var(--primary);
-  box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.55);
 }
 
 .cursor-ring {
@@ -300,12 +317,9 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   background: transparent;
   transition:
     scale 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    margin 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.22s ease,
-    background-color 0.22s ease,
+    border-radius 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
     opacity 0.22s ease;
   scale: 1;
 }
@@ -324,13 +338,9 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
 
 .cursor-ring.is-text {
   background: rgba(var(--primary-rgb), 0.85);
-  width: 3px;
-  height: 24px;
-  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.45);
-  border: 0;
+  border-color: transparent;
   border-radius: 2px;
-  margin: -12px 0 0 -1.5px;
-  scale: 1;
+  scale: 0.09 0.7;
 }
 
 .cursor-dot.is-text {
@@ -360,8 +370,9 @@ body.has-custom-cursor .cursor-ring {
   }
 
   html.has-custom-cursor,
-  body.has-custom-cursor,
-  body.has-custom-cursor * {
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button {
     cursor: auto !important;
   }
 }
@@ -376,7 +387,6 @@ body.has-custom-cursor .cursor-ring {
   --tilt-lift: 0px;
   --tilt-glow-rgb: 56, 189, 248;
   transform-style: preserve-3d;
-  will-change: transform;
   z-index: 0;
 }
 
@@ -398,17 +408,16 @@ body.has-custom-cursor .cursor-ring {
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  filter: drop-shadow(0 0 10px rgba(var(--tilt-glow-rgb), 0.38));
 }
 
 .tilt-card.is-tilting {
   z-index: 2;
+  will-change: transform;
   transform: perspective(900px)
     translateY(calc(-1 * var(--tilt-lift)))
     rotateX(var(--rx))
     rotateY(var(--ry))
     scale(var(--tilt-scale));
-  transition: transform 0.12s ease-out;
 }
 
 .tilt-card.is-tilting .tilt-card-edge-glow {
@@ -456,7 +465,7 @@ body.has-custom-cursor .cursor-ring {
 
 @media (hover: hover) and (pointer: fine) {
   :root.is-loading,
-  :root.is-loading * {
+  :root.is-loading body {
     cursor: none !important;
   }
 
