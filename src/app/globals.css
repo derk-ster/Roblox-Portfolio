@@ -27,8 +27,6 @@
   --border: rgba(255, 255, 255, 0.1);
   --glow: rgba(56, 189, 248, 0.28);
   --primary-rgb: 56, 189, 248;
-  --mouse-x: 50%;
-  --mouse-y: 50%;
 
   --brand-gradient: linear-gradient(
     90deg,
@@ -95,51 +93,6 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   overflow-x: hidden;
-}
-
-html.has-custom-cursor,
-html.has-custom-cursor body {
-  cursor: none !important;
-}
-
-html.has-custom-cursor a,
-html.has-custom-cursor button,
-html.has-custom-cursor [role="button"],
-html.has-custom-cursor input,
-html.has-custom-cursor textarea,
-html.has-custom-cursor select,
-html.has-custom-cursor label,
-html.has-custom-cursor summary,
-html.has-custom-cursor .magnetic,
-html.has-custom-cursor .tilt-card,
-html.has-custom-cursor .calm-card,
-html.has-custom-cursor .certification-trigger,
-html.has-custom-cursor .impact-card,
-html.has-custom-cursor .marquee-scrubber,
-html.has-custom-cursor [data-chat-toggle],
-html.has-custom-cursor [data-chat-send],
-html.has-custom-cursor [data-chat-close],
-html.has-custom-cursor [data-cursor] {
-  cursor: none !important;
-}
-
-html.has-custom-cursor::-webkit-scrollbar,
-html.has-custom-cursor::-webkit-scrollbar-track,
-html.has-custom-cursor::-webkit-scrollbar-thumb,
-html.has-custom-cursor::-webkit-scrollbar-corner {
-  cursor: none !important;
-}
-
-body.has-custom-cursor .marquee-scrubber {
-  cursor: none !important;
-}
-
-body.has-custom-cursor .marquee-scrubber::-webkit-slider-thumb {
-  cursor: none !important;
-}
-
-body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
-  cursor: none !important;
 }
 
 /* Subtle mouse-following page glow — moved via translate (no CSS var repaints) */
@@ -287,96 +240,6 @@ body.has-custom-cursor .marquee-scrubber::-moz-range-thumb {
   }
 }
 
-/* Custom cursor — matches dereks-website-services.com */
-.cursor-dot,
-.cursor-ring {
-  pointer-events: none;
-  z-index: 99999;
-  opacity: 0;
-  contain: layout style paint;
-  border-radius: 50%;
-  transition: opacity 0.22s ease;
-  position: fixed;
-  top: 0;
-  left: 0;
-  translate: 0;
-}
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: var(--primary);
-}
-
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1.5px solid rgba(var(--primary-rgb), 0.7);
-  background: transparent;
-  transition:
-    scale 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 0.18s ease,
-    border-color 0.18s ease,
-    background-color 0.18s ease,
-    opacity 0.22s ease;
-  scale: 1;
-}
-
-.cursor-ring.is-link {
-  background: rgba(var(--primary-rgb), 0.18);
-  border-color: var(--primary);
-  scale: 1.65;
-}
-
-.cursor-ring.is-card {
-  border-color: rgba(var(--primary-rgb), 0.6);
-  background: rgba(var(--primary-rgb), 0.08);
-  scale: 1.35;
-}
-
-.cursor-ring.is-text {
-  background: rgba(var(--primary-rgb), 0.85);
-  border-color: transparent;
-  border-radius: 2px;
-  scale: 0.09 0.7;
-}
-
-.cursor-dot.is-text {
-  opacity: 0;
-}
-
-.cursor-ring.is-pressed {
-  background: rgba(var(--primary-rgb), 0.3);
-  scale: 0.65;
-}
-
-body.has-custom-cursor .cursor-dot,
-body.has-custom-cursor .cursor-ring {
-  opacity: 1;
-}
-
-.magnetic {
-  transform-origin: 50%;
-  translate: 0;
-  scale: 1;
-}
-
-@media (hover: none), (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none !important;
-  }
-
-  html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button {
-    cursor: auto !important;
-  }
-}
-
 /* 3D tilt cards — matches dereks-website-services.com interaction */
 .tilt-card {
   --rx: 0deg;
@@ -461,18 +324,6 @@ body.has-custom-cursor .cursor-ring {
 /* Initial loading intro — first visit per session (dereks-website-services.com pattern) */
 :root.is-loading body {
   overflow: hidden;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  :root.is-loading,
-  :root.is-loading body {
-    cursor: none !important;
-  }
-
-  :root.is-loading .cursor-dot,
-  :root.is-loading .cursor-ring {
-    z-index: 100000;
-  }
 }
 
 :root.is-loading main {
@@ -969,7 +820,6 @@ main {
   display: none;
 }
 
-/* Visible scrollbars inside panels (overrides custom-cursor global hide) */
 .scrollbar-visible {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.45) rgba(5, 8, 22, 0.6);
@@ -993,46 +843,6 @@ main {
 
 .scrollbar-visible::-webkit-scrollbar-thumb:hover {
   background: rgba(56, 189, 248, 0.6);
-}
-
-/* Panel scrollbars (library modals, pricing cards, etc.) — keep custom cursor */
-html.has-custom-cursor .scrollbar-visible,
-html.has-custom-cursor .scrollbar-thin,
-body.has-custom-cursor .scrollbar-visible,
-body.has-custom-cursor .scrollbar-thin {
-  cursor: none !important;
-  scrollbar-width: thin;
-}
-
-html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar,
-html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar,
-body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar,
-body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar {
-  display: block;
-  width: 8px;
-  height: 8px;
-  cursor: none !important;
-}
-
-html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-track,
-html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-track,
-body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-track,
-body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-track {
-  cursor: none !important;
-}
-
-html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-thumb,
-html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-thumb,
-body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-thumb,
-body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-thumb {
-  cursor: none !important;
-}
-
-html.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-corner,
-html.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-corner,
-body.has-custom-cursor .scrollbar-visible::-webkit-scrollbar-corner,
-body.has-custom-cursor .scrollbar-thin::-webkit-scrollbar-corner {
-  cursor: none !important;
 }
 
 .marquee-scrubber {

@@ -255,7 +255,6 @@ export function PortfolioChat() {
         )}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        data-cursor="open"
         aria-expanded={open}
         aria-label={open ? "Close chat" : "AI assistant"}
       >

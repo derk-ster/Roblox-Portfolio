@@ -3,7 +3,6 @@
 import { Info, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { MagneticButton } from "@/components/effects/MagneticButton";
 import { HeroAbout } from "@/components/home/HeroAbout";
 import { ScriptingInfoModal } from "@/components/sections/ScriptingInfoModal";
 import { Button } from "@/components/ui/Button";
@@ -90,16 +89,12 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <MagneticButton>
-                <Button href="#best-work" size="lg" className="hero-cta">
-                  View Work
-                </Button>
-              </MagneticButton>
-              <MagneticButton>
-                <Button href="#commission-process" size="lg" variant="secondary" className="hero-cta">
-                  Commissions
-                </Button>
-              </MagneticButton>
+              <Button href="#best-work" size="lg" className="hero-cta">
+                View Work
+              </Button>
+              <Button href="#commission-process" size="lg" variant="secondary" className="hero-cta">
+                Commissions
+              </Button>
               <Button
                 href={DISCORD_URL}
                 size="lg"
@@ -108,18 +103,16 @@ export function Hero() {
               >
                 Discord
               </Button>
-              <MagneticButton className="shrink-0">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="lg"
-                  className="hero-cta whitespace-nowrap"
-                  icon={<Info className="h-4 w-4" aria-hidden />}
-                  onClick={() => setInfoOpen(true)}
-                >
-                  Extra Info &amp; Certs
-                </Button>
-              </MagneticButton>
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                className="hero-cta shrink-0 whitespace-nowrap"
+                icon={<Info className="h-4 w-4" aria-hidden />}
+                onClick={() => setInfoOpen(true)}
+              >
+                Extra Info &amp; Certs
+              </Button>
             </motion.div>
           </div>
 
