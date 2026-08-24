@@ -2,6 +2,7 @@
 
 import { CategorySection } from "@/components/portfolio/CategorySection";
 import { AnimatedBorder } from "@/components/effects/AnimatedBorder";
+import { LazyMount } from "@/components/effects/LazyMount";
 import { HorizontalMarquee } from "@/components/effects/HorizontalMarquee";
 import { Button } from "@/components/ui/Button";
 import { DISCORD_URL, PAYMENT_METHODS, PAYMENT_SUMMARY } from "@/lib/constants";
@@ -121,11 +122,13 @@ function PricingCard({ category }: { category: PricingCategory }) {
 
 function PricingMarquee() {
   return (
-    <HorizontalMarquee durationSeconds={80}>
-      {PRICING_CATEGORIES.map((category) => (
-        <PricingCard key={category.id} category={category} />
-      ))}
-    </HorizontalMarquee>
+    <LazyMount minHeight="32rem" className="section-cv">
+      <HorizontalMarquee durationSeconds={80}>
+        {PRICING_CATEGORIES.map((category) => (
+          <PricingCard key={category.id} category={category} />
+        ))}
+      </HorizontalMarquee>
+    </LazyMount>
   );
 }
 

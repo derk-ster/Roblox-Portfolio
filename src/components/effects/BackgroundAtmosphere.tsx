@@ -2,14 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
+import { usePageVisible } from "@/lib/use-page-visible";
 
 /** Lightweight static backdrop — glow follows the pointer without a custom cursor. */
 export function BackgroundAtmosphere() {
   const reducedMotion = useReducedMotion();
+  const pageVisible = usePageVisible();
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || !pageVisible) return;
     const glow = glowRef.current;
     if (!glow) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -23,7 +25,7 @@ export function BackgroundAtmosphere() {
 
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
-  }, [reducedMotion]);
+  }, [reducedMotion, pageVisible]);
 
   if (reducedMotion) return null;
 

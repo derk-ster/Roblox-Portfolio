@@ -85,6 +85,8 @@ function MediaPreview({
           src={asset.thumbnail}
           alt={asset.title}
           fill
+          loading="lazy"
+          decoding="async"
           className={cn("object-cover", loaded ? "opacity-100" : "opacity-0")}
           sizes="(max-width: 768px) 100vw, 20rem"
           onLoad={() => setLoaded(true)}
@@ -102,6 +104,8 @@ function MediaPreview({
           src={previewSrc}
           alt={asset.title}
           fill
+          loading="lazy"
+          decoding="async"
           className={cn("object-cover", loaded ? "opacity-100" : "opacity-0")}
           sizes="(max-width: 768px) 100vw, 20rem"
           onLoad={() => setLoaded(true)}

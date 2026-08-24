@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { Library } from "lucide-react";
+import { LazyMount } from "@/components/effects/LazyMount";
 import { HorizontalMarquee } from "@/components/effects/HorizontalMarquee";
 import { Button } from "@/components/ui/Button";
 import { PortfolioCard } from "./PortfolioCard";
@@ -137,13 +138,15 @@ export function PortfolioGrid({
           No items match the current filters.
         </p>
       ) : layout === "marquee" ? (
-        <HorizontalMarquee
-          durationSeconds={marqueeDurationSeconds}
-        >
-          {marqueeCards}
-        </HorizontalMarquee>
+        <LazyMount minHeight="26rem" className="section-cv">
+          <HorizontalMarquee durationSeconds={marqueeDurationSeconds}>
+            {marqueeCards}
+          </HorizontalMarquee>
+        </LazyMount>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cards}</div>
+        <LazyMount minHeight="26rem" className="section-cv">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cards}</div>
+        </LazyMount>
       )}
 
       <MediaModal

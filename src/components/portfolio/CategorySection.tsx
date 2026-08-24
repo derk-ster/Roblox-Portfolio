@@ -31,10 +31,7 @@ export function CategorySection({
   return (
     <section
       id={id}
-      className={cn(
-        "relative scroll-mt-20 py-6 sm:py-8",
-        className
-      )}
+      className={cn("relative scroll-mt-20 py-6 sm:py-8", className)}
       aria-labelledby={`${id}-heading`}
     >
       {glow && (

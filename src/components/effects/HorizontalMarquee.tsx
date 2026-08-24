@@ -65,10 +65,12 @@ export function HorizontalMarquee({
   const scrubRef = useRef<HTMLInputElement>(null);
   const animationRef = useRef<Animation | null>(null);
   const isDraggingRef = useRef(false);
+  const inViewRef = useRef(false);
 
   const childNodes = Children.toArray(children);
   const [repeatCount, setRepeatCount] = useState(1);
   const [canScroll, setCanScroll] = useState(false);
+  const [inView, setInView] = useState(false);
 
   const measureOverflow = useCallback(() => {
     const container = containerRef.current;
@@ -81,10 +83,32 @@ export function HorizontalMarquee({
 
     setCanScroll(overflow);
 
-    if (!overflow && repeatCount < 8) {
+    if (!overflow && repeatCount < 4) {
       setRepeatCount((count) => count + 1);
     }
   }, [childNodes.length, repeatCount]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        inViewRef.current = visible;
+        setInView(visible);
+
+        const animation = animationRef.current;
+        if (!animation) return;
+        if (visible) animation.play();
+        else animation.pause();
+      },
+      { rootMargin: "240px 0px", threshold: 0 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     measureOverflow();
@@ -121,14 +145,28 @@ export function HorizontalMarquee({
       }
     );
 
+    if (!inViewRef.current) animation.pause();
     animationRef.current = animation;
 
+    return () => {
+      animation.cancel();
+      animationRef.current = null;
+    };
+  }, [canScroll, reducedMotion, durationSeconds, repeatCount]);
+
+  useEffect(() => {
+    if (!showScrubber || !inView || !canScroll || reducedMotion) return;
+
+    const durationMs = durationSeconds * 1000;
     let raf = 0;
     let frame = 0;
+
     const syncScrubber = () => {
       frame += 1;
+      const animation = animationRef.current;
       const scrub = scrubRef.current;
       if (
+        animation &&
         scrub &&
         !isDraggingRef.current &&
         animation.playState === "running" &&
@@ -142,13 +180,8 @@ export function HorizontalMarquee({
     };
 
     raf = requestAnimationFrame(syncScrubber);
-
-    return () => {
-      animation.cancel();
-      cancelAnimationFrame(raf);
-      animationRef.current = null;
-    };
-  }, [canScroll, reducedMotion, durationSeconds, repeatCount]);
+    return () => cancelAnimationFrame(raf);
+  }, [showScrubber, inView, canScroll, reducedMotion, durationSeconds]);
 
   const handleScrub = (value: number) => {
     const animation = animationRef.current;
@@ -160,10 +193,11 @@ export function HorizontalMarquee({
 
   const handleScrubEnd = () => {
     isDraggingRef.current = false;
-    animationRef.current?.play();
+    if (inViewRef.current) animationRef.current?.play();
   };
 
   const trackItems = buildTrack(childNodes, repeatCount);
+  const animating = canScroll && !reducedMotion && inView;
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -177,10 +211,7 @@ export function HorizontalMarquee({
       >
         <div
           ref={animRef}
-          className={cn(
-            "flex w-max",
-            canScroll && !reducedMotion && "will-change-transform"
-          )}
+          className={cn("flex w-max", animating && "will-change-transform")}
         >
           <div
             ref={trackRef}

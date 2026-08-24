@@ -95,6 +95,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Skip paint/layout for off-screen sections; size is estimated until shown */
+.section-cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 36rem;
+}
+
 /* Subtle mouse-following page glow — moved via translate (no CSS var repaints) */
 .mouse-glow-bg {
   position: fixed;
