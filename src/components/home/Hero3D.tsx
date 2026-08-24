@@ -3,11 +3,9 @@
 import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Float, Torus } from "@react-three/drei";
-import { useReducedMotion } from "motion/react";
 import * as THREE from "three";
 import { useSceneInteraction } from "./scene-context";
 import { usePhaseScroll } from "./usePhaseScroll";
-import { PhaseCanvas } from "./PhaseCanvas";
 
 const BLOCKS = [
   { rest: [-2, 1, 0] as const, orbit: 0.0, color: "#00E5FF", size: 1.2, speed: 0.8 },
@@ -275,7 +273,7 @@ function ScrollLights() {
   );
 }
 
-function Scene() {
+export function Hero3DScene() {
   const groupRef = useRef<THREE.Group>(null);
   const { mouseRef } = useSceneInteraction();
   const smooth = usePhaseScroll();
@@ -300,37 +298,23 @@ function Scene() {
   });
 
   return (
-    <group ref={groupRef}>
-      <ScrollCamera />
-      <ScrollLights />
-      <ScrollGrid />
-
-      {BLOCKS.map((block) => (
-        <ScrollBlock key={block.color + block.orbit} {...block} />
-      ))}
-
-      <ScrollRing rest={[0, 0, -3]} color="#00E5FF" scale={1.2} spin={1} />
-      <ScrollRing rest={[1, 2, -4]} color="#A855F7" scale={0.8} spin={-1} />
-
-      <ScrollParticles />
-      <ScrollCore />
-    </group>
-  );
-}
-
-export function Hero3D() {
-  const reducedMotion = useReducedMotion();
-  if (reducedMotion) return null;
-
-  return (
-    <PhaseCanvas
-      camera={{ position: [0, 0, 8], fov: 50 }}
-      dpr={[1, 1.5]}
-      gl={{ antialias: true, alpha: true }}
-      style={{ background: "transparent", width: "100%", height: "100%" }}
-    >
+    <>
       <fog attach="fog" args={["#050816", 14, 32]} />
-      <Scene />
-    </PhaseCanvas>
+      <group ref={groupRef}>
+        <ScrollCamera />
+        <ScrollLights />
+        <ScrollGrid />
+
+        {BLOCKS.map((block) => (
+          <ScrollBlock key={block.color + block.orbit} {...block} />
+        ))}
+
+        <ScrollRing rest={[0, 0, -3]} color="#00E5FF" scale={1.2} spin={1} />
+        <ScrollRing rest={[1, 2, -4]} color="#A855F7" scale={0.8} spin={-1} />
+
+        <ScrollParticles />
+        <ScrollCore />
+      </group>
+    </>
   );
 }

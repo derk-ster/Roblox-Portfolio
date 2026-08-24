@@ -6,7 +6,6 @@ import {
   useState,
   type ComponentType,
 } from "react";
-import dynamic from "next/dynamic";
 import { useReducedMotion } from "motion/react";
 import {
   SceneInteractionProvider,
@@ -14,65 +13,28 @@ import {
 } from "./scene-context";
 import { PhaseScrollProvider } from "./phase-scroll-context";
 import {
-  formatLayerTransform,
   dampScrollProgress,
-  getPhaseLayerVisual,
   getPhasePosition,
   getScrollProgress,
 } from "./scroll-scene-utils";
-import { SceneLoadingFallback } from "./SceneLoadingFallback";
+import { PhaseCanvas } from "./PhaseCanvas";
+import { Hero3DScene } from "./Hero3D";
+import { Hero3DPhase2Scene } from "./Hero3DPhase2";
+import { Hero3DPhase3Scene } from "./Hero3DPhase3";
+import { Hero3DPhase4Scene } from "./Hero3DPhase4";
+import { Hero3DPhase5Scene } from "./Hero3DPhase5";
+import { Hero3DPhase6Scene } from "./Hero3DPhase6";
 
-const Hero3D = dynamic(() => import("./Hero3D").then((m) => m.Hero3D), {
-  ssr: false,
-  loading: SceneLoadingFallback,
-});
-
-const Hero3DPhase2 = dynamic(
-  () => import("./Hero3DPhase2").then((m) => m.Hero3DPhase2),
-  { ssr: false, loading: SceneLoadingFallback }
-);
-
-const Hero3DPhase3 = dynamic(
-  () => import("./Hero3DPhase3").then((m) => m.Hero3DPhase3),
-  { ssr: false, loading: SceneLoadingFallback }
-);
-
-const Hero3DPhase4 = dynamic(
-  () => import("./Hero3DPhase4").then((m) => m.Hero3DPhase4),
-  { ssr: false, loading: SceneLoadingFallback }
-);
-
-const Hero3DPhase5 = dynamic(
-  () => import("./Hero3DPhase5").then((m) => m.Hero3DPhase5),
-  { ssr: false, loading: SceneLoadingFallback }
-);
-
-const Hero3DPhase6 = dynamic(
-  () => import("./Hero3DPhase6").then((m) => m.Hero3DPhase6),
-  { ssr: false, loading: SceneLoadingFallback }
-);
-
-const ALL_PHASES: ComponentType[] = [
-  Hero3D,
-  Hero3DPhase2,
-  Hero3DPhase3,
-  Hero3DPhase4,
-  Hero3DPhase5,
-  Hero3DPhase6,
+const ALL_SCENES: ComponentType[] = [
+  Hero3DScene,
+  Hero3DPhase2Scene,
+  Hero3DPhase3Scene,
+  Hero3DPhase4Scene,
+  Hero3DPhase5Scene,
+  Hero3DPhase6Scene,
 ];
 
 const MOBILE_COMPONENT_INDICES = [0, 1, 3, 4, 5];
-
-function slotsToMount(progress: number, phaseCount: number): number[] {
-  const p = getPhasePosition(progress, phaseCount);
-  const lo = Math.max(0, Math.floor(p));
-  const hi = Math.min(phaseCount - 1, Math.ceil(p));
-  return lo === hi ? [lo] : [lo, hi];
-}
-
-function sameSlots(a: number[], b: number[]) {
-  return a.length === b.length && a.every((value, index) => value === b[index]);
-}
 
 function useIsMobile() {
   const [mobile, setMobile] = useState(false);
@@ -88,28 +50,25 @@ function useIsMobile() {
   return mobile;
 }
 
+function activeSlotForProgress(progress: number, phaseCount: number): number {
+  const p = getPhasePosition(progress, phaseCount);
+  return Math.round(Math.min(phaseCount - 1, Math.max(0, p)));
+}
+
 function ScrollSceneCanvas() {
-  const {
-    mouseRef,
-    scrollRef,
-    phaseCountRef,
-    layerOpacityRef,
-    notifyLayerVisibility,
-  } = useSceneInteraction();
+  const { mouseRef, scrollRef, phaseCountRef } = useSceneInteraction();
   const reducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
 
   const componentIndices = isMobile
     ? MOBILE_COMPONENT_INDICES
-    : ALL_PHASES.map((_, i) => i);
+    : ALL_SCENES.map((_, i) => i);
   const phaseCount = componentIndices.length;
 
-  const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const smoothScrollRef = useRef(0);
   const lastFrameRef = useRef(0);
-  const layerActiveRef = useRef<boolean[]>([]);
-  const mountedRef = useRef<number[]>([0]);
-  const [mountedSlots, setMountedSlots] = useState<number[]>([0]);
+  const slotRef = useRef(0);
+  const [activeSlot, setActiveSlot] = useState(0);
 
   useEffect(() => {
     phaseCountRef.current = phaseCount;
@@ -136,13 +95,6 @@ function ScrollSceneCanvas() {
     let raf = 0;
     let cancelled = false;
 
-    const syncMounted = (progress: number) => {
-      const next = slotsToMount(progress, phaseCount);
-      if (sameSlots(mountedRef.current, next)) return;
-      mountedRef.current = next;
-      if (!cancelled) setMountedSlots(next);
-    };
-
     const update = (now: number) => {
       const delta = lastFrameRef.current
         ? Math.min(0.05, (now - lastFrameRef.current) / 1000)
@@ -157,29 +109,11 @@ function ScrollSceneCanvas() {
       );
       smoothScrollRef.current = progress;
       scrollRef.current = progress;
-      syncMounted(progress);
 
-      let visibilityChanged = false;
-
-      for (let slot = 0; slot < phaseCount; slot++) {
-        const el = layerRefs.current[slot];
-        const visual = getPhaseLayerVisual(slot, progress, phaseCount);
-        layerOpacityRef.current[slot] = visual.opacity;
-
-        const wasActive = layerActiveRef.current[slot] ?? false;
-        if (wasActive !== visual.active) {
-          layerActiveRef.current[slot] = visual.active;
-          visibilityChanged = true;
-        }
-
-        if (!el) continue;
-
-        el.style.opacity = String(visual.opacity);
-        el.style.visibility = visual.active ? "visible" : "hidden";
-      }
-
-      if (visibilityChanged) {
-        notifyLayerVisibility();
+      const nextSlot = activeSlotForProgress(progress, phaseCount);
+      if (slotRef.current !== nextSlot) {
+        slotRef.current = nextSlot;
+        if (!cancelled) setActiveSlot(nextSlot);
       }
 
       if (Math.abs(progress - target) > 0.0002) {
@@ -203,13 +137,7 @@ function ScrollSceneCanvas() {
       window.removeEventListener("resize", kick);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [
-    reducedMotion,
-    scrollRef,
-    phaseCount,
-    layerOpacityRef,
-    notifyLayerVisibility,
-  ]);
+  }, [reducedMotion, scrollRef, phaseCount]);
 
   if (reducedMotion) {
     return (
@@ -222,45 +150,17 @@ function ScrollSceneCanvas() {
     );
   }
 
+  const sceneIndex = componentIndices[activeSlot] ?? 0;
+  const Scene = ALL_SCENES[sceneIndex];
+
   return (
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
       <div className="absolute inset-0 bg-bg" />
-      {componentIndices.map((componentIndex, slot) => {
-        const Component = ALL_PHASES[componentIndex];
-        const mounted = mountedSlots.includes(slot);
-
-        return (
-          <div
-            key={slot}
-            ref={(el) => {
-              layerRefs.current[slot] = el;
-              if (!el) return;
-              const visual = getPhaseLayerVisual(
-                slot,
-                scrollRef.current ?? 0,
-                phaseCount
-              );
-              layerOpacityRef.current[slot] = visual.opacity;
-              el.style.opacity = String(visual.opacity);
-              el.style.transform = formatLayerTransform();
-              el.style.visibility = visual.active ? "visible" : "hidden";
-            }}
-            className="absolute inset-0 origin-center"
-            style={{
-              opacity: slot === 0 ? 1 : 0,
-              transform: formatLayerTransform(),
-              visibility: slot === 0 ? "visible" : "hidden",
-            }}
-          >
-            {mounted ? (
-              <PhaseScrollProvider index={slot}>
-                <Component />
-              </PhaseScrollProvider>
-            ) : null}
-          </div>
-        );
-      })}
-
+      <PhaseScrollProvider index={activeSlot}>
+        <PhaseCanvas camera={{ position: [0, 0, 8], fov: 50 }}>
+          <Scene />
+        </PhaseCanvas>
+      </PhaseScrollProvider>
       <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-bg/75 to-transparent" />
     </div>
   );
