@@ -19,7 +19,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "UI",
       "Interactions"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
@@ -91,27 +91,26 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "JJS"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
   },
   {
-    "id": "best-work-jjs-styled-anim-pack",
-    "title": "JJS Styled Animation Pack",
+    "id": "best-work-lightingjaypreview",
+    "title": "Lighting Jay Preview",
     "category": "best-work",
-    "src": "/assets/best-work/JJS styled anim pack.mp4",
+    "src": "/assets/best-work/LightingJayPreview.mp4",
     "type": "video",
     "extension": "mp4",
-    "thumbnail": "/assets/best-work/JJS styled anim pack-thumb.jpg",
-    "description": "JJS-style pack showcase with extras, M1 combo poses, and dash animations.",
+    "description": "Cinematic Roblox lighting showcase with mood, atmosphere, and scene polish.",
     "tags": [
-      "Animation",
-      "Combat",
-      "JJS",
+      "Lighting",
+      "Environment",
+      "Cinematic",
       "Featured"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
@@ -131,7 +130,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Slash",
       "Particles"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
@@ -169,7 +168,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Environment",
       "Stylized"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 1
@@ -207,7 +206,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "R6"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 2
@@ -230,6 +229,26 @@ export const portfolioAssets: PortfolioAsset[] = [
     "group": "monthly"
   },
   {
+    "id": "best-work-jjs-styled-anim-pack",
+    "title": "JJS Styled Animation Pack",
+    "category": "best-work",
+    "src": "/assets/best-work/JJS styled anim pack.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/JJS styled anim pack-thumb.jpg",
+    "description": "JJS-style pack showcase with extras, M1 combo poses, and dash animations.",
+    "tags": [
+      "Animation",
+      "Combat",
+      "JJS",
+      "Featured"
+    ],
+    "date": "Sep 5, 2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 2
+  },
+  {
     "id": "vfx-lightingpunchbarrage",
     "title": "Lightning Punch Barrage",
     "category": "vfx",
@@ -244,7 +263,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Combat",
       "Impact"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 2
@@ -286,26 +305,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "featured": false,
     "order": 2,
     "group": "proof"
-  },
-  {
-    "id": "best-work-red-sword-slash",
-    "title": "Red Sword Slash",
-    "category": "best-work",
-    "src": "/assets/best-work/Red Sword Slash.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/Red Sword Slash-thumb.jpg",
-    "description": "Cinematic katana slash with layered red energy, petals, and impact debris.",
-    "tags": [
-      "VFX",
-      "Combat",
-      "Animation",
-      "Featured"
-    ],
-    "date": "Aug 17, 2026",
-    "status": "Completed",
-    "featured": true,
-    "order": 2
   },
   {
     "id": "modeling-sci-ficrate",
@@ -378,7 +377,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Fortnite"
     ],
-    "date": "Jun 27, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 3
@@ -456,23 +455,22 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 3
   },
   {
-    "id": "best-work-20260608-0645-32-5165223",
-    "title": "Sukuna Emote",
+    "id": "best-work-red-sword-slash",
+    "title": "Red Sword Slash",
     "category": "best-work",
-    "src": "/assets/best-work/20260608-0645-32.5165223.mp4",
+    "src": "/assets/best-work/Red Sword Slash.mp4",
     "type": "video",
     "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260608-0645-32.5165223-thumb.jpg",
-    "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
+    "thumbnail": "/assets/best-work/Red Sword Slash-thumb.jpg",
+    "description": "Cinematic katana slash with layered red energy, petals, and impact debris.",
     "tags": [
-      "UI",
-      "Scripting",
-      "Emotes",
-      "WIP",
+      "VFX",
+      "Combat",
+      "Animation",
       "Featured"
     ],
-    "date": "Jun 8, 2026",
-    "status": "WIP",
+    "date": "Sep 5, 2026",
+    "status": "Completed",
     "featured": true,
     "order": 3
   },
@@ -491,7 +489,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Impact",
       "Combat"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 3
@@ -545,30 +543,9 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Lightning",
       "Combat"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
-    "order": 4
-  },
-  {
-    "id": "best-work-20260619-1959-11-3872645",
-    "title": "Matchmaking UI Tweening",
-    "category": "best-work",
-    "src": "/assets/best-work/20260619-1959-11.3872645.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260619-1959-11.3872645-thumb.jpg",
-    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
-    "tags": [
-      "UI",
-      "Scripting",
-      "Matchmaking",
-      "WIP",
-      "Featured"
-    ],
-    "date": "Jun 19, 2026",
-    "status": "WIP",
-    "featured": true,
     "order": 4
   },
   {
@@ -628,6 +605,27 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 4
   },
   {
+    "id": "best-work-20260608-0645-32-5165223",
+    "title": "Sukuna Emote",
+    "category": "best-work",
+    "src": "/assets/best-work/20260608-0645-32.5165223.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260608-0645-32.5165223-thumb.jpg",
+    "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Emotes",
+      "WIP",
+      "Featured"
+    ],
+    "date": "Jun 8, 2026",
+    "status": "WIP",
+    "featured": true,
+    "order": 4
+  },
+  {
     "id": "animation-20260605-0616-02-2630161",
     "title": "Take the L Emote",
     "category": "animation",
@@ -661,29 +659,9 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Lightning",
       "Combat"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
-    "order": 5
-  },
-  {
-    "id": "best-work-20260619-2143-04-9365424",
-    "title": "Eliminated Screen",
-    "category": "best-work",
-    "src": "/assets/best-work/20260619-2143-04.9365424.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260619-2143-04.9365424-thumb.jpg",
-    "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
-    "tags": [
-      "UI",
-      "Scripting",
-      "Combat",
-      "Featured"
-    ],
-    "date": "Jun 19, 2026",
-    "status": "Completed",
-    "featured": true,
     "order": 5
   },
   {
@@ -704,6 +682,27 @@ export const portfolioAssets: PortfolioAsset[] = [
     "date": "Jun 5, 2026",
     "status": "Completed",
     "featured": false,
+    "order": 5
+  },
+  {
+    "id": "best-work-20260619-1959-11-3872645",
+    "title": "Matchmaking UI Tweening",
+    "category": "best-work",
+    "src": "/assets/best-work/20260619-1959-11.3872645.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-1959-11.3872645-thumb.jpg",
+    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Matchmaking",
+      "WIP",
+      "Featured"
+    ],
+    "date": "Jun 19, 2026",
+    "status": "WIP",
+    "featured": true,
     "order": 5
   },
   {
@@ -817,6 +816,26 @@ export const portfolioAssets: PortfolioAsset[] = [
     "group": "languages"
   },
   {
+    "id": "best-work-20260619-2143-04-9365424",
+    "title": "Eliminated Screen",
+    "category": "best-work",
+    "src": "/assets/best-work/20260619-2143-04.9365424.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-2143-04.9365424-thumb.jpg",
+    "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Combat",
+      "Featured"
+    ],
+    "date": "Jun 19, 2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 6
+  },
+  {
     "id": "animation-20260606-1809-43-6865501",
     "title": "Fortnite Bugha Emote",
     "category": "animation",
@@ -851,7 +870,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Dash",
       "Movement"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 6
@@ -927,7 +946,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Impact",
       "Explosion"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 7
@@ -1022,7 +1041,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Beam",
       "Particles"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 8
@@ -1193,7 +1212,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Fire",
       "Screen Effect"
     ],
-    "date": "Aug 17, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 9
@@ -1213,7 +1232,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "Blender",
       "Loop"
     ],
-    "date": "Jun 27, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 10
@@ -1271,7 +1290,7 @@ export const portfolioAssets: PortfolioAsset[] = [
       "VFXForge",
       "UI"
     ],
-    "date": "Jun 27, 2026",
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": false,
     "order": 10

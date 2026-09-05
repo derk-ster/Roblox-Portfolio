@@ -3,7 +3,9 @@ import { CHAT_SYSTEM_PROMPT } from "@/lib/chat-prompt";
 import { isValidScrollTarget } from "@/lib/chat-sections";
 
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.3-70b-versatile";
+// llama-3.3-70b-versatile was shut down 2026-08-16; see Groq deprecations docs.
+const MODEL =
+  process.env.GROQ_MODEL?.trim() || "openai/gpt-oss-120b";
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -71,31 +73,47 @@ export async function POST(request: Request) {
   const trimmed = messages.slice(-10);
 
   try {
+    const requestBody: Record<string, unknown> = {
+      model: MODEL,
+      temperature: 0.6,
+      max_tokens: 512,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: CHAT_SYSTEM_PROMPT },
+        ...trimmed,
+      ],
+    };
+
+    // GPT-OSS models support (and benefit from) low reasoning for short FAQs.
+    if (MODEL.includes("gpt-oss")) {
+      requestBody.reasoning_effort = "low";
+    }
+
     const res = await fetch(GROQ_URL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.6,
-        max_tokens: 220,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: CHAT_SYSTEM_PROMPT },
-          ...trimmed,
-        ],
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("Groq API error:", res.status, errText);
-      return NextResponse.json(
-        { error: "Assistant is temporarily unavailable." },
-        { status: 502 }
-      );
+      console.error("Groq API error:", res.status, errText.slice(0, 500));
+
+      let userError = "Assistant is temporarily unavailable.";
+      if (res.status === 401 || res.status === 403) {
+        userError =
+          "Chat API key is invalid. Update GROQ_API_KEY in Vercel Environment Variables.";
+      } else if (res.status === 404 || /model/i.test(errText)) {
+        userError =
+          "Chat model is unavailable. Update GROQ_MODEL or redeploy with the latest chat route.";
+      } else if (res.status === 429) {
+        userError = "Assistant is rate-limited. Try again in a moment.";
+      }
+
+      return NextResponse.json({ error: userError }, { status: 502 });
     }
 
     const data = await res.json();

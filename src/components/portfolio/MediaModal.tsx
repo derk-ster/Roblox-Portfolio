@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Badge } from "@/components/ui/Badge";
 import { MediaLoadingSkeleton } from "@/components/ui/MediaLoadingSkeleton";
 import { ModalPortal } from "@/components/ui/ModalPortal";
+import { VideoPlayOverlay } from "@/components/portfolio/VideoPlayOverlay";
 import { DISCORD_URL } from "@/lib/constants";
 import { resolveMediaUrl } from "@/lib/media-url";
 import {
@@ -45,6 +46,28 @@ interface MediaModalProps {
   onNavigate: (asset: PortfolioAsset) => void;
 }
 
+async function tryPlay(video: HTMLVideoElement, withSound: boolean) {
+  video.muted = !withSound;
+  try {
+    await video.play();
+    if (withSound) {
+      video.muted = false;
+    }
+    return true;
+  } catch {
+    if (withSound) {
+      video.muted = true;
+      try {
+        await video.play();
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  }
+}
+
 export function MediaModal({
   asset,
   assets,
@@ -52,7 +75,10 @@ export function MediaModal({
   onNavigate,
 }: MediaModalProps) {
   const [loaded, setLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [needsPlayGesture, setNeedsPlayGesture] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const playAttemptId = useRef(0);
 
   const currentIndex = asset
     ? assets.findIndex((a) => a.id === asset.id)
@@ -77,6 +103,8 @@ export function MediaModal({
     if (!asset) return;
 
     setLoaded(false);
+    setIsPlaying(false);
+    setNeedsPlayGesture(false);
 
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -93,21 +121,78 @@ export function MediaModal({
     };
   }, [asset, onClose, goPrev, goNext]);
 
-  useEffect(() => {
-    if (!asset || asset.type !== "video") return;
-
+  const startPlayback = useCallback(async (preferSound: boolean) => {
     const video = videoRef.current;
     if (!video) return;
 
-    setLoaded(false);
-    video.load();
-    const playPromise = video.play();
-    if (playPromise) {
-      playPromise.catch(() => {
-        /* autoplay may be blocked until user interacts */
-      });
+    const attempt = ++playAttemptId.current;
+    const played = await tryPlay(video, preferSound);
+    if (attempt !== playAttemptId.current) return;
+
+    if (played) {
+      setIsPlaying(true);
+      setNeedsPlayGesture(false);
+      setLoaded(true);
+    } else {
+      setIsPlaying(false);
+      setNeedsPlayGesture(true);
+      setLoaded(true);
     }
-  }, [asset]);
+  }, []);
+
+  const handleManualPlay = useCallback(() => {
+    void startPlayback(true);
+  }, [startPlayback]);
+
+  useEffect(() => {
+    if (!asset || asset.type !== "video") return;
+
+    let cancelled = false;
+    let raf = 0;
+    let onReady: (() => void) | null = null;
+    const attempt = ++playAttemptId.current;
+
+    const kickOff = () => {
+      if (cancelled || attempt !== playAttemptId.current) return;
+      void startPlayback(true);
+    };
+
+    const waitForVideo = () => {
+      if (cancelled || attempt !== playAttemptId.current) return;
+
+      const video = videoRef.current;
+      if (!video) {
+        raf = requestAnimationFrame(waitForVideo);
+        return;
+      }
+
+      // Browser autoplay policies block unmuted play() outside the click
+      // gesture. Wait until the element can play, then try sound → muted.
+      if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+        kickOff();
+        return;
+      }
+
+      onReady = () => {
+        if (!onReady) return;
+        video.removeEventListener("canplay", onReady);
+        onReady = null;
+        kickOff();
+      };
+      video.addEventListener("canplay", onReady);
+      video.load();
+    };
+
+    waitForVideo();
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      if (onReady && videoRef.current) {
+        videoRef.current.removeEventListener("canplay", onReady);
+      }
+    };
+  }, [asset, startPlayback]);
 
   return (
     <ModalPortal>
@@ -159,19 +244,42 @@ export function MediaModal({
                   <video
                     ref={videoRef}
                     key={asset.id}
-                    src={resolveMediaUrl(asset.src)}
                     className={cn(
                       "max-h-[45vh] w-full object-contain transition-opacity duration-300",
                       loaded ? "opacity-100" : "opacity-0"
                     )}
                     controls
-                    autoPlay
                     playsInline
+                    preload="auto"
                     poster={asset.thumbnail}
                     onLoadedData={() => setLoaded(true)}
                     onCanPlay={() => setLoaded(true)}
-                    onError={() => setLoaded(true)}
-                  />
+                    onPlay={() => {
+                      setIsPlaying(true);
+                      setNeedsPlayGesture(false);
+                    }}
+                    onPause={() => setIsPlaying(false)}
+                    onEnded={() => setIsPlaying(false)}
+                    onError={() => {
+                      setLoaded(true);
+                      setNeedsPlayGesture(false);
+                    }}
+                  >
+                    <source
+                      src={resolveMediaUrl(asset.src)}
+                      type={`video/${asset.extension === "mov" ? "quicktime" : asset.extension}`}
+                    />
+                  </video>
+                  {needsPlayGesture && !isPlaying && (
+                    <button
+                      type="button"
+                      onClick={handleManualPlay}
+                      className="absolute inset-0 z-10 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                      aria-label={`Play ${asset.title}`}
+                    >
+                      <VideoPlayOverlay />
+                    </button>
+                  )}
                 </>
               ) : (
                 <div className="relative flex min-h-[20vh] w-full items-center justify-center">
@@ -194,7 +302,7 @@ export function MediaModal({
                   <button
                     type="button"
                     onClick={goPrev}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-bg/80 p-2 text-text backdrop-blur-sm transition-colors hover:bg-cyan/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                    className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-bg/80 p-2 text-text backdrop-blur-sm transition-colors hover:bg-cyan/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                     aria-label="Previous item"
                   >
                     <ChevronLeft className="h-6 w-6" />
@@ -202,7 +310,7 @@ export function MediaModal({
                   <button
                     type="button"
                     onClick={goNext}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-bg/80 p-2 text-text backdrop-blur-sm transition-colors hover:bg-cyan/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                    className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-bg/80 p-2 text-text backdrop-blur-sm transition-colors hover:bg-cyan/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                     aria-label="Next item"
                   >
                     <ChevronRight className="h-6 w-6" />

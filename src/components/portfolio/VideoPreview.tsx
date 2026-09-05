@@ -88,7 +88,6 @@ export function VideoPreview({
       <video
         ref={videoRef}
         key={resolvedSrc}
-        src={resolvedSrc}
         poster={poster}
         className={cn(className, frameReady ? "opacity-100" : "opacity-0")}
         muted
@@ -98,7 +97,9 @@ export function VideoPreview({
           if (!poster) primeFirstFrame(event.currentTarget);
         }}
         onError={onError}
-      />
+      >
+        <source src={resolvedSrc} type="video/mp4" />
+      </video>
     </>
   );
 }
