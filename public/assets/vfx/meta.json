@@ -62,12 +62,12 @@
     "order": 7,
     "date": "2026"
   },
-  "PracticeBeam.mp4": {
-    "title": "Energy Beam",
+  "BeamPractice.mp4": {
+    "title": "Beam Practice",
     "description": "Green energy beam with a source orb, streak, and swirling impact burst.",
     "tags": ["Roblox VFX", "Beam", "Particles"],
     "status": "Completed",
-    "featured": false,
+    "featured": true,
     "order": 8,
     "date": "2026"
   },

@@ -326,13 +326,14 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 2
   },
   {
-    "id": "building-enviornmentpractice",
-    "title": "Stylized Waterfall Environment",
+    "id": "building-envpractice",
+    "title": "Stylized River Environment",
     "category": "building",
-    "src": "/assets/building/EnviornmentPractice.png",
+    "src": "/assets/building/EnvPractice.png",
     "type": "image",
     "extension": "png",
-    "description": "Still of the waterfall build with moss, vines, and a hidden frog carving.",
+    "thumbnail": "/assets/building/EnvPractice-thumb.jpg",
+    "description": "Painterly river scene with waterfall, mossy frog statue, and soft sunbeams.",
     "tags": [
       "Building",
       "Environment",
@@ -383,24 +384,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 3
   },
   {
-    "id": "building-image3",
-    "title": "Island Spawn Hub",
-    "category": "building",
-    "src": "/assets/building/image3.png",
-    "type": "image",
-    "extension": "png",
-    "description": "Multi-island spawn area with plot claiming, pools, and bridges.",
-    "tags": [
-      "Building",
-      "Lobby",
-      "Map Design"
-    ],
-    "date": "2026",
-    "status": "Completed",
-    "featured": true,
-    "order": 3
-  },
-  {
     "id": "certifications-js",
     "title": "JavaScript",
     "category": "certifications",
@@ -417,6 +400,25 @@ export const portfolioAssets: PortfolioAsset[] = [
     "featured": false,
     "order": 3,
     "group": "languages"
+  },
+  {
+    "id": "best-work-jjspunchcombo",
+    "title": "JJS Punch Combo",
+    "category": "best-work",
+    "src": "/assets/best-work/JJSPunchCombo.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "description": "JJS-style M1 punch combo with impact timing and combat flow.",
+    "tags": [
+      "Animation",
+      "Combat",
+      "JJS",
+      "Featured"
+    ],
+    "date": "Sep 5, 2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 3
   },
   {
     "id": "certifications-march",
@@ -455,21 +457,19 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 3
   },
   {
-    "id": "best-work-red-sword-slash",
-    "title": "Red Sword Slash",
-    "category": "best-work",
-    "src": "/assets/best-work/Red Sword Slash.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/Red Sword Slash-thumb.jpg",
-    "description": "Cinematic katana slash with layered red energy, petals, and impact debris.",
+    "id": "building-enviornmentpractice",
+    "title": "Stylized Waterfall Environment",
+    "category": "building",
+    "src": "/assets/building/EnviornmentPractice.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Still of the waterfall build with moss, vines, and a hidden frog carving.",
     "tags": [
-      "VFX",
-      "Combat",
-      "Animation",
-      "Featured"
+      "Building",
+      "Environment",
+      "Stylized"
     ],
-    "date": "Sep 5, 2026",
+    "date": "2026",
     "status": "Completed",
     "featured": true,
     "order": 3
@@ -549,19 +549,38 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 4
   },
   {
-    "id": "building-image2",
-    "title": "OUTRUN Neighborhood Map",
+    "id": "building-image3",
+    "title": "Island Spawn Hub",
     "category": "building",
-    "src": "/assets/building/image2.png",
+    "src": "/assets/building/image3.png",
     "type": "image",
     "extension": "png",
-    "description": "OUTRUN neighborhood area with arched sections, speed pads, and cloud layers.",
+    "description": "Multi-island spawn area with plot claiming, pools, and bridges.",
     "tags": [
       "Building",
-      "OUTRUN",
+      "Lobby",
       "Map Design"
     ],
     "date": "2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 4
+  },
+  {
+    "id": "best-work-jjspunchcombovictim",
+    "title": "JJS Punch Combo Victim",
+    "category": "best-work",
+    "src": "/assets/best-work/JJSPunchComboVictim.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "description": "Victim-side reactions for the JJS punch combo, hit reactions and knockdown.",
+    "tags": [
+      "Animation",
+      "Combat",
+      "JJS",
+      "Featured"
+    ],
+    "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
     "order": 4
@@ -602,27 +621,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "date": "Jun 5, 2026",
     "status": "WIP",
     "featured": false,
-    "order": 4
-  },
-  {
-    "id": "best-work-20260608-0645-32-5165223",
-    "title": "Sukuna Emote",
-    "category": "best-work",
-    "src": "/assets/best-work/20260608-0645-32.5165223.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260608-0645-32.5165223-thumb.jpg",
-    "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
-    "tags": [
-      "UI",
-      "Scripting",
-      "Emotes",
-      "WIP",
-      "Featured"
-    ],
-    "date": "Jun 8, 2026",
-    "status": "WIP",
-    "featured": true,
     "order": 4
   },
   {
@@ -685,27 +683,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 5
   },
   {
-    "id": "best-work-20260619-1959-11-3872645",
-    "title": "Matchmaking UI Tweening",
-    "category": "best-work",
-    "src": "/assets/best-work/20260619-1959-11.3872645.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260619-1959-11.3872645-thumb.jpg",
-    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
-    "tags": [
-      "UI",
-      "Scripting",
-      "Matchmaking",
-      "WIP",
-      "Featured"
-    ],
-    "date": "Jun 19, 2026",
-    "status": "WIP",
-    "featured": true,
-    "order": 5
-  },
-  {
     "id": "certifications-may",
     "title": "May",
     "category": "certifications",
@@ -761,21 +738,41 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 5
   },
   {
-    "id": "building-image1",
+    "id": "building-image2",
     "title": "OUTRUN Neighborhood Map",
     "category": "building",
-    "src": "/assets/building/image1.png",
+    "src": "/assets/building/image2.png",
     "type": "image",
     "extension": "png",
-    "description": "Another angle of the OUTRUN neighborhood with clouds and greenery.",
+    "description": "OUTRUN neighborhood area with arched sections, speed pads, and cloud layers.",
     "tags": [
       "Building",
       "OUTRUN",
-      "Environment"
+      "Map Design"
     ],
     "date": "2026",
     "status": "Completed",
-    "featured": false,
+    "featured": true,
+    "order": 5
+  },
+  {
+    "id": "best-work-red-sword-slash",
+    "title": "Red Sword Slash",
+    "category": "best-work",
+    "src": "/assets/best-work/Red Sword Slash.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/Red Sword Slash-thumb.jpg",
+    "description": "Cinematic katana slash with layered red energy, petals, and impact debris.",
+    "tags": [
+      "VFX",
+      "Combat",
+      "Animation",
+      "Featured"
+    ],
+    "date": "Sep 5, 2026",
+    "status": "Completed",
+    "featured": true,
     "order": 5
   },
   {
@@ -814,26 +811,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "featured": false,
     "order": 6,
     "group": "languages"
-  },
-  {
-    "id": "best-work-20260619-2143-04-9365424",
-    "title": "Eliminated Screen",
-    "category": "best-work",
-    "src": "/assets/best-work/20260619-2143-04.9365424.mp4",
-    "type": "video",
-    "extension": "mp4",
-    "thumbnail": "/assets/best-work/20260619-2143-04.9365424-thumb.jpg",
-    "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
-    "tags": [
-      "UI",
-      "Scripting",
-      "Combat",
-      "Featured"
-    ],
-    "date": "Jun 19, 2026",
-    "status": "Completed",
-    "featured": true,
-    "order": 6
   },
   {
     "id": "animation-20260606-1809-43-6865501",
@@ -876,6 +853,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 6
   },
   {
+    "id": "building-image1",
+    "title": "OUTRUN Neighborhood Map",
+    "category": "building",
+    "src": "/assets/building/image1.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Another angle of the OUTRUN neighborhood with clouds and greenery.",
+    "tags": [
+      "Building",
+      "OUTRUN",
+      "Environment"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": false,
+    "order": 6
+  },
+  {
     "id": "modeling-substancepainterpractice",
     "title": "Stylized Rock Cluster",
     "category": "modeling",
@@ -890,6 +885,27 @@ export const portfolioAssets: PortfolioAsset[] = [
     ],
     "date": "2026",
     "status": "Completed",
+    "featured": true,
+    "order": 6
+  },
+  {
+    "id": "best-work-20260608-0645-32-5165223",
+    "title": "Sukuna Emote",
+    "category": "best-work",
+    "src": "/assets/best-work/20260608-0645-32.5165223.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260608-0645-32.5165223-thumb.jpg",
+    "description": "Scripted Sukuna emote system with radial selection UI and in-game effects.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Emotes",
+      "WIP",
+      "Featured"
+    ],
+    "date": "Jun 8, 2026",
+    "status": "WIP",
     "featured": true,
     "order": 6
   },
@@ -910,24 +926,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     ],
     "date": "Jun 8, 2026",
     "status": "WIP",
-    "featured": false,
-    "order": 6
-  },
-  {
-    "id": "building-image",
-    "title": "Swimming Pool Area",
-    "category": "building",
-    "src": "/assets/building/image.png",
-    "type": "image",
-    "extension": "png",
-    "description": "Pool map with shells, bubbles, seaweed, and a custom item hotbar.",
-    "tags": [
-      "Building",
-      "Environment",
-      "Pool"
-    ],
-    "date": "2026",
-    "status": "Completed",
     "featured": false,
     "order": 6
   },
@@ -1008,6 +1006,27 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 7
   },
   {
+    "id": "best-work-20260619-1959-11-3872645",
+    "title": "Matchmaking UI Tweening",
+    "category": "best-work",
+    "src": "/assets/best-work/20260619-1959-11.3872645.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-1959-11.3872645-thumb.jpg",
+    "description": "Matchmaking menu with sidebar navigation, settings tabs, and Play button.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Matchmaking",
+      "WIP",
+      "Featured"
+    ],
+    "date": "Jun 19, 2026",
+    "status": "WIP",
+    "featured": true,
+    "order": 7
+  },
+  {
     "id": "scripting-20260608-0650-51-1901739",
     "title": "Sukuna Emote",
     "category": "scripting",
@@ -1028,13 +1047,31 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 7
   },
   {
-    "id": "vfx-practicebeam",
-    "title": "Energy Beam",
+    "id": "building-image",
+    "title": "Swimming Pool Area",
+    "category": "building",
+    "src": "/assets/building/image.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Pool map with shells, bubbles, seaweed, and a custom item hotbar.",
+    "tags": [
+      "Building",
+      "Environment",
+      "Pool"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": false,
+    "order": 7
+  },
+  {
+    "id": "vfx-beampractice",
+    "title": "Beam Practice",
     "category": "vfx",
-    "src": "/assets/vfx/PracticeBeam.mp4",
+    "src": "/assets/vfx/BeamPractice.mp4",
     "type": "video",
     "extension": "mp4",
-    "thumbnail": "/assets/vfx/PracticeBeam-thumb.jpg",
+    "thumbnail": "/assets/vfx/BeamPractice-thumb.jpg",
     "description": "Green energy beam with a source orb, streak, and swirling impact burst.",
     "tags": [
       "Roblox VFX",
@@ -1043,7 +1080,27 @@ export const portfolioAssets: PortfolioAsset[] = [
     ],
     "date": "Sep 5, 2026",
     "status": "Completed",
-    "featured": false,
+    "featured": true,
+    "order": 8
+  },
+  {
+    "id": "best-work-20260619-2143-04-9365424",
+    "title": "Eliminated Screen",
+    "category": "best-work",
+    "src": "/assets/best-work/20260619-2143-04.9365424.mp4",
+    "type": "video",
+    "extension": "mp4",
+    "thumbnail": "/assets/best-work/20260619-2143-04.9365424-thumb.jpg",
+    "description": "Custom defeat overlay with respawn progress bar and HUD framing.",
+    "tags": [
+      "UI",
+      "Scripting",
+      "Combat",
+      "Featured"
+    ],
+    "date": "Jun 19, 2026",
+    "status": "Completed",
+    "featured": true,
     "order": 8
   },
   {
