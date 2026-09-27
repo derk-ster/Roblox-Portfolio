@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DErk2104 | Roblox Developer Portfolio",
   description:
-    "Roblox scripter, animator, VFX artist, builder, 3D modeler, and UI designer. Figma interfaces, emotes, movement, and Blender assets.",
+    "Roblox scripter, animator, VFX artist, builder, 3D modeler, and UI designer. UI, emotes, movement, and Blender assets.",
   keywords: [
     "Roblox",
     "developer",

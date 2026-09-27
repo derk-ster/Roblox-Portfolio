@@ -34,7 +34,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "description": "Stylized units menu with a search grid, rarity slots, and a legendary unit details panel.",
     "tags": [
       "UI",
-      "Figma",
       "Units",
       "Inventory"
     ],
@@ -354,7 +353,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "description": "Blocky shop screen with a featured bundle, cash offers, and side navigation.",
     "tags": [
       "UI",
-      "Figma",
       "Shop"
     ],
     "date": "2026",
@@ -430,7 +428,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "description": "Unit inventory with search, capacity, and equip, upgrade, and sell actions.",
     "tags": [
       "UI",
-      "Figma",
       "Inventory"
     ],
     "date": "2026",
@@ -650,7 +647,6 @@ export const portfolioAssets: PortfolioAsset[] = [
     "description": "Profile screen with player stats, progress bars, and round actions.",
     "tags": [
       "UI",
-      "Figma",
       "Profile"
     ],
     "date": "2026",

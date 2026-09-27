@@ -48,7 +48,7 @@ function getRole(asset: PortfolioAsset): string {
   if (asset.category === "animation") return "Animator · Blender · R6";
   if (asset.category === "scripting") return "Roblox Scripter · Luau";
   if (asset.category === "vfx") return "VFX Artist";
-  if (asset.category === "ui") return "UI Designer · Figma";
+  if (asset.category === "ui") return "UI Designer";
   return `Roblox ${label}`;
 }
 

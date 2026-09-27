@@ -69,7 +69,7 @@ const NAV_CARDS: {
   {
     icon: Layout,
     label: "UI",
-    description: "Figma interfaces",
+    description: "Interface designs",
     href: "#ui",
     color: "#22d3ee",
     glow: "rgba(34, 211, 238, 0.14)",

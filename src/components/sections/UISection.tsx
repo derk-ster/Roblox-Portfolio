@@ -13,7 +13,7 @@ export function UISection() {
       id="ui"
       eyebrow="UI Design"
       title="UI"
-      description="Interface designs made in Figma, then imported and set up in Roblox Studio."
+      description="Interface designs, imported and set up in Roblox Studio."
       accent="cyan"
       className="overflow-hidden"
     >

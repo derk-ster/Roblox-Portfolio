@@ -43,7 +43,7 @@ export const CHAT_SECTIONS: ChatSectionMeta[] = [
   {
     id: "ui",
     label: "UI",
-    keywords: ["ui", "interface", "figma", "hud", "menu design", "gui"],
+    keywords: ["ui", "interface", "hud", "menu design", "gui"],
   },
   {
     id: "pricing",

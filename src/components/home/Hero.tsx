@@ -79,7 +79,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.22 }}
             >
-              I design UI in Figma and build emote systems, movement, VFX, maps,
+              I design UI and build emote systems, movement, VFX, maps,
               and Blender assets for Roblox games.
             </motion.p>
 

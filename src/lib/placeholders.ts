@@ -128,7 +128,7 @@ export const PLACEHOLDER_ASSETS: Record<string, PortfolioAsset[]> = {
       extension: "svg",
       description:
         "Demo placeholder for UI work. Add images to public/assets/ui.",
-      tags: ["UI", "Figma", "Roblox Studio"],
+      tags: ["UI", "Roblox Studio"],
       date: "Placeholder",
       status: "Completed",
       featured: false,

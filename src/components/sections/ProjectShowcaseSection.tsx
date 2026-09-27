@@ -34,11 +34,11 @@ const SHOWCASE = [
   {
     title: "UI Design",
     description:
-      "Menus, shops, HUDs, and stylized interfaces designed in Figma.",
+      "Menus, shops, HUDs, and stylized interfaces.",
     href: "#ui",
     icon: Layout,
     accent: "cyan" as const,
-    tools: ["Figma", "Roblox Studio", "UI Design"],
+    tools: ["UI Design", "Roblox Studio"],
   },
   {
     title: "VFX",
