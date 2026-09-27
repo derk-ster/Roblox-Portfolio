@@ -1,0 +1,38 @@
+{
+  "AnimeStyle.png": {
+    "title": "Anime Style Units",
+    "description": "Stylized units menu with a search grid, rarity slots, and a legendary unit details panel.",
+    "tags": ["UI", "Figma", "Units", "Inventory"],
+    "status": "Completed",
+    "featured": true,
+    "order": 1,
+    "date": "2026"
+  },
+  "StudStyle.png": {
+    "title": "Stud Style Shop",
+    "description": "Blocky shop screen with a featured bundle, cash offers, and side navigation.",
+    "tags": ["UI", "Figma", "Shop"],
+    "status": "Completed",
+    "featured": true,
+    "order": 2,
+    "date": "2026"
+  },
+  "Inventory.png": {
+    "title": "Inventory",
+    "description": "Unit inventory with search, capacity, and equip, upgrade, and sell actions.",
+    "tags": ["UI", "Figma", "Inventory"],
+    "status": "Completed",
+    "featured": false,
+    "order": 3,
+    "date": "2026"
+  },
+  "Profile.png": {
+    "title": "Profile",
+    "description": "Profile screen with player stats, progress bars, and round actions.",
+    "tags": ["UI", "Figma", "Profile"],
+    "status": "Completed",
+    "featured": false,
+    "order": 4,
+    "date": "2026"
+  }
+}

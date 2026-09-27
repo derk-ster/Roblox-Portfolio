@@ -30,6 +30,7 @@ export const BACKGROUND_LAYERS: BackgroundLayer[] = [
   { sections: ["vfx"], scene: "vfx" },
   { sections: ["building"], scene: "building" },
   { sections: ["modeling"], scene: "modeling" },
+  { sections: ["ui"], scene: "modeling" },
   {
     sections: ["why-hire-me", "commission-process", "pricing"],
     scene: "work-with-me",

@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DErk2104 | Roblox Developer Portfolio",
   description:
-    "Roblox scripter, animator, VFX artist, builder, and 3D modeler. UI, emotes, movement, and Blender assets.",
+    "Roblox scripter, animator, VFX artist, builder, 3D modeler, and UI designer. Figma interfaces, emotes, movement, and Blender assets.",
   keywords: [
     "Roblox",
     "developer",
@@ -31,12 +31,13 @@ export const metadata: Metadata = {
     "VFX",
     "builder",
     "3D modeler",
+    "UI designer",
     "portfolio",
   ],
   openGraph: {
     title: "DErk2104 | Roblox Developer Portfolio",
     description:
-      "Roblox development portfolio featuring scripting, animation, VFX, building, and 3D modeling work.",
+      "Roblox development portfolio featuring scripting, animation, VFX, building, 3D modeling, and UI design work.",
     type: "website",
     images: [{ url: PORTFOLIO_LOGO, alt: "DErk2104 portfolio logo" }],
   },

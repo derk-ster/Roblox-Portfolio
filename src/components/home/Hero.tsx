@@ -8,7 +8,7 @@ import { ScriptingInfoModal } from "@/components/sections/ScriptingInfoModal";
 import { Button } from "@/components/ui/Button";
 import { DISCORD_URL } from "@/lib/constants";
 
-const CHIPS = ["UI Systems", "Emotes", "Movement", "VFX", "Blender", "Roblox Studio"];
+const CHIPS = ["UI Design", "Emotes", "Movement", "VFX", "Blender", "Roblox Studio"];
 
 /** Consistent vertical rhythm between hero content blocks */
 const BLOCK_GAP = "mt-5";
@@ -54,7 +54,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
             >
-              Roblox scripter, animator, VFX, builder, and 3D modeler
+              Roblox scripter, animator, VFX, builder, 3D modeler, and UI designer
             </motion.p>
 
             <motion.div
@@ -79,8 +79,8 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.22 }}
             >
-              I build UI, emote systems, movement, VFX, maps, and Blender assets
-              for Roblox games.
+              I design UI in Figma and build emote systems, movement, VFX, maps,
+              and Blender assets for Roblox games.
             </motion.p>
 
             <motion.div

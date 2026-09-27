@@ -23,6 +23,7 @@ const categoryAccent: Record<PortfolioCategory, "cyan" | "purple" | "pink" | "or
   vfx: "pink",
   building: "orange",
   modeling: "lime",
+  ui: "cyan",
   wip: "orange",
   certifications: "cyan",
 };
@@ -37,6 +38,7 @@ const categoryBadgeVariant: Record<
   vfx: "pink",
   building: "orange",
   modeling: "lime",
+  ui: "cyan",
   wip: "wip",
   certifications: "cyan",
 };
@@ -46,6 +48,7 @@ function getRole(asset: PortfolioAsset): string {
   if (asset.category === "animation") return "Animator · Blender · R6";
   if (asset.category === "scripting") return "Roblox Scripter · Luau";
   if (asset.category === "vfx") return "VFX Artist";
+  if (asset.category === "ui") return "UI Designer · Figma";
   return `Roblox ${label}`;
 }
 

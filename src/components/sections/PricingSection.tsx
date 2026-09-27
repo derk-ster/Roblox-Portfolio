@@ -88,9 +88,11 @@ function PricingCard({ category }: { category: PricingCategory }) {
                       className="rounded-lg border border-white/6 bg-white/[0.02] px-3 py-2"
                     >
                       <p className="text-xs leading-snug text-text/90">{item.label}</p>
-                      <p className={cn("mt-1 text-xs font-medium", styles.price)}>
-                        {formatPrice(item)}
-                      </p>
+                      {formatPrice(item) ? (
+                        <p className={cn("mt-1 text-xs font-medium", styles.price)}>
+                          {formatPrice(item)}
+                        </p>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -138,7 +140,7 @@ export function PricingSection() {
       id="pricing"
       eyebrow="Commissions"
       title="Pricing"
-      description={`Starting rates for scripting, animation, modeling, building, VFX, and bundles. I accept ${PAYMENT_SUMMARY}.`}
+      description={`Starting rates for scripting, animation, modeling, building, VFX, UI, and bundles. I accept ${PAYMENT_SUMMARY}.`}
       accent="cyan"
       className="overflow-hidden"
     >

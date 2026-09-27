@@ -7,6 +7,7 @@ import {
   Sparkles,
   Hammer,
   Box,
+  Layout,
   Star,
   Tags,
   ClipboardList,
@@ -28,7 +29,7 @@ const NAV_CARDS: {
   {
     icon: Code2,
     label: "Scripting",
-    description: "UI and emote systems",
+    description: "Luau and gameplay systems",
     href: "#scripting",
     color: "#38bdf8",
     glow: "rgba(56, 189, 248, 0.14)",
@@ -64,6 +65,14 @@ const NAV_CARDS: {
     href: "#modeling",
     color: "#84cc16",
     glow: "rgba(132, 204, 22, 0.14)",
+  },
+  {
+    icon: Layout,
+    label: "UI",
+    description: "Figma interfaces",
+    href: "#ui",
+    color: "#22d3ee",
+    glow: "rgba(34, 211, 238, 0.14)",
   },
   {
     icon: Star,

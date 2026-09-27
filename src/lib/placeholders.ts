@@ -118,6 +118,23 @@ export const PLACEHOLDER_ASSETS: Record<string, PortfolioAsset[]> = {
       order: 1,
     },
   ],
+  ui: [
+    {
+      id: "placeholder-ui-1",
+      title: "UI Design Preview",
+      category: "ui",
+      src: "/placeholder/demo-scripting.svg",
+      type: "image",
+      extension: "svg",
+      description:
+        "Demo placeholder for UI work. Add images to public/assets/ui.",
+      tags: ["UI", "Figma", "Roblox Studio"],
+      date: "Placeholder",
+      status: "Completed",
+      featured: false,
+      order: 1,
+    },
+  ],
   wip: [
     {
       id: "placeholder-wip-1",

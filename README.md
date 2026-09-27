@@ -38,6 +38,7 @@ public/assets/
 ├── vfx/            # VFX work
 ├── building/       # Maps, lobbies, environments
 ├── modeling/       # Blender / 3D assets
+├── ui/             # Figma UI designs
 └── wip/            # Work in progress
 ```
 

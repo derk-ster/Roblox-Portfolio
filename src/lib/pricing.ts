@@ -56,7 +56,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     ],
     info: [
       "Prices are starting prices. More features, complexity, polish, debugging, or fast deadlines cost more.",
-      "I can script full UI systems, but I do not make custom UI designs.",
+      "I can script full UI systems. Custom UI design is priced separately under UI.",
       ...SHARED_PAYMENT,
     ],
     cta: "DM me with what system you need, references, deadline, and budget.",
@@ -211,6 +211,74 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
     cta: "DM me with references, style, deadline, and budget.",
   },
   {
+    id: "ui",
+    title: "UI",
+    accent: "cyan",
+    groups: [
+      {
+        title: "Prices",
+        items: [
+          {
+            label:
+              "Basic UI: simple buttons, popups, small HUD elements, loading screens, basic menus, or simple interface frames",
+            robux: "1,600+",
+            usd: "$10+",
+          },
+          {
+            label:
+              "Intermediate UI: shops, settings menus, profiles, upgrade menus, gamepass menus, or moderately detailed interface screens",
+            robux: "2,800+",
+            usd: "$18+",
+          },
+          {
+            label:
+              "Hard/complex UI: inventories, unit/character menus, detailed shops, large stylized menus, multi-section interfaces, or heavily customized UI designs",
+            robux: "4,500+",
+            usd: "$30+",
+          },
+        ],
+      },
+      {
+        title: "UI packs",
+        items: [
+          { label: "3 to 5 UI screens", robux: "7,000+", usd: "$50+" },
+          { label: "6 to 10 UI screens", robux: "12,500+", usd: "$90+" },
+          { label: "11 to 15 UI screens", robux: "18,500+", usd: "$135+" },
+        ],
+      },
+      {
+        title: "Extras",
+        items: [
+          {
+            label:
+              "Custom icons/assets may cost extra depending on complexity",
+          },
+          {
+            label:
+              "Extra variants or additional states of the same UI are cheaper than completely new screens",
+          },
+          {
+            label:
+              "Mobile/tablet adjustments can be included depending on the project",
+          },
+          {
+            label:
+              "UI animation/tweening and scripting are priced separately unless included in a bundle",
+          },
+        ],
+      },
+    ],
+    info: [
+      "Prices are starting prices.",
+      "Final price depends on complexity, number of screens, amount of custom artwork, revisions, polish, and deadline.",
+      "I can create UI designs and import/setup the interface inside Roblox Studio.",
+      "UI scripting is not included unless specifically agreed upon. I also offer scripting separately if the UI needs functionality.",
+      "Larger UI packs receive discounted pricing compared to ordering every screen individually.",
+      ...SHARED_PAYMENT,
+    ],
+    cta: "DM me with references, the screens you need, your preferred style, deadline, and budget.",
+  },
+  {
     id: "bundles",
     title: "Bundles",
     accent: "cyan",
@@ -236,7 +304,7 @@ export const PRICING_CATEGORIES: PricingCategory[] = [
       "Prices are starting prices.",
       "Final price depends on complexity, amount of content, polish, and deadline.",
       "Bundled services are priced based on the total work required across each role.",
-      "I can script UI systems, but I do not make custom UI designs.",
+      "Custom UI design is available as its own service. UI scripting stays separate unless a bundle includes it.",
       ...SHARED_PAYMENT,
     ],
     cta: "DM me with the full idea, references, deadline, and budget.",

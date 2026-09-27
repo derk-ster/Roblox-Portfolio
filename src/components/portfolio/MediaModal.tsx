@@ -26,6 +26,7 @@ const categoryBadgeVariant: Record<
   vfx: "pink",
   building: "orange",
   modeling: "lime",
+  ui: "cyan",
   wip: "wip",
   certifications: "cyan",
 };
@@ -36,6 +37,7 @@ function getRole(asset: PortfolioAsset): string {
   if (asset.category === "vfx") return "VFX Artist";
   if (asset.category === "building") return "Builder · Map Design";
   if (asset.category === "modeling") return "3D Modeler · Blender";
+  if (asset.category === "ui") return "UI Designer · Figma";
   return CATEGORY_LABELS[asset.category];
 }
 

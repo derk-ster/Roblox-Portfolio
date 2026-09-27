@@ -10,6 +10,7 @@ import { AnimationSection } from "@/components/sections/AnimationSection";
 import { VFXSection } from "@/components/sections/VFXSection";
 import { BuildingSection } from "@/components/sections/BuildingSection";
 import { ModelingSection } from "@/components/sections/ModelingSection";
+import { UISection } from "@/components/sections/UISection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { WhyHireSection } from "@/components/sections/WhyHireSection";
 import { ProjectShowcaseSection } from "@/components/sections/ProjectShowcaseSection";
@@ -33,6 +34,7 @@ export default function Home() {
           <VFXSection />
           <BuildingSection />
           <ModelingSection />
+          <UISection />
           <PricingSection />
           <WhyHireSection />
           <ProcessSection />

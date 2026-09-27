@@ -18,7 +18,7 @@ export const CHAT_SECTIONS: ChatSectionMeta[] = [
   {
     id: "scripting",
     label: "Scripting",
-    keywords: ["script", "scripting", "lua", "code", "ui system", "systems"],
+    keywords: ["script", "scripting", "lua", "code", "systems"],
   },
   {
     id: "animation",
@@ -39,6 +39,11 @@ export const CHAT_SECTIONS: ChatSectionMeta[] = [
     id: "modeling",
     label: "3D Modeling",
     keywords: ["model", "modeling", "3d", "mesh", "blender model"],
+  },
+  {
+    id: "ui",
+    label: "UI",
+    keywords: ["ui", "interface", "figma", "hud", "menu design", "gui"],
   },
   {
     id: "pricing",

@@ -32,13 +32,13 @@ const SHOWCASE = [
     tools: ["Blender", "R6", "Graph Editor"],
   },
   {
-    title: "UI Systems",
+    title: "UI Design",
     description:
-      "Menus, shops, inventory, and polished in-game interfaces.",
-    href: "#scripting",
+      "Menus, shops, HUDs, and stylized interfaces designed in Figma.",
+    href: "#ui",
     icon: Layout,
     accent: "cyan" as const,
-    tools: ["Luau", "UI Scripting", "DataStores"],
+    tools: ["Figma", "Roblox Studio", "UI Design"],
   },
   {
     title: "VFX",
@@ -123,7 +123,7 @@ export function ProjectShowcaseSection() {
       id="project-showcase"
       eyebrow="Showcase"
       title="What I Build"
-      description="Roblox systems, animation, UI, VFX, and commission work. Click a card to jump in."
+      description="Roblox systems, animation, UI design, VFX, and commission work. Click a card to jump in."
       accent="cyan"
       contentClassName="!overflow-visible px-1 py-3"
     >

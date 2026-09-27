@@ -167,7 +167,7 @@ export function PortfolioChat() {
             >
               {messages.length === 0 && (
                 <p className="text-xs leading-relaxed text-muted">
-                  Ask about scripting, animations, commissions, or anything on
+                  Ask about scripting, UI design, animations, commissions, or anything on
                   this site. I&apos;ll keep it short and can jump to sections for
                   you.
                 </p>

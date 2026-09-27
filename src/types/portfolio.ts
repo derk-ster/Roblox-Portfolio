@@ -5,6 +5,7 @@ export type PortfolioCategory =
   | "vfx"
   | "building"
   | "modeling"
+  | "ui"
   | "wip"
   | "certifications";
 
@@ -36,6 +37,7 @@ export const CATEGORY_LABELS: Record<PortfolioCategory, string> = {
   vfx: "VFX",
   building: "Building",
   modeling: "3D Modeling",
+  ui: "UI",
   wip: "Work In Progress",
   certifications: "Certifications",
 };
@@ -47,6 +49,7 @@ export const CATEGORY_COLORS: Record<PortfolioCategory, string> = {
   vfx: "#c084fc",
   building: "#f97316",
   modeling: "#84cc16",
+  ui: "#22d3ee",
   wip: "#94a3b8",
   certifications: "#38bdf8",
 };
@@ -57,6 +60,7 @@ export const NAV_LINKS = [
   { href: "#vfx", label: "VFX" },
   { href: "#building", label: "Building" },
   { href: "#modeling", label: "3D Modeling" },
+  { href: "#ui", label: "UI" },
   { href: "#pricing", label: "Pricing" },
 ] as const;
 

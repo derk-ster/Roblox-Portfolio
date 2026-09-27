@@ -18,6 +18,7 @@ const CATEGORIES = [
   "vfx",
   "building",
   "modeling",
+  "ui",
   "wip",
   "certifications",
 ];
@@ -42,6 +43,7 @@ const DEFAULT_TAGS = {
   vfx: ["Roblox VFX", "Particles", "Effects"],
   building: ["Building", "Environment", "Roblox Studio"],
   modeling: ["3D Modeling", "Blender", "Roblox"],
+  ui: ["UI", "Figma", "Roblox Studio"],
   wip: ["WIP", "In Progress"],
   certifications: ["Certification", "Credential"],
 };

@@ -25,6 +25,25 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 1
   },
   {
+    "id": "ui-animestyle",
+    "title": "Anime Style Units",
+    "category": "ui",
+    "src": "/assets/ui/AnimeStyle.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Stylized units menu with a search grid, rarity slots, and a legendary unit details panel.",
+    "tags": [
+      "UI",
+      "Figma",
+      "Units",
+      "Inventory"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 1
+  },
+  {
     "id": "certifications-account",
     "title": "Codecademy Profile",
     "category": "certifications",
@@ -326,6 +345,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "order": 2
   },
   {
+    "id": "ui-studstyle",
+    "title": "Stud Style Shop",
+    "category": "ui",
+    "src": "/assets/ui/StudStyle.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Blocky shop screen with a featured bundle, cash offers, and side navigation.",
+    "tags": [
+      "UI",
+      "Figma",
+      "Shop"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": true,
+    "order": 2
+  },
+  {
     "id": "building-envpractice",
     "title": "Stylized River Environment",
     "category": "building",
@@ -381,6 +418,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
+    "order": 3
+  },
+  {
+    "id": "ui-inventory",
+    "title": "Inventory",
+    "category": "ui",
+    "src": "/assets/ui/Inventory.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Unit inventory with search, capacity, and equip, upgrade, and sell actions.",
+    "tags": [
+      "UI",
+      "Figma",
+      "Inventory"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": false,
     "order": 3
   },
   {
@@ -583,6 +638,24 @@ export const portfolioAssets: PortfolioAsset[] = [
     "date": "Sep 5, 2026",
     "status": "Completed",
     "featured": true,
+    "order": 4
+  },
+  {
+    "id": "ui-profile",
+    "title": "Profile",
+    "category": "ui",
+    "src": "/assets/ui/Profile.png",
+    "type": "image",
+    "extension": "png",
+    "description": "Profile screen with player stats, progress bars, and round actions.",
+    "tags": [
+      "UI",
+      "Figma",
+      "Profile"
+    ],
+    "date": "2026",
+    "status": "Completed",
+    "featured": false,
     "order": 4
   },
   {
